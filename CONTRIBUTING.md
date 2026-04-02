@@ -60,8 +60,9 @@ git checkout -b feat/my-contribution
 # 3. Add your contribution (see sections below)
 
 # 4. Test locally
-cp -r skills/my-skill ~/.claude/skills/  # for skills
-# Then test with Claude Code
+# For skills: copy to .qwen/skills/ and test with Qwen Code
+cp -r .qwen/skills/my-skill ~/.qwen/skills/
+# Then test with Qwen Code
 
 # 5. Submit PR
 git add . && git commit -m "feat: add my-skill" && git push -u origin feat/my-contribution
@@ -71,9 +72,9 @@ git add . && git commit -m "feat: add my-skill" && git push -u origin feat/my-co
 
 ## Contributing Skills
 
-Skills are knowledge modules that Claude Code loads based on context.
+Skills are knowledge modules that Qwen Code loads based on context.
 
-> ** Comprehensive Guide:** For detailed guidance on creating effective skills, see [Skill Development Guide](docs/SKILL-DEVELOPMENT-GUIDE.md). It covers:
+> **Comprehensive Guide:** For detailed guidance on creating effective skills, see [Skill Development Guide](docs/SKILL-DEVELOPMENT-GUIDE.md). It covers:
 > - Skill architecture and categories
 > - Writing effective content with examples
 > - Best practices and common patterns
@@ -83,7 +84,7 @@ Skills are knowledge modules that Claude Code loads based on context.
 ### Directory Structure
 
 ```
-skills/
+.qwen/skills/
 └── your-skill-name/
     └── SKILL.md
 ```
@@ -103,7 +104,7 @@ Brief overview of what this skill covers.
 
 ## When to Activate
 
-Describe scenarios where Claude should use this skill. This is critical for auto-activation.
+Describe scenarios where Qwen Code should use this skill. This is critical for auto-activation.
 
 ## Core Concepts
 
@@ -152,7 +153,7 @@ Link to complementary skills (e.g., `related-skill-1`, `related-skill-2`).
 - [ ] Shows anti-patterns (what NOT to do)
 - [ ] Under 500 lines (800 max)
 - [ ] Uses clear section headers
-- [ ] Tested with Claude Code
+- [ ] Tested with Qwen Code
 - [ ] Links to related skills
 - [ ] No sensitive data (API keys, tokens, paths)
 
@@ -165,7 +166,7 @@ Link to complementary skills (e.g., `related-skill-1`, `related-skill-2`).
 | `backend-patterns/` | Framework Patterns | API and database patterns |
 | `security-review/` | Domain Knowledge | Security checklist |
 | `tdd-workflow/` | Workflow | Test-driven development process |
-| `project-guidelines-example/` | Template | Project-specific skill template |
+| `documentation-lookup/` | Tool Integration | MCP-based documentation lookup |
 
 ---
 
@@ -176,7 +177,7 @@ Agents are specialized assistants invoked via the Task tool.
 ### File Location
 
 ```
-agents/your-agent-name.md
+.agents/your-agent-name.md
 ```
 
 ### Agent Template
@@ -184,9 +185,8 @@ agents/your-agent-name.md
 ```markdown
 ---
 name: your-agent-name
-description: What this agent does and when Claude should invoke it. Be specific!
-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: sonnet
+description: "Use this agent when working with [domain] tasks. Examples: <example>Context: User needs assistance with [domain] tasks. user: \"Can you help me with [domain] tasks?\" assistant: \"I'll use the [agent-name] agent to assist you with that.\" </example>"
+color: blue
 ---
 
 You are a [role] specialist.
@@ -225,7 +225,8 @@ Output: [what you return]
 | Field | Description | Options |
 |-------|-------------|---------|
 | `name` | Lowercase, hyphenated | `code-reviewer` |
-| `description` | Used to decide when to invoke | Be specific! |
+| `description` | Used to decide when to invoke. Include usage examples with `<example>` tags | Be specific! |
+| `color` | Visual identifier in UI | `blue`, `red`, `green`, `yellow`, `purple`, `orange` |
 | `tools` | Only what's needed | `Read, Write, Edit, Bash, Grep, Glob, WebFetch, Task`, or MCP tool names (e.g. `mcp__context7__resolve-library-id`, `mcp__context7__query-docs`) when the agent uses MCP |
 | `model` | Complexity level | `haiku` (simple), `sonnet` (coding), `opus` (complex) |
 
@@ -233,22 +234,28 @@ Output: [what you return]
 
 | Agent | Purpose |
 |-------|---------|
+| `planner.md` | Implementation planning |
+| `architect.md` | System design and architecture |
 | `tdd-guide.md` | Test-driven development |
 | `code-reviewer.md` | Code review |
 | `security-reviewer.md` | Security scanning |
 | `build-error-resolver.md` | Fix build errors |
+| `loop-operator.md` | Autonomous loop execution |
+| `harness-optimizer.md` | Harness configuration tuning |
 
 ---
 
 ## Contributing Hooks
 
-Hooks are automatic behaviors triggered by Claude Code events.
+Hooks are automatic behaviors triggered by Qwen Code events.
 
 ### File Location
 
 ```
-hooks/hooks.json
+.qwen/hooks/hooks.json
 ```
+
+See [hooks/README.md](.qwen/hooks/README.md) for comprehensive documentation.
 
 ### Hook Types
 
@@ -328,6 +335,8 @@ tool == "Bash" && tool_input.command matches "git push"
 - [ ] Uses correct exit codes (`exit 1` blocks, `exit 0` allows)
 - [ ] Tested thoroughly
 - [ ] Has description
+- [ ] Hook ID follows naming convention: `type:tool:hook-name` (e.g., `pre:bash:tmux-reminder`)
+- [ ] Uses `${CLAUDE_PLUGIN_ROOT}` or `${ECC_PLUGIN_ROOT}` for cross-platform paths
 
 ---
 
@@ -338,8 +347,11 @@ Commands are user-invoked actions with `/command-name`.
 ### File Location
 
 ```
-commands/your-command.md
+.qwen/commands/your-command/
+└── COMMAND.md
 ```
+
+Note: Commands are organized in subdirectories under `.qwen/commands/`, each containing a `COMMAND.md` file.
 
 ### Command Template
 
@@ -356,9 +368,9 @@ What this command does.
 
 ## Usage
 
-\`\`\`
+```
 /your-command [args]
-\`\`\`
+```
 
 ## Workflow
 
@@ -375,10 +387,13 @@ What the user receives.
 
 | Command | Purpose |
 |---------|---------|
-| `commit.md` | Create git commits |
-| `code-review.md` | Review code changes |
-| `tdd.md` | TDD workflow |
-| `e2e.md` | E2E testing |
+| `plan/` | Implementation planning |
+| `architect/` | Architecture review |
+| `code-review/` | Code review |
+| `tdd/` | TDD workflow |
+| `e2e/` | E2E testing with Playwright |
+| `security-review/` | Security scanning |
+| `docs/` | Documentation lookup |
 
 ---
 
@@ -389,7 +404,8 @@ Skills and agents can use **MCP (Model Context Protocol)** tools to pull in up-t
 - **Context7** is an MCP server that exposes `resolve-library-id` and `query-docs`. Use it when the user asks about libraries, frameworks, or APIs so answers reflect current docs and code examples.
 - When contributing **skills** that depend on live docs (e.g. setup, API usage), describe how to use the relevant MCP tools (e.g. resolve the library ID, then query docs) and point to the `documentation-lookup` skill or Context7 as the pattern.
 - When contributing **agents** that answer docs/API questions, include the Context7 MCP tool names (e.g. `mcp__context7__resolve-library-id`, `mcp__context7__query-docs`) in the agent's tools and document the resolve → query workflow.
-- **mcp-configs/mcp-servers.json** includes a Context7 entry; users enable it in their harness (e.g. Claude Code, Cursor) to use the documentation-lookup skill (in `skills/documentation-lookup/`) and the `/docs` command.
+- **mcp-configs/** contains MCP server configurations. See [.mcp.json](.mcp.json) for configured servers.
+- Users enable MCP servers in their harness (e.g. Qwen Code, Cursor) to use the [documentation-lookup](.qwen/skills/documentation-lookup/) skill and the `/docs` command.
 
 ---
 
@@ -404,7 +420,7 @@ ECC ships skill subsets for other harnesses:
 
 When you **add a new skill** that should be available on Codex or Cursor:
 
-1. Add the skill under `skills/your-skill-name/` as usual.
+1. Add the skill under `.qwen/skills/your-skill-name/` as usual.
 2. If it should be available on **Codex**, add it to `.agents/skills/` (copy the skill directory or add a reference) and ensure it is referenced in `agents/openai.yaml` if required.
 3. If it should be available on **Cursor**, add it under `.cursor/skills/` per Cursor's layout.
 
@@ -424,6 +440,7 @@ Translations live under `docs/` (e.g. `docs/zh-CN`, `docs/zh-TW`, `docs/ja-JP`).
 feat(skills): add rust-patterns skill
 feat(agents): add api-designer agent
 feat(hooks): add auto-format hook
+feat(commands): add new deployment command
 fix(skills): update React patterns
 docs: improve contributing guide
 ```
@@ -435,19 +452,20 @@ docs: improve contributing guide
 What you're adding and why.
 
 ## Type
-- [ ] Skill
-- [ ] Agent
-- [ ] Hook
-- [ ] Command
+- [ ] Skill (`.qwen/skills/`)
+- [ ] Agent (`.agents/`)
+- [ ] Hook (`.qwen/hooks/hooks.json`)
+- [ ] Command (`.qwen/commands/`)
 
 ## Testing
-How you tested this.
+How you tested this with Qwen Code.
 
 ## Checklist
 - [ ] Follows format guidelines
-- [ ] Tested with Claude Code
+- [ ] Tested with Qwen Code
 - [ ] No sensitive info (API keys, paths)
 - [ ] Clear descriptions
+- [ ] Updated translations if applicable (see `docs/`)
 ```
 
 ### 3. Review Process
@@ -466,6 +484,7 @@ How you tested this.
 - Test before submitting
 - Follow existing patterns
 - Document dependencies
+- Test with Qwen Code
 
 ### Don't
 - Include sensitive data (API keys, tokens, paths)
