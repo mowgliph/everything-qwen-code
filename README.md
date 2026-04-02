@@ -22,6 +22,34 @@ Built exclusively for **Qwen Code**.
 
 ### Installation
 
+**Option 1: Global Installation (Recommended)**
+
+Installs EQW to your global `~/.qwen/` directory for use across all workspaces:
+
+```bash
+# One-line installation with npx
+npx eqw-install
+
+# Or install via npm
+npm install -g everything-qwen-code
+```
+
+**Option 2: Install from GitHub**
+
+Install globally directly from GitHub repository:
+
+```bash
+# Install from GitHub
+npm install -g github:mowgliph/everything-qwen-code
+
+# Run the installer
+eqw-install
+```
+
+**Option 3: Local Installation**
+
+Clone and install in a specific workspace:
+
 ```bash
 # Clone the repository
 git clone https://github.com/mowgliph/everything-qwen-code.git

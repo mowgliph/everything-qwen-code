@@ -33,6 +33,7 @@
   "files": [
     ".agents/",
     ".qwen/",
+    "bin/",
     "contexts/",
     "docs/",
     "examples/",
@@ -47,9 +48,14 @@
     "agent.yaml",
     "package.json"
   ],
+  "bin": {
+    "eqw-install": "./bin/eqw-install"
+  },
   "scripts": {
     "lint": "eslint . && markdownlint '**/*.md' --ignore node_modules",
-    "test": "node tests/run-all.js"
+    "test": "node tests/run-all.js",
+    "install:global": "node bin/eqw-install",
+    "postinstall": "node bin/eqw-install"
   },
   "engines": {
     "node": ">=18"
