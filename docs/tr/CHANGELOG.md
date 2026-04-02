@@ -132,7 +132,7 @@
 - Oturum özet kalıcılığı, transcript payload'ın mevcut olduğu `Stop`'a taşındı.
 - Quality-gate ve cost-tracker hook'ları eklendi.
 - Kırılgan inline hook tek satırlıkları özel script dosyalarıyla değiştirildi.
-- `ECC_HOOK_PROFILE` ve `ECC_DISABLED_HOOKS` kontrolleri eklendi.
+- `EQW_HOOK_PROFILE` ve `EQW_DISABLED_HOOKS` kontrolleri eklendi.
 
 ### Platformlar Arası
 

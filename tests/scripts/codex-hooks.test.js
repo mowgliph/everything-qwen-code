@@ -55,7 +55,7 @@ function makeHermeticCodexEnv(homeDir, codexDir, extraEnv = {}) {
     GIT_CONFIG_GLOBAL: path.join(homeDir, '.gitconfig'),
     CODEX_HOME: codexDir,
     AGENTS_HOME: agentsHome,
-    ECC_GLOBAL_HOOKS_DIR: hooksDir,
+    EQW_GLOBAL_HOOKS_DIR: hooksDir,
     CLAUDE_PACKAGE_MANAGER: 'npm',
     CLAUDE_CODE_PACKAGE_MANAGER: 'npm',
     LANG: 'C.UTF-8',
@@ -79,7 +79,7 @@ if (os.platform() === 'win32') {
     try {
       const result = runBash(installScript, [], {
         HOME: homeDir,
-        ECC_GLOBAL_HOOKS_DIR: weirdHooksDir,
+        EQW_GLOBAL_HOOKS_DIR: weirdHooksDir,
       });
 
       assert.strictEqual(result.status, 0, result.stderr || result.stdout);

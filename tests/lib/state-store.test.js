@@ -13,7 +13,7 @@ const {
   resolveStateStorePath,
 } = require('../../scripts/lib/state-store');
 
-const ECC_SCRIPT = path.join(__dirname, '..', '..', 'scripts', 'ecc.js');
+const EQW_SCRIPT = path.join(__dirname, '..', '..', 'scripts', 'ecc.js');
 const STATUS_SCRIPT = path.join(__dirname, '..', '..', 'scripts', 'status.js');
 const SESSIONS_SCRIPT = path.join(__dirname, '..', '..', 'scripts', 'sessions-cli.js');
 
@@ -467,12 +467,12 @@ async function runTests() {
     try {
       await seedStore(dbPath);
 
-      const statusResult = runNode(ECC_SCRIPT, ['status', '--db', dbPath, '--json']);
+      const statusResult = runNode(EQW_SCRIPT, ['status', '--db', dbPath, '--json']);
       assert.strictEqual(statusResult.status, 0, statusResult.stderr);
       const statusPayload = parseJson(statusResult.stdout);
       assert.strictEqual(statusPayload.activeSessions.activeCount, 1);
 
-      const sessionsResult = runNode(ECC_SCRIPT, ['sessions', 'session-active', '--db', dbPath, '--json']);
+      const sessionsResult = runNode(EQW_SCRIPT, ['sessions', 'session-active', '--db', dbPath, '--json']);
       assert.strictEqual(sessionsResult.status, 0, sessionsResult.stderr);
       const sessionsPayload = parseJson(sessionsResult.stdout);
       assert.strictEqual(sessionsPayload.session.id, 'session-active');

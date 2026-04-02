@@ -12,7 +12,7 @@ If you discover a security vulnerability in Everything Qwen Code, please report 
 
 **Do not open a public GitHub issue for security vulnerabilities.**
 
-Instead, email **security@ecc.tools** with:
+Instead, email **jelvysc@gmail.com** with:
 
 - A description of the vulnerability
 - Steps to reproduce

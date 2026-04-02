@@ -86,7 +86,7 @@ function dlxServer(name, pkg, extraFields, extraToml) {
 const DEFAULT_MCP_STARTUP_TIMEOUT_SEC = 30;
 const DEFAULT_MCP_STARTUP_TIMEOUT_TOML = `startup_timeout_sec = ${DEFAULT_MCP_STARTUP_TIMEOUT_SEC}`;
 
-const ECC_SERVERS = {
+const EQW_SERVERS = {
   supabase: dlxServer('supabase', '@supabase/mcp-server-supabase@latest', { startup_timeout_sec: 20.0, tool_timeout_sec: 120.0 }, 'startup_timeout_sec = 20.0\ntool_timeout_sec = 120.0'),
   playwright: dlxServer('playwright', '@playwright/mcp@latest', { startup_timeout_sec: DEFAULT_MCP_STARTUP_TIMEOUT_SEC }, DEFAULT_MCP_STARTUP_TIMEOUT_TOML),
   context7: dlxServer('context7', '@upstash/context7-mcp@latest', { startup_timeout_sec: DEFAULT_MCP_STARTUP_TIMEOUT_SEC }, DEFAULT_MCP_STARTUP_TIMEOUT_TOML),
@@ -103,8 +103,8 @@ const ECC_SERVERS = {
 };
 
 // Append --features arg for supabase after dlxServer builds the base
-ECC_SERVERS.supabase.fields.args.push('--features=account,docs,database,debugging,development,functions,storage,branching');
-ECC_SERVERS.supabase.toml = ECC_SERVERS.supabase.toml.replace(/^(args = \[.*)\]$/m, '$1, "--features=account,docs,database,debugging,development,functions,storage,branching"]');
+EQW_SERVERS.supabase.fields.args.push('--features=account,docs,database,debugging,development,functions,storage,branching');
+EQW_SERVERS.supabase.toml = EQW_SERVERS.supabase.toml.replace(/^(args = \[.*)\]$/m, '$1, "--features=account,docs,database,debugging,development,functions,storage,branching"]');
 
 // Legacy section names that should be treated as an existing ECC server.
 // e.g. older configs shipped [mcp_servers.context7-mcp] instead of [mcp_servers.context7].
@@ -236,7 +236,7 @@ function main() {
   const toAppend = [];
   const toRemoveLog = [];
 
-  for (const [name, spec] of Object.entries(ECC_SERVERS)) {
+  for (const [name, spec] of Object.entries(EQW_SERVERS)) {
     const entry = existing[name];
     const aliases = LEGACY_ALIASES[name] || [];
     const legacyName = aliases.find(a => existing[a] && typeof existing[a].command === 'string');

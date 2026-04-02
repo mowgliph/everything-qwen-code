@@ -115,7 +115,7 @@ This document captures architect-level improvements for the Everything Claude Co
 **Recommendation:**
 
 - Prefer Node for new hooks when possible (cross-platform, single runtime). If shell is required, document why and keep the surface small.
-- Ensure `ECC_HOOK_PROFILE` and `ECC_DISABLED_HOOKS` are respected in all code paths (including shell) so behavior is consistent.
+- Ensure `EQW_HOOK_PROFILE` and `EQW_DISABLED_HOOKS` are respected in all code paths (including shell) so behavior is consistent.
 
 **Impact:** Low — maintains current design; improves if more hooks migrate to Node.
 

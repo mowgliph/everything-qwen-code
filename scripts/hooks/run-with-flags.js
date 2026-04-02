@@ -152,8 +152,8 @@ async function main() {
     encoding: 'utf8',
     env: {
       ...process.env,
-      ECC_HOOK_INPUT_TRUNCATED: truncated ? '1' : '0',
-      ECC_HOOK_INPUT_MAX_BYTES: String(MAX_STDIN)
+      EQW_HOOK_INPUT_TRUNCATED: truncated ? '1' : '0',
+      EQW_HOOK_INPUT_MAX_BYTES: String(MAX_STDIN)
     },
     cwd: process.cwd(),
     timeout: 30000

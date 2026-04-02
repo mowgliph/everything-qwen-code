@@ -94,7 +94,7 @@ function runTests() {
       const result = run(['claude:latest'], {
         env: {
           HOME: homeDir,
-          ECC_SESSION_RECORDING_DIR: recordingDir
+          EQW_SESSION_RECORDING_DIR: recordingDir
         }
       });
 

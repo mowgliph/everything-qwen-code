@@ -4,7 +4,7 @@ set -euo pipefail
 # ECC Codex Git Hook: pre-commit
 # Blocks commits that add high-signal secrets.
 
-if [[ "${ECC_SKIP_GIT_HOOKS:-0}" == "1" || "${ECC_SKIP_PRECOMMIT:-0}" == "1" ]]; then
+if [[ "${EQW_SKIP_GIT_HOOKS:-0}" == "1" || "${EQW_SKIP_PRECOMMIT:-0}" == "1" ]]; then
   exit 0
 fi
 
@@ -69,7 +69,7 @@ Fix:
 3) Re-stage and commit again.
 
 Temporary bypass (not recommended):
-  ECC_SKIP_PRECOMMIT=1 git commit ...
+  EQW_SKIP_PRECOMMIT=1 git commit ...
 EOF
   exit 1
 fi

@@ -18,14 +18,14 @@ Windows CI lane is already merged via `#417`.
 - `agentshield`, `ECC-website`, and `skill-creator-app` all have dirty
   `main` worktrees and should not be edited directly on `main`.
 - `applications/` is not a standalone git repo. It lives inside the parent
-  workspace repo at `<ECC_ROOT>`.
+  workspace repo at `<EQW_ROOT>`.
 
 ## Repo: `everything-claude-code`
 
 ### Prompt A — PR `#399` Review and Merge Readiness
 
 ```text
-Work in: <ECC_ROOT>/everything-claude-code
+Work in: <EQW_ROOT>/everything-claude-code
 
 Goal:
 Review PR #399 ("fix(observe): 5-layer automated session guard to prevent
@@ -58,7 +58,7 @@ Deliverables:
 ### Prompt B — Roadmap Issues Extraction
 
 ```text
-Work in: <ECC_ROOT>/everything-claude-code
+Work in: <EQW_ROOT>/everything-claude-code
 
 Goal:
 Convert recurring discussion pressure from the mega plan into concrete GitHub
@@ -91,7 +91,7 @@ Deliverables:
 ### Prompt C — ECC 2.0 Discovery and Adapter Spec
 
 ```text
-Work in: <ECC_ROOT>/everything-claude-code
+Work in: <EQW_ROOT>/everything-claude-code
 
 Goal:
 Turn the existing ECC 2.0 vision into a first concrete discovery doc focused on
@@ -125,7 +125,7 @@ Deliverables:
 ### Prompt — False Positive Audit and Regression Plan
 
 ```text
-Work in: <ECC_ROOT>/agentshield
+Work in: <EQW_ROOT>/agentshield
 
 Goal:
 Advance the AgentShield Phase 2 workstream from the mega plan: reduce false
@@ -165,7 +165,7 @@ Deliverables:
 ### Prompt — Landing Rewrite and Product Framing
 
 ```text
-Work in: <ECC_ROOT>/ECC-website
+Work in: <EQW_ROOT>/ECC-website
 
 Goal:
 Execute the website lane from the mega plan by rewriting the landing/product
@@ -209,7 +209,7 @@ Deliverables:
 ### Prompt — Skill Import Pipeline and Product Fit
 
 ```text
-Work in: <ECC_ROOT>/skill-creator-app
+Work in: <EQW_ROOT>/skill-creator-app
 
 Goal:
 Align skill-creator-app with the mega-plan external skill sourcing and audited
@@ -247,7 +247,7 @@ Deliverables:
 ### Prompt — Example Apps and Workflow Reliability Proofs
 
 ```text
-Work in: <ECC_ROOT>
+Work in: <EQW_ROOT>
 
 Goal:
 Use the parent ECC workspace to support the mega-plan hosted/workflow lanes.

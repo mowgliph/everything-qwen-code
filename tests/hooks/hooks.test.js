@@ -536,7 +536,7 @@ async function runTests() {
         tool_name: 'Write',
         tool_input: { file_path: 'src/index.ts', content: 'console.log("ok");' }
       });
-      const result = await runScript(path.join(scriptsDir, 'insaits-security-wrapper.js'), stdinData, { ECC_ENABLE_INSAITS: '' });
+      const result = await runScript(path.join(scriptsDir, 'insaits-security-wrapper.js'), stdinData, { EQW_ENABLE_INSAITS: '' });
       assert.strictEqual(result.code, 0, `Exit code should be 0, got ${result.code}`);
       assert.strictEqual(result.stdout, stdinData, 'Should pass stdin through unchanged');
       assert.strictEqual(result.stderr, '', 'Should stay silent when integration is disabled');
@@ -2033,7 +2033,7 @@ async function runTests() {
 
       assert.ok(insaitsHook, 'Should define an InsAIts PreToolUse hook');
       assert.strictEqual(insaitsHook.matcher, 'Bash|Write|Edit|MultiEdit', 'InsAIts hook should avoid matching every tool');
-      assert.ok(insaitsHook.description.includes('ECC_ENABLE_INSAITS=1'), 'InsAIts hook should document explicit opt-in');
+      assert.ok(insaitsHook.description.includes('EQW_ENABLE_INSAITS=1'), 'InsAIts hook should document explicit opt-in');
       assert.ok(insaitsHook.hooks[0].command.includes('insaits-security-wrapper.js'), 'InsAIts hook should execute through the JS wrapper');
     })
   )
@@ -2460,11 +2460,11 @@ async function runTests() {
     test('observer-loop uses a configurable max-turn budget with safe default', () => {
       const observerLoopSource = fs.readFileSync(path.join(__dirname, '..', '..', 'skills', 'continuous-learning-v2', 'agents', 'observer-loop.sh'), 'utf8');
 
-      assert.ok(observerLoopSource.includes('ECC_OBSERVER_MAX_TURNS'), 'observer-loop should allow max-turn overrides');
-      assert.ok(observerLoopSource.includes('max_turns="${ECC_OBSERVER_MAX_TURNS:-10}"'), 'observer-loop should default to 10 turns');
+      assert.ok(observerLoopSource.includes('EQW_OBSERVER_MAX_TURNS'), 'observer-loop should allow max-turn overrides');
+      assert.ok(observerLoopSource.includes('max_turns="${EQW_OBSERVER_MAX_TURNS:-10}"'), 'observer-loop should default to 10 turns');
       assert.ok(!observerLoopSource.includes('--max-turns 3'), 'observer-loop should not hardcode a 3-turn limit');
-      assert.ok(observerLoopSource.includes('ECC_SKIP_OBSERVE=1'), 'observer-loop should suppress observe.sh for automated sessions');
-      assert.ok(observerLoopSource.includes('ECC_HOOK_PROFILE=minimal'), 'observer-loop should run automated analysis with the minimal hook profile');
+      assert.ok(observerLoopSource.includes('EQW_SKIP_OBSERVE=1'), 'observer-loop should suppress observe.sh for automated sessions');
+      assert.ok(observerLoopSource.includes('EQW_HOOK_PROFILE=minimal'), 'observer-loop should run automated analysis with the minimal hook profile');
     })
   )
     passed++;
@@ -2657,7 +2657,7 @@ async function runTests() {
     await asyncTest('observe.sh skips minimal hook profile before project detection side effects', async () => {
       await assertObserveSkipBeforeProjectDetection({
         name: 'minimal hook profile',
-        env: { CLAUDE_CODE_ENTRYPOINT: 'cli', ECC_HOOK_PROFILE: 'minimal' }
+        env: { CLAUDE_CODE_ENTRYPOINT: 'cli', EQW_HOOK_PROFILE: 'minimal' }
       });
     })
   )
@@ -2668,7 +2668,7 @@ async function runTests() {
     await asyncTest('observe.sh skips cooperative skip env before project detection side effects', async () => {
       await assertObserveSkipBeforeProjectDetection({
         name: 'cooperative skip env',
-        env: { CLAUDE_CODE_ENTRYPOINT: 'cli', ECC_SKIP_OBSERVE: '1' }
+        env: { CLAUDE_CODE_ENTRYPOINT: 'cli', EQW_SKIP_OBSERVE: '1' }
       });
     })
   )
@@ -2693,7 +2693,7 @@ async function runTests() {
         name: 'cwd skip path',
         env: {
           CLAUDE_CODE_ENTRYPOINT: 'cli',
-          ECC_OBSERVE_SKIP_PATHS: ' observer-sessions , .claude-mem '
+          EQW_OBSERVE_SKIP_PATHS: ' observer-sessions , .claude-mem '
         },
         cwdSuffix: path.join('observer-sessions', 'worker')
       });

@@ -95,7 +95,7 @@ Bu repository yalnızca ham kodu içerir. Rehberler her şeyi açıklıyor.
 
 - **Harness-first release** — ECC artık açıkça bir agent harness performans sistemi olarak çerçevelendi, sadece bir config paketi değil.
 - **Hook güvenilirlik iyileştirmesi** — SessionStart root fallback, Stop-phase session özetleri ve kırılgan inline one-liner'lar yerine script-tabanlı hook'lar.
-- **Hook runtime kontrolleri** — `ECC_HOOK_PROFILE=minimal|standard|strict` ve `ECC_DISABLED_HOOKS=...` hook dosyalarını düzenlemeden runtime gating için.
+- **Hook runtime kontrolleri** — `EQW_HOOK_PROFILE=minimal|standard|strict` ve `EQW_DISABLED_HOOKS=...` hook dosyalarını düzenlemeden runtime gating için.
 - **Yeni harness command'ları** — `/harness-audit`, `/loop-start`, `/loop-status`, `/quality-gate`, `/model-route`.
 - **NanoClaw v2** — Model routing, skill hot-load, session branch/search/export/compact/metrics.
 - **Çapraz harness paritesi** — Claude Code, Cursor, OpenCode ve Codex app/CLI arasında davranış sıkılaştırıldı.
@@ -207,10 +207,10 @@ Sıkılığı ayarlamak veya belirli hook'ları geçici olarak devre dışı bı
 
 ```bash
 # Hook sıkılık profili (varsayılan: standard)
-export ECC_HOOK_PROFILE=standard
+export EQW_HOOK_PROFILE=standard
 
 # Devre dışı bırakılacak hook ID'leri (virgülle ayrılmış)
-export ECC_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
+export EQW_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
 ```
 
 ---

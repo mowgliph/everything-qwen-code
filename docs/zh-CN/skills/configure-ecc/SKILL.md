@@ -33,7 +33,7 @@ rm -rf /tmp/everything-claude-code
 git clone https://github.com/affaan-m/everything-claude-code.git /tmp/everything-claude-code
 ```
 
-将 `ECC_ROOT=/tmp/everything-claude-code` 设置为所有后续复制操作的源。
+将 `EQW_ROOT=/tmp/everything-claude-code` 设置为所有后续复制操作的源。
 
 如果克隆失败（网络问题等），使用 `AskUserQuestion` 要求用户提供现有 ECC 克隆的本地路径。
 
@@ -201,7 +201,7 @@ mkdir -p $TARGET/skills $TARGET/rules
 对于每个选定的技能，复制整个技能目录：
 
 ```bash
-cp -r $ECC_ROOT/skills/<skill-name> $TARGET/skills/
+cp -r $EQW_ROOT/skills/<skill-name> $TARGET/skills/
 ```
 
 注意：`continuous-learning` 和 `continuous-learning-v2` 有额外的文件（config.json、钩子、脚本）——确保复制整个目录，而不仅仅是 SKILL.md。
@@ -225,12 +225,12 @@ cp -r $ECC_ROOT/skills/<skill-name> $TARGET/skills/
 
 ```bash
 # Common rules (flat copy into rules/)
-cp -r $ECC_ROOT/rules/common/* $TARGET/rules/
+cp -r $EQW_ROOT/rules/common/* $TARGET/rules/
 
 # Language-specific rules (flat copy into rules/)
-cp -r $ECC_ROOT/rules/typescript/* $TARGET/rules/   # if selected
-cp -r $ECC_ROOT/rules/python/* $TARGET/rules/        # if selected
-cp -r $ECC_ROOT/rules/golang/* $TARGET/rules/        # if selected
+cp -r $EQW_ROOT/rules/typescript/* $TARGET/rules/   # if selected
+cp -r $EQW_ROOT/rules/python/* $TARGET/rules/        # if selected
+cp -r $EQW_ROOT/rules/golang/* $TARGET/rules/        # if selected
 ```
 
 **重要**：如果用户选择了任何特定语言的规则但**没有**选择通用规则，警告他们：
@@ -326,7 +326,7 @@ grep -rn "skills/" $TARGET/skills/
    * 安全要求
 3. 在安装目标处就地编辑规则文件
 
-**关键**：只修改安装目标（`$TARGET/`）中的文件，**绝不**修改源 ECC 仓库（`$ECC_ROOT/`）中的文件。
+**关键**：只修改安装目标（`$TARGET/`）中的文件，**绝不**修改源 ECC 仓库（`$EQW_ROOT/`）中的文件。
 
 ***
 

@@ -97,7 +97,7 @@
 
 * **平台优先发布** — ECC 现在被明确构建为一个智能体平台性能系统，而不仅仅是一个配置包。
 * **钩子可靠性大修** — SessionStart 根回退、Stop 阶段会话摘要，以及用基于脚本的钩子替换脆弱的单行内联钩子。
-* **钩子运行时控制** — `ECC_HOOK_PROFILE=minimal|standard|strict` 和 `ECC_DISABLED_HOOKS=...` 用于运行时门控，无需编辑钩子文件。
+* **钩子运行时控制** — `EQW_HOOK_PROFILE=minimal|standard|strict` 和 `EQW_DISABLED_HOOKS=...` 用于运行时门控，无需编辑钩子文件。
 * **新平台命令** — `/harness-audit`、`/loop-start`、`/loop-status`、`/quality-gate`、`/model-route`。
 * **NanoClaw v2** — 模型路由、技能热加载、会话分支/搜索/导出/压缩/指标。
 * **跨平台一致性** — 在 Claude Code、Cursor、OpenCode 和 Codex 应用/CLI 中行为更加统一。
@@ -252,10 +252,10 @@ node scripts/setup-package-manager.js --detect
 
 ```bash
 # Hook strictness profile (default: standard)
-export ECC_HOOK_PROFILE=standard
+export EQW_HOOK_PROFILE=standard
 
 # Comma-separated hook IDs to disable
-export ECC_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
+export EQW_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
 ```
 
 ***

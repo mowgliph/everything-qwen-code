@@ -355,9 +355,9 @@ async function runTests() {
         { tool_name: 'mcp__broken__search', tool_input: {} },
         {
           CLAUDE_HOOK_EVENT_NAME: 'PreToolUse',
-          ECC_MCP_CONFIG_PATH: configPath,
-          ECC_MCP_HEALTH_STATE_PATH: statePath,
-          ECC_MCP_HEALTH_TIMEOUT_MS: '100'
+          EQW_MCP_CONFIG_PATH: configPath,
+          EQW_MCP_HEALTH_STATE_PATH: statePath,
+          EQW_MCP_HEALTH_TIMEOUT_MS: '100'
         }
       );
 

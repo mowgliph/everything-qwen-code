@@ -101,7 +101,7 @@
             "timeout": 15
           }
         ],
-        "description": "Optional InsAIts AI security monitor for Bash/Edit/Write flows. Enable with ECC_ENABLE_INSAITS=1. Requires: pip install insa-its",
+        "description": "Optional InsAIts AI security monitor for Bash/Edit/Write flows. Enable with EQW_ENABLE_INSAITS=1. Requires: pip install insa-its",
         "id": "pre:insaits:security"
       },
       {
@@ -113,7 +113,7 @@
             "timeout": 10
           }
         ],
-        "description": "Capture governance events (secrets, policy violations, approval requests). Enable with ECC_GOVERNANCE_CAPTURE=1",
+        "description": "Capture governance events (secrets, policy violations, approval requests). Enable with EQW_GOVERNANCE_CAPTURE=1",
         "id": "pre:governance-capture"
       },
       {
@@ -257,7 +257,7 @@
             "timeout": 10
           }
         ],
-        "description": "Capture governance events from tool outputs. Enable with ECC_GOVERNANCE_CAPTURE=1",
+        "description": "Capture governance events from tool outputs. Enable with EQW_GOVERNANCE_CAPTURE=1",
         "id": "post:governance-capture"
       },
       {

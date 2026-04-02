@@ -37,10 +37,10 @@ Validation performed against merged head `546628182200c16cc222b97673ddd79e942eac
 - targeted hook invocations for:
   - interactive CLI session
   - `CLAUDE_CODE_ENTRYPOINT=mcp`
-  - `ECC_HOOK_PROFILE=minimal`
-  - `ECC_SKIP_OBSERVE=1`
+  - `EQW_HOOK_PROFILE=minimal`
+  - `EQW_SKIP_OBSERVE=1`
   - `agent_id` payload
-  - trimmed `ECC_OBSERVE_SKIP_PATHS`
+  - trimmed `EQW_OBSERVE_SKIP_PATHS`
 
 Behavioral result:
 
@@ -58,8 +58,8 @@ Remaining findings:
    later exit early.
 2. Low: the new guard matrix shipped without direct regression coverage.
    The hook test suite still validates adjacent behavior, but it does not
-   directly assert the new `CLAUDE_CODE_ENTRYPOINT`, `ECC_HOOK_PROFILE`,
-   `ECC_SKIP_OBSERVE`, `agent_id`, or trimmed skip-path branches.
+   directly assert the new `CLAUDE_CODE_ENTRYPOINT`, `EQW_HOOK_PROFILE`,
+   `EQW_SKIP_OBSERVE`, `agent_id`, or trimmed skip-path branches.
 
 Verdict:
 

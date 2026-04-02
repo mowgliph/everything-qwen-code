@@ -73,7 +73,7 @@ test('observe.sh only signals when counter reaches threshold', () => {
 
 test('observe.sh default throttle is 20 observations per signal', () => {
   const content = fs.readFileSync(observeShPath, 'utf8');
-  assert.ok(content.includes('ECC_OBSERVER_SIGNAL_EVERY_N:-20'), 'Default signal frequency should be every 20 observations');
+  assert.ok(content.includes('EQW_OBSERVER_SIGNAL_EVERY_N:-20'), 'Default signal frequency should be every 20 observations');
 });
 
 // ──────────────────────────────────────────────────────
@@ -123,7 +123,7 @@ test('on_usr1 enforces cooldown between analyses', () => {
 
 test('default cooldown is 60 seconds', () => {
   const content = fs.readFileSync(observerLoopPath, 'utf8');
-  assert.ok(content.includes('ECC_OBSERVER_ANALYSIS_COOLDOWN:-60'), 'Default cooldown should be 60 seconds');
+  assert.ok(content.includes('EQW_OBSERVER_ANALYSIS_COOLDOWN:-60'), 'Default cooldown should be 60 seconds');
 });
 
 // ──────────────────────────────────────────────────────
@@ -139,7 +139,7 @@ test('analyze_observations uses tail to sample recent observations', () => {
 
 test('default max analysis lines is 500', () => {
   const content = fs.readFileSync(observerLoopPath, 'utf8');
-  assert.ok(content.includes('ECC_OBSERVER_MAX_ANALYSIS_LINES:-500'), 'Default should sample last 500 lines');
+  assert.ok(content.includes('EQW_OBSERVER_MAX_ANALYSIS_LINES:-500'), 'Default should sample last 500 lines');
 });
 
 test('analysis temp file is created and cleaned up', () => {
@@ -240,7 +240,7 @@ test('observe.sh creates counter file and increments on each call', () => {
 
   // This test runs observe.sh with minimal input to verify counter behavior.
   // We need python3, bash, and a valid project dir to test the full flow.
-  // We use ECC_SKIP_OBSERVE=0 and minimal JSON so observe.sh processes but
+  // We use EQW_SKIP_OBSERVE=0 and minimal JSON so observe.sh processes but
   // exits before signaling (no observer PID running).
 
   const testDir = createTempDir();
@@ -289,8 +289,8 @@ test('observe.sh creates counter file and increments on each call', () => {
         ...process.env,
         HOME: testDir,
         CLAUDE_CODE_ENTRYPOINT: 'cli',
-        ECC_HOOK_PROFILE: 'standard',
-        ECC_SKIP_OBSERVE: '0',
+        EQW_HOOK_PROFILE: 'standard',
+        EQW_SKIP_OBSERVE: '0',
         CLAUDE_PROJECT_DIR: projectDir
       },
       timeout: 5000
@@ -338,7 +338,7 @@ test('allowedTools includes Write permission', () => {
   assert.ok(match[1].includes('Write'), `allowedTools should include Write, got: ${match[1]}`);
 });
 
-test('claude invocation still includes ECC_SKIP_OBSERVE and ECC_HOOK_PROFILE guards', () => {
+test('claude invocation still includes EQW_SKIP_OBSERVE and EQW_HOOK_PROFILE guards', () => {
   const content = fs.readFileSync(observerLoopPath, 'utf8');
   // Find the claude execution line(s)
   const lines = content.split('\n');
@@ -347,8 +347,8 @@ test('claude invocation still includes ECC_SKIP_OBSERVE and ECC_HOOK_PROFILE gua
   // The env vars are on the same line as the claude command
   const claudeLineIndex = lines.indexOf(claudeLine);
   const fullCommand = lines.slice(Math.max(0, claudeLineIndex - 1), claudeLineIndex + 3).join(' ');
-  assert.ok(fullCommand.includes('ECC_SKIP_OBSERVE=1'), 'claude invocation should include ECC_SKIP_OBSERVE=1 guard');
-  assert.ok(fullCommand.includes('ECC_HOOK_PROFILE=minimal'), 'claude invocation should include ECC_HOOK_PROFILE=minimal guard');
+  assert.ok(fullCommand.includes('EQW_SKIP_OBSERVE=1'), 'claude invocation should include EQW_SKIP_OBSERVE=1 guard');
+  assert.ok(fullCommand.includes('EQW_HOOK_PROFILE=minimal'), 'claude invocation should include EQW_HOOK_PROFILE=minimal guard');
 });
 
 // ──────────────────────────────────────────────────────

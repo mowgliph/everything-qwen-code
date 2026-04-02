@@ -31,7 +31,7 @@ rm -rf /tmp/everything-claude-code
 git clone https://github.com/affaan-m/everything-claude-code.git /tmp/everything-claude-code
 ```
 
-以降のすべてのコピー操作のソースとして `ECC_ROOT=/tmp/everything-claude-code` を設定します。
+以降のすべてのコピー操作のソースとして `EQW_ROOT=/tmp/everything-claude-code` を設定します。
 
 クローンが失敗した場合（ネットワークの問題など）、`AskUserQuestion` を使用してユーザーに既存の ECC クローンへのローカルパスを提供するよう依頼します。
 
@@ -132,7 +132,7 @@ Options:
 
 選択された各スキルについて、スキルディレクトリ全体をコピーします：
 ```bash
-cp -r $ECC_ROOT/skills/<skill-name> $TARGET/skills/
+cp -r $EQW_ROOT/skills/<skill-name> $TARGET/skills/
 ```
 
 注: `continuous-learning` と `continuous-learning-v2` には追加ファイル（config.json、フック、スクリプト）があります — SKILL.md だけでなく、ディレクトリ全体がコピーされることを確認してください。
@@ -155,12 +155,12 @@ Options:
 インストールを実行：
 ```bash
 # 共通ルール（rules/ にフラットコピー）
-cp -r $ECC_ROOT/rules/common/* $TARGET/rules/
+cp -r $EQW_ROOT/rules/common/* $TARGET/rules/
 
 # 言語固有のルール（rules/ にフラットコピー）
-cp -r $ECC_ROOT/rules/typescript/* $TARGET/rules/   # 選択された場合
-cp -r $ECC_ROOT/rules/python/* $TARGET/rules/        # 選択された場合
-cp -r $ECC_ROOT/rules/golang/* $TARGET/rules/        # 選択された場合
+cp -r $EQW_ROOT/rules/typescript/* $TARGET/rules/   # 選択された場合
+cp -r $EQW_ROOT/rules/python/* $TARGET/rules/        # 選択された場合
+cp -r $EQW_ROOT/rules/golang/* $TARGET/rules/        # 選択された場合
 ```
 
 **重要**: ユーザーが言語固有のルールを選択したが、共通ルールを選択しなかった場合、警告します：
@@ -243,7 +243,7 @@ Options:
    - セキュリティ要件
 3. インストール先でルールファイルをその場で編集します
 
-**重要**: インストール先（`$TARGET/`）のファイルのみを変更し、ソース ECC リポジトリ（`$ECC_ROOT/`）のファイルは決して変更しないでください。
+**重要**: インストール先（`$TARGET/`）のファイルのみを変更し、ソース ECC リポジトリ（`$EQW_ROOT/`）のファイルは決して変更しないでください。
 
 ---
 

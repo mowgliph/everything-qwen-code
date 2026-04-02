@@ -174,31 +174,31 @@ if [[ -f "$AGENTS_FILE" ]]; then
   run_or_echo cp "$AGENTS_FILE" "$BACKUP_DIR/AGENTS.md"
 fi
 
-ECC_BEGIN_MARKER="<!-- BEGIN ECC -->"
-ECC_END_MARKER="<!-- END ECC -->"
+EQW_BEGIN_MARKER="<!-- BEGIN ECC -->"
+EQW_END_MARKER="<!-- END ECC -->"
 
-compose_ecc_block() {
-  printf '%s\n' "$ECC_BEGIN_MARKER"
+compose_EQW_block() {
+  printf '%s\n' "$EQW_BEGIN_MARKER"
   cat "$AGENTS_ROOT_SRC"
   printf '\n\n---\n\n'
   printf '# Codex Supplement (From ECC .codex/AGENTS.md)\n\n'
   cat "$AGENTS_CODEX_SUPP_SRC"
-  printf '\n%s\n' "$ECC_END_MARKER"
+  printf '\n%s\n' "$EQW_END_MARKER"
 }
 
 log "Merging ECC AGENTS into $AGENTS_FILE (preserving user content)"
 if [[ "$MODE" == "dry-run" ]]; then
   printf '[dry-run] merge ECC block into %s from %s + %s\n' "$AGENTS_FILE" "$AGENTS_ROOT_SRC" "$AGENTS_CODEX_SUPP_SRC"
 else
-  replace_ecc_section() {
+  replace_EQW_section() {
     # Replace the ECC block between markers in $AGENTS_FILE with fresh content.
     # Uses awk to correctly handle all positions including line 1.
     local tmp
     tmp="$(mktemp)"
-    local ecc_tmp
-    ecc_tmp="$(mktemp)"
-    compose_ecc_block > "$ecc_tmp"
-    awk -v begin="$ECC_BEGIN_MARKER" -v end="$ECC_END_MARKER" -v ecc="$ecc_tmp" '
+    local EQW_tmp
+    EQW_tmp="$(mktemp)"
+    compose_EQW_block > "$EQW_tmp"
+    awk -v begin="$EQW_BEGIN_MARKER" -v end="$EQW_END_MARKER" -v ecc="$EQW_tmp" '
       { gsub(/\r$/, "") }
       $0 == begin { skip = 1; while ((getline line < ecc) > 0) print line; close(ecc); next }
       $0 == end   { skip = 0; next }
@@ -206,21 +206,21 @@ else
     ' "$AGENTS_FILE" > "$tmp"
     # Write through the path (preserves symlinks) instead of mv
     cat "$tmp" > "$AGENTS_FILE"
-    rm -f "$tmp" "$ecc_tmp"
+    rm -f "$tmp" "$EQW_tmp"
   }
 
   if [[ ! -f "$AGENTS_FILE" ]]; then
     # No existing file — create fresh with markers
-    compose_ecc_block > "$AGENTS_FILE"
-  elif awk -v b="$ECC_BEGIN_MARKER" -v e="$ECC_END_MARKER" '
+    compose_EQW_block > "$AGENTS_FILE"
+  elif awk -v b="$EQW_BEGIN_MARKER" -v e="$EQW_END_MARKER" '
         { gsub(/\r$/, "") }
         $0 == b { bc++; if (!fb) fb = NR }
         $0 == e { ec++; if (!fe) fe = NR }
         END { exit !(bc == 1 && ec == 1 && fb < fe) }
       ' "$AGENTS_FILE"; then
     # Exactly one BEGIN/END pair in correct order — replace only the ECC section
-    replace_ecc_section
-  elif awk -v b="$ECC_BEGIN_MARKER" -v e="$ECC_END_MARKER" '
+    replace_EQW_section
+  elif awk -v b="$EQW_BEGIN_MARKER" -v e="$EQW_END_MARKER" '
         { gsub(/\r$/, "") }
         $0 == b { bc++ } $0 == e { ec++ }
         END { exit !((bc + ec) > 0) }
@@ -230,7 +230,7 @@ else
     # fresh marked block. This preserves user content outside markers.
     log "WARNING: ECC markers found but not a clean pair — stripping markers and re-appending"
     _fix_tmp="$(mktemp)"
-    awk -v b="$ECC_BEGIN_MARKER" -v e="$ECC_END_MARKER" '
+    awk -v b="$EQW_BEGIN_MARKER" -v e="$EQW_END_MARKER" '
       { gsub(/\r$/, "") }
       $0 == b { skip = 1; next }
       $0 == e { skip = 0; next }
@@ -238,7 +238,7 @@ else
     ' "$AGENTS_FILE" > "$_fix_tmp"
     cat "$_fix_tmp" > "$AGENTS_FILE"
     rm -f "$_fix_tmp"
-    { printf '\n\n'; compose_ecc_block; } >> "$AGENTS_FILE"
+    { printf '\n\n'; compose_EQW_block; } >> "$AGENTS_FILE"
   else
     # Existing file without markers — append ECC block, preserving existing content.
     # Legacy ECC-only files will have duplicate content after this first run, but
@@ -247,7 +247,7 @@ else
     log "No ECC markers found — appending managed block (backup saved)"
     {
       printf '\n\n'
-      compose_ecc_block
+      compose_EQW_block
     } >> "$AGENTS_FILE"
   fi
 fi
@@ -504,13 +504,13 @@ if [[ "$MODE" == "dry-run" ]]; then
   HOME="$HOME" \
   CODEX_HOME="$CODEX_HOME" \
   AGENTS_HOME="${AGENTS_HOME:-$HOME/.agents}" \
-  ECC_GLOBAL_HOOKS_DIR="${ECC_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
+  EQW_GLOBAL_HOOKS_DIR="${EQW_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
     "$HOOKS_INSTALLER" --dry-run
 else
   HOME="$HOME" \
   CODEX_HOME="$CODEX_HOME" \
   AGENTS_HOME="${AGENTS_HOME:-$HOME/.agents}" \
-  ECC_GLOBAL_HOOKS_DIR="${ECC_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
+  EQW_GLOBAL_HOOKS_DIR="${EQW_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
     "$HOOKS_INSTALLER"
 fi
 
@@ -521,7 +521,7 @@ else
   HOME="$HOME" \
   CODEX_HOME="$CODEX_HOME" \
   AGENTS_HOME="${AGENTS_HOME:-$HOME/.agents}" \
-  ECC_GLOBAL_HOOKS_DIR="${ECC_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
+  EQW_GLOBAL_HOOKS_DIR="${EQW_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
     "$SANITY_CHECKER"
 fi
 

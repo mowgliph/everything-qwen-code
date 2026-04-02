@@ -28,7 +28,7 @@ function runHook(input, env = {}) {
     encoding: 'utf8',
     env: {
       ...process.env,
-      ECC_HOOK_PROFILE: 'standard',
+      EQW_HOOK_PROFILE: 'standard',
       ...env
     },
     timeout: 15000,
@@ -50,7 +50,7 @@ function runCustomHook(pluginRoot, hookId, relScriptPath, input, env = {}) {
     env: {
       ...process.env,
       CLAUDE_PLUGIN_ROOT: pluginRoot,
-      ECC_HOOK_PROFILE: 'standard',
+      EQW_HOOK_PROFILE: 'standard',
       ...env
     },
     timeout: 15000,

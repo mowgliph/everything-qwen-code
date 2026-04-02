@@ -78,7 +78,7 @@
 
 - **하네스 중심 릴리스** — ECC는 이제 단순 설정 모음이 아닌, 에이전트 하네스 성능 시스템으로 명시됩니다.
 - **훅 안정성 개선** — SessionStart 루트 폴백, Stop 단계 세션 요약, 취약한 인라인 원라이너를 스크립트 기반 훅으로 교체.
-- **훅 런타임 제어** — `ECC_HOOK_PROFILE=minimal|standard|strict`와 `ECC_DISABLED_HOOKS=...`로 훅 파일 수정 없이 런타임 제어.
+- **훅 런타임 제어** — `EQW_HOOK_PROFILE=minimal|standard|strict`와 `EQW_DISABLED_HOOKS=...`로 훅 파일 수정 없이 런타임 제어.
 - **새 하네스 커맨드** — `/harness-audit`, `/loop-start`, `/loop-status`, `/quality-gate`, `/model-route`.
 - **NanoClaw v2** — 모델 라우팅, 스킬 핫로드, 세션 분기/검색/내보내기/압축/메트릭.
 - **크로스 하네스 호환성** — Claude Code, Cursor, OpenCode, Codex 간 동작 일관성 강화.
@@ -193,10 +193,10 @@ node scripts/setup-package-manager.js --detect
 
 ```bash
 # 훅 엄격도 프로필 (기본값: standard)
-export ECC_HOOK_PROFILE=standard
+export EQW_HOOK_PROFILE=standard
 
 # 비활성화할 훅 ID (쉼표로 구분)
-export ECC_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
+export EQW_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
 ```
 
 ---

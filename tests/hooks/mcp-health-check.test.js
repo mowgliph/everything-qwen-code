@@ -65,7 +65,7 @@ function runHook(input, env = {}) {
     encoding: 'utf8',
     env: {
       ...process.env,
-      ECC_HOOK_PROFILE: 'standard',
+      EQW_HOOK_PROFILE: 'standard',
       ...env
     },
     timeout: 15000,
@@ -85,7 +85,7 @@ function runRawHook(rawInput, env = {}) {
     encoding: 'utf8',
     env: {
       ...process.env,
-      ECC_HOOK_PROFILE: 'standard',
+      EQW_HOOK_PROFILE: 'standard',
       ...env
     },
     timeout: 15000,
@@ -118,8 +118,8 @@ async function runTests() {
     const rawInput = JSON.stringify({ tool_name: 'mcp__flaky__search', tool_input: {} });
     const result = runRawHook(rawInput, {
       CLAUDE_HOOK_EVENT_NAME: 'PreToolUse',
-      ECC_HOOK_INPUT_TRUNCATED: '1',
-      ECC_HOOK_INPUT_MAX_BYTES: '512'
+      EQW_HOOK_INPUT_TRUNCATED: '1',
+      EQW_HOOK_INPUT_MAX_BYTES: '512'
     });
 
     assert.strictEqual(result.code, 2, 'Expected truncated MCP input to block by default');
@@ -144,9 +144,9 @@ async function runTests() {
       const input = { tool_name: 'mcp__mock__list_items', tool_input: {} };
       const result = runHook(input, {
         CLAUDE_HOOK_EVENT_NAME: 'PreToolUse',
-        ECC_MCP_CONFIG_PATH: configPath,
-        ECC_MCP_HEALTH_STATE_PATH: statePath,
-        ECC_MCP_HEALTH_TIMEOUT_MS: '100'
+        EQW_MCP_CONFIG_PATH: configPath,
+        EQW_MCP_HEALTH_STATE_PATH: statePath,
+        EQW_MCP_HEALTH_TIMEOUT_MS: '100'
       });
 
       assert.strictEqual(result.code, 0, `Expected healthy server to pass, got ${result.code}`);
@@ -177,9 +177,9 @@ async function runTests() {
         { tool_name: 'mcp__flaky__search', tool_input: {} },
         {
           CLAUDE_HOOK_EVENT_NAME: 'PreToolUse',
-          ECC_MCP_CONFIG_PATH: configPath,
-          ECC_MCP_HEALTH_STATE_PATH: statePath,
-          ECC_MCP_HEALTH_TIMEOUT_MS: '100'
+          EQW_MCP_CONFIG_PATH: configPath,
+          EQW_MCP_HEALTH_STATE_PATH: statePath,
+          EQW_MCP_HEALTH_TIMEOUT_MS: '100'
         }
       );
 
@@ -212,10 +212,10 @@ async function runTests() {
         { tool_name: 'mcp__relaxed__list', tool_input: {} },
         {
           CLAUDE_HOOK_EVENT_NAME: 'PreToolUse',
-          ECC_MCP_CONFIG_PATH: configPath,
-          ECC_MCP_HEALTH_STATE_PATH: statePath,
-          ECC_MCP_HEALTH_FAIL_OPEN: '1',
-          ECC_MCP_HEALTH_TIMEOUT_MS: '100'
+          EQW_MCP_CONFIG_PATH: configPath,
+          EQW_MCP_HEALTH_STATE_PATH: statePath,
+          EQW_MCP_HEALTH_FAIL_OPEN: '1',
+          EQW_MCP_HEALTH_TIMEOUT_MS: '100'
         }
       );
 
@@ -269,10 +269,10 @@ async function runTests() {
         },
         {
           CLAUDE_HOOK_EVENT_NAME: 'PostToolUseFailure',
-          ECC_MCP_CONFIG_PATH: configPath,
-          ECC_MCP_HEALTH_STATE_PATH: statePath,
-          ECC_MCP_RECONNECT_COMMAND: `node ${JSON.stringify(reconnectScript)}`,
-          ECC_MCP_HEALTH_TIMEOUT_MS: '100'
+          EQW_MCP_CONFIG_PATH: configPath,
+          EQW_MCP_HEALTH_STATE_PATH: statePath,
+          EQW_MCP_RECONNECT_COMMAND: `node ${JSON.stringify(reconnectScript)}`,
+          EQW_MCP_HEALTH_TIMEOUT_MS: '100'
         }
       );
 

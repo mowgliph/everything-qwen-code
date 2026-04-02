@@ -96,7 +96,7 @@ Este repositório contém apenas o código. Os guias explicam tudo.
 
 - **Lançamento focado em harness** — O ECC agora é explicitamente enquadrado como um sistema de desempenho de harness de agentes, não apenas um pacote de configurações.
 - **Revisão de confiabilidade de hooks** — Fallback de raiz SessionStart, resumos de sessão na fase Stop e hooks baseados em scripts substituindo frágeis one-liners inline.
-- **Controles de runtime de hooks** — `ECC_HOOK_PROFILE=minimal|standard|strict` e `ECC_DISABLED_HOOKS=...` para controle em tempo de execução sem editar arquivos de hook.
+- **Controles de runtime de hooks** — `EQW_HOOK_PROFILE=minimal|standard|strict` e `EQW_DISABLED_HOOKS=...` para controle em tempo de execução sem editar arquivos de hook.
 - **Novos comandos de harness** — `/harness-audit`, `/loop-start`, `/loop-status`, `/quality-gate`, `/model-route`.
 - **NanoClaw v2** — roteamento de modelo, carregamento a quente de skill, ramificação/busca/exportação/compactação/métricas de sessão.
 - **Paridade entre harnesses** — comportamento unificado em Claude Code, Cursor, OpenCode e Codex app/CLI.
@@ -204,10 +204,10 @@ Use flags de runtime para ajustar rigor ou desabilitar hooks específicos tempor
 
 ```bash
 # Perfil de rigor de hooks (padrão: standard)
-export ECC_HOOK_PROFILE=standard
+export EQW_HOOK_PROFILE=standard
 
 # IDs de hooks separados por vírgula para desabilitar
-export ECC_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
+export EQW_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
 ```
 
 ---

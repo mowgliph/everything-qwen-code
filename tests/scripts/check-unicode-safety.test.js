@@ -22,7 +22,7 @@ function runCheck(root, args = []) {
   return spawnSync('node', [scriptPath, ...args], {
     env: {
       ...process.env,
-      ECC_UNICODE_SCAN_ROOT: root,
+      EQW_UNICODE_SCAN_ROOT: root,
     },
     encoding: 'utf8',
   });

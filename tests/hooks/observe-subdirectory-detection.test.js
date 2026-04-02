@@ -105,8 +105,8 @@ function runObserve({ homeDir, cwd }) {
       USERPROFILE: homeDir,
       CLAUDE_PROJECT_DIR: '',
       CLAUDE_CODE_ENTRYPOINT: 'cli',
-      ECC_HOOK_PROFILE: 'standard',
-      ECC_SKIP_OBSERVE: '0',
+      EQW_HOOK_PROFILE: 'standard',
+      EQW_SKIP_OBSERVE: '0',
     },
   });
 }

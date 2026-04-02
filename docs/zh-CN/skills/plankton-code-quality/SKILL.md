@@ -205,9 +205,9 @@ Plankton 的 `.claude/hooks/config.json` 控制所有行为：
 设置严格的质量行为：
 
 ```bash
-export ECC_HOOK_PROFILE=strict
-export ECC_QUALITY_GATE_FIX=true
-export ECC_QUALITY_GATE_STRICT=true
+export EQW_HOOK_PROFILE=strict
+export EQW_QUALITY_GATE_FIX=true
+export EQW_QUALITY_GATE_STRICT=true
 ```
 
 ### 语言关卡表
