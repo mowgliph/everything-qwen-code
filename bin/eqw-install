@@ -1,0 +1,275 @@
+#!/usr/bin/env node
+
+/**
+ * Everything Qwen Code - Global Installer
+ * 
+ * Installs ECC agents, skills, commands, hooks, rules, and MCP configs
+ * to the user's global ~/.qwen/ directory for use across all workspaces.
+ * 
+ * Usage: npx eqw-install
+ */
+
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+
+// ANSI colors for terminal output
+const colors = {
+  reset: '\x1b[0m',
+  bright: '\x1b[1m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+  red: '\x1b[31m',
+  cyan: '\x1b[36m'
+};
+
+function log(message, color = 'reset') {
+  console.log(`${colors[color]}${message}${colors.reset}`);
+}
+
+function logSuccess(message) {
+  log(`✓ ${message}`, 'green');
+}
+
+function logInfo(message) {
+  log(`ℹ ${message}`, 'blue');
+}
+
+function logWarn(message) {
+  log(`⚠ ${message}`, 'yellow');
+}
+
+function logError(message) {
+  log(`✗ ${message}`, 'red');
+}
+
+// Get paths
+const HOME_DIR = os.homedir();
+const QWEN_DIR = path.join(HOME_DIR, '.qwen');
+const ECC_DIR = path.join(__dirname, '..');
+
+// Directories to install
+const INSTALL_DIRS = [
+  { src: '.agents', dest: 'agents', required: true },
+  { src: '.qwen/skills', dest: 'skills', required: true },
+  { src: '.qwen/commands', dest: 'commands', required: true },
+  { src: '.qwen/hooks', dest: 'hooks', required: true },
+  { src: '.qwen/rules', dest: 'rules', required: true },
+  { src: '.qwen/mcp-configs', dest: 'mcp-configs', required: false },
+  { src: 'contexts', dest: 'contexts', required: false }
+];
+
+// Config files to install
+const CONFIG_FILES = [
+  { src: '.mcp.json', dest: 'mcp.json', required: false },
+  { src: 'agent.yaml', dest: 'agent.yaml', required: false }
+];
+
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+    return true;
+  }
+  return false;
+}
+
+function copyDir(src, dest) {
+  if (!fs.existsSync(src)) {
+    return false;
+  }
+  
+  ensureDir(dest);
+  
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+  
+  return true;
+}
+
+function copyFile(src, dest) {
+  if (!fs.existsSync(src)) {
+    return false;
+  }
+  
+  fs.copyFileSync(src, dest);
+  return true;
+}
+
+function mergeJsonFiles(existing, incoming) {
+  if (!fs.existsSync(existing)) {
+    return copyFile(incoming, existing);
+  }
+  
+  try {
+    const existingData = JSON.parse(fs.readFileSync(existing, 'utf8'));
+    const incomingData = JSON.parse(fs.readFileSync(incoming, 'utf8'));
+    
+    // Merge MCP servers
+    if (incomingData.mcpServers && existingData.mcpServers) {
+      existingData.mcpServers = {
+        ...existingData.mcpServers,
+        ...incomingData.mcpServers
+      };
+    } else if (incomingData.mcpServers) {
+      existingData.mcpServers = incomingData.mcpServers;
+    }
+    
+    fs.writeFileSync(existing, JSON.stringify(existingData, null, 2) + '\n');
+    return true;
+  } catch (err) {
+    logError(`Error merging ${existing}: ${err.message}`);
+    return false;
+  }
+}
+
+function main() {
+  log('\n' + '='.repeat(60), 'cyan');
+  log('  Everything Qwen Code - Global Installer', 'bright');
+  log('  Installing ECC to ~/.qwen/', 'cyan');
+  log('='.repeat(60) + '\n', 'cyan');
+  
+  // Check if .qwen directory exists
+  const qwenExists = fs.existsSync(QWEN_DIR);
+  
+  if (qwenExists) {
+    logInfo(`Found existing Qwen directory: ${QWEN_DIR}`);
+    
+    // Check for existing skills
+    const existingSkillsDir = path.join(QWEN_DIR, 'skills');
+    if (fs.existsSync(existingSkillsDir)) {
+      const existingSkills = fs.readdirSync(existingSkillsDir).filter(f => 
+        fs.statSync(path.join(existingSkillsDir, f)).isDirectory()
+      );
+      if (existingSkills.length > 0) {
+        logWarn(`Found ${existingSkills.length} existing skill(s). New skills will be added without overwriting.`);
+      }
+    }
+  } else {
+    logInfo(`Creating Qwen directory: ${QWEN_DIR}`);
+    ensureDir(QWEN_DIR);
+  }
+  
+  let installedCount = 0;
+  let skippedCount = 0;
+  
+  // Install directories
+  log('\n📁 Installing directories...\n', 'bright');
+  
+  for (const dir of INSTALL_DIRS) {
+    const srcPath = path.join(ECC_DIR, dir.src);
+    const destPath = path.join(QWEN_DIR, dir.dest);
+    
+    if (!fs.existsSync(srcPath)) {
+      if (dir.required) {
+        logError(`Missing required directory: ${dir.src}`);
+        process.exit(1);
+      } else {
+        logWarn(`Optional directory not found: ${dir.src} (skipping)`);
+        skippedCount++;
+        continue;
+      }
+    }
+    
+    // Check if destination exists
+    if (fs.existsSync(destPath)) {
+      logInfo(`Directory exists: ${dir.dest} (merging new content)`);
+    }
+    
+    if (copyDir(srcPath, destPath)) {
+      logSuccess(`Installed: ${dir.dest}`);
+      installedCount++;
+    } else {
+      logError(`Failed to install: ${dir.dest}`);
+    }
+  }
+  
+  // Install config files
+  log('\n⚙️  Installing configuration files...\n', 'bright');
+  
+  for (const file of CONFIG_FILES) {
+    const srcPath = path.join(ECC_DIR, file.src);
+    const destPath = path.join(QWEN_DIR, file.dest);
+    
+    if (!fs.existsSync(srcPath)) {
+      if (file.required) {
+        logError(`Missing required config: ${file.src}`);
+        process.exit(1);
+      } else {
+        logWarn(`Optional config not found: ${file.src} (skipping)`);
+        skippedCount++;
+        continue;
+      }
+    }
+    
+    // Special handling for mcp.json - merge instead of overwrite
+    if (file.dest === 'mcp.json') {
+      if (mergeJsonFiles(destPath, srcPath)) {
+        logSuccess(`Installed/Merged: ${file.dest}`);
+        installedCount++;
+      } else {
+        logError(`Failed to install: ${file.dest}`);
+      }
+    } else {
+      // For other configs, only copy if doesn't exist
+      if (fs.existsSync(destPath)) {
+        logInfo(`Config exists: ${file.dest} (keeping existing)`);
+        skippedCount++;
+      } else if (copyFile(srcPath, destPath)) {
+        logSuccess(`Installed: ${file.dest}`);
+        installedCount++;
+      } else {
+        logError(`Failed to install: ${file.dest}`);
+      }
+    }
+  }
+  
+  // Summary
+  log('\n' + '='.repeat(60), 'cyan');
+  log('  Installation Complete!', 'bright');
+  log('='.repeat(60) + '\n', 'cyan');
+  
+  logSuccess(`${installedCount} component(s) installed`);
+  if (skippedCount > 0) {
+    logInfo(`${skippedCount} component(s) skipped (already exist or optional)`);
+  }
+  
+  log('\n📍 Installation location:', 'bright');
+  log(`   ${QWEN_DIR}\n`, 'green');
+  
+  log('📚 What\'s included:', 'bright');
+  log('   • 36 specialized agents in ~/.qwen/agents/', 'cyan');
+  log('   • 151 skills in ~/.qwen/skills/', 'cyan');
+  log('   • 68 commands in ~/.qwen/commands/', 'cyan');
+  log('   • Automated hooks in ~/.qwen/hooks/', 'cyan');
+  log('   • Language rules in ~/.qwen/rules/', 'cyan');
+  log('   • MCP configurations in ~/.qwen/mcp.json', 'cyan');
+  
+  log('\n🚀 Next steps:', 'bright');
+  log('   1. Restart Qwen Code to load the new components', 'yellow');
+  log('   2. Use /help to see available commands', 'yellow');
+  log('   3. Agents will auto-activate based on your tasks', 'yellow');
+  
+  log('\n🔄 To update later, run:', 'bright');
+  log('   npx eqw-install\n', 'yellow');
+  
+  log('='.repeat(60) + '\n', 'cyan');
+}
+
+// Handle errors
+process.on('uncaughtException', (err) => {
+  logError(`Fatal error: ${err.message}`);
+  process.exit(1);
+});
+
+main();
