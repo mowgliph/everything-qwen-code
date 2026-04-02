@@ -1,0 +1,57 @@
+﻿{
+  "name": "everything-qwen-code",
+  "version": "1.0.0",
+  "description": "Complete collection of battle-tested Qwen Code configs — agents, skills, hooks, rules, and MCP configurations evolved over 10+ months of intensive daily use",
+  "keywords": [
+    "qwen-code",
+    "ai",
+    "agents",
+    "skills",
+    "hooks",
+    "mcp",
+    "rules",
+    "qwen",
+    "tdd",
+    "code-review",
+    "security",
+    "automation",
+    "best-practices"
+  ],
+  "author": {
+    "name": "Your Name",
+    "url": "https://github.com/your-username"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/everything-qwen-code.git"
+  },
+  "homepage": "https://github.com/your-username/everything-qwen-code#readme",
+  "bugs": {
+    "url": "https://github.com/your-username/everything-qwen-code/issues"
+  },
+  "files": [
+    ".agents/",
+    ".qwen/",
+    "contexts/",
+    "docs/",
+    "examples/",
+    "manifests/",
+    "plugins/",
+    "research/",
+    "schemas/",
+    "scripts/",
+    "tests/",
+    "AGENTS.md",
+    "README.md",
+    "agent.yaml",
+    "package.json"
+  ],
+  "scripts": {
+    "lint": "eslint . && markdownlint '**/*.md' --ignore node_modules",
+    "test": "node tests/run-all.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
