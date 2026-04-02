@@ -1,6 +1,6 @@
 # Skill Development Guide
 
-A comprehensive guide to creating effective skills for Everything Claude Code (ECC).
+A comprehensive guide to creating effective skills for Everything Qwen Code (EQC).
 
 ## Table of Contents
 
@@ -19,20 +19,20 @@ A comprehensive guide to creating effective skills for Everything Claude Code (E
 
 ## What Are Skills?
 
-Skills are **knowledge modules** that Claude Code loads based on context. They provide:
+Skills are **knowledge modules** that Qwen Code loads based on context. They provide:
 
 - **Domain expertise**: Framework patterns, language idioms, best practices
 - **Workflow definitions**: Step-by-step processes for common tasks
 - **Reference material**: Code snippets, checklists, decision trees
 - **Context injection**: Activate when specific conditions are met
 
-Unlike **agents** (specialized subassistants) or **commands** (user-triggered actions), skills are passive knowledge that Claude Code references when relevant.
+Unlike **agents** (specialized subassistants) or **commands** (user-triggered actions), skills are passive knowledge that Qwen Code references when relevant.
 
 ### When Skills Activate
 
 Skills activate when:
 - The user's task matches the skill's domain
-- Claude Code detects relevant context
+- Qwen Code detects relevant context
 - A command references a skill
 - An agent needs domain knowledge
 
@@ -69,7 +69,7 @@ skills/
 ---
 name: skill-name
 description: Brief description shown in skill list and used for auto-activation
-origin: ECC
+origin: EQC
 ---
 
 # Skill Title
@@ -78,7 +78,7 @@ Brief overview of what this skill covers.
 
 ## When to Activate
 
-Describe scenarios where Claude should use this skill.
+Describe scenarios where Qwen should use this skill.
 
 ## Core Concepts
 
@@ -110,7 +110,7 @@ Link to complementary skills.
 |-------|----------|-------------|
 | `name` | Yes | Lowercase, hyphenated identifier (e.g., `react-patterns`) |
 | `description` | Yes | One-line description for skill list and auto-activation |
-| `origin` | No | Source identifier (e.g., `ECC`, `community`, project name) |
+| `origin` | No | Source identifier (e.g., `EQC`, `community`, project name) |
 | `tags` | No | Array of tags for categorization |
 | `version` | No | Skill version for tracking updates |
 
@@ -184,7 +184,7 @@ Another pattern with code.
 
 ### Step 4: Add Content
 
-Write content that Claude can **immediately use**:
+Write content that Qwen Code can **immediately use**:
 
 - PASS: Copy-pasteable code examples
 - PASS: Clear decision trees
@@ -575,20 +575,20 @@ description: Quick reference for [API/Library].
 
 ### Local Testing
 
-1. **Copy to Claude Code skills directory**:
+1. **Copy to Qwen Code skills directory**:
    ```bash
-   cp -r skills/your-skill-name ~/.claude/skills/
+   cp -r skills/your-skill-name ~/.qwen/skills/
    ```
 
-2. **Test with Claude Code**:
+2. **Test with Qwen Code**:
    ```
    You: "I need to [task that should trigger your skill]"
 
-   Claude should reference your skill's patterns.
+   Qwen should reference your skill's patterns.
    ```
 
 3. **Verify activation**:
-   - Ask Claude to explain a concept from your skill
+   - Ask Qwen to explain a concept from your skill
    - Check if it uses your examples and patterns
    - Ensure it follows your guidelines
 
@@ -632,8 +632,8 @@ go build ./examples/...
 ### 1. Fork and Clone
 
 ```bash
-gh repo fork affaan-m/everything-claude-code --clone
-cd everything-claude-code
+gh repo fork mowgliph/everything-qwen-code --clone
+cd everything-qwen-code
 ```
 
 ### 2. Create Branch
@@ -712,7 +712,7 @@ How I tested this skill locally.
 ---
 name: rust-patterns
 description: Rust idioms, ownership patterns, and best practices for safe, idiomatic code.
-origin: ECC
+origin: EQC
 ---
 
 # Rust Patterns
@@ -773,7 +773,7 @@ pub type AppResult<T> = Result<T, AppError>;
 ---
 name: fastapi-patterns
 description: FastAPI patterns for routing, dependency injection, validation, and async operations.
-origin: ECC
+origin: EQC
 ---
 
 # FastAPI Patterns
@@ -834,7 +834,7 @@ async def get_user(
 ---
 name: refactoring-workflow
 description: Systematic refactoring workflow for improving code quality without changing behavior.
-origin: ECC
+origin: EQC
 ---
 
 # Refactoring Workflow

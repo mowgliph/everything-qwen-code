@@ -1,14 +1,14 @@
 # Troubleshooting
 
-Community-reported workarounds for current Claude Code bugs that can affect ECC users.
+Community-reported workarounds for current Qwen Code bugs that can affect EQC users.
 
-These are upstream Claude Code behaviors, not ECC bugs. The entries below summarize the production-tested workarounds collected in [issue #644](https://github.com/affaan-m/everything-claude-code/issues/644) on Claude Code `v2.1.79` (macOS, heavy hook usage, MCP connectors enabled). Treat them as pragmatic stopgaps until upstream fixes land.
+These are upstream Qwen Code behaviors, not EQC bugs. The entries below summarize the production-tested workarounds collected in [issue #644](https://github.com/mowgliph/everything-qwen-code/issues/644) on Qwen Code `v2.1.79` (macOS, heavy hook usage, MCP connectors enabled). Treat them as pragmatic stopgaps until upstream fixes land.
 
-## Community Workarounds For Open Claude Code Bugs
+## Community Workarounds For Open Qwen Code Bugs
 
 ### False "Hook Error" labels on otherwise successful hooks
 
-**Symptoms:** Hook runs successfully, but Claude Code still shows `Hook Error` in the transcript.
+**Symptoms:** Hook runs successfully, but Qwen Code still shows `Hook Error` in the transcript.
 
 **What helps:**
 
@@ -26,15 +26,15 @@ echo "[BLOCKED] Reason here" >&2
 exit 2
 ```
 
-### Earlier-than-expected compaction with `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`
+### Earlier-than-expected compaction with `QWEN_AUTOCOMPACT_PCT_OVERRIDE`
 
-**Symptoms:** Lowering `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` causes compaction to happen sooner, not later.
+**Symptoms:** Lowering `QWEN_AUTOCOMPACT_PCT_OVERRIDE` causes compaction to happen sooner, not later.
 
 **What helps:**
 
-- On some current Claude Code builds, lower values may reduce the compaction threshold instead of extending it.
-- If you want more working room, remove `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` and prefer manual `/compact` at logical task boundaries.
-- Use ECC's `strategic-compact` guidance instead of forcing a lower auto-compact threshold.
+- On some current Qwen Code builds, lower values may reduce the compaction threshold instead of extending it.
+- If you want more working room, remove `QWEN_AUTOCOMPACT_PCT_OVERRIDE` and prefer manual `/compact` at logical task boundaries.
+- Use EQC's `strategic-compact` guidance instead of forcing a lower auto-compact threshold.
 
 ### MCP connectors look connected but fail after compaction
 
@@ -43,7 +43,7 @@ exit 2
 **What helps:**
 
 - Toggle the affected connector off and back on after compaction.
-- If your Claude Code build supports it, add a `PostCompact` reminder hook that warns you to re-check connector auth after compaction.
+- If your Qwen Code build supports it, add a `PostCompact` reminder hook that warns you to re-check connector auth after compaction.
 - Treat this as an auth-state recovery step, not a permanent fix.
 
 ### Hook edits do not hot-reload
@@ -52,23 +52,23 @@ exit 2
 
 **What helps:**
 
-- Restart the Claude Code session after changing hooks.
-- Advanced users sometimes script a local `/reload` command around `kill -HUP $PPID`, but ECC does not ship that because it is shell-dependent and not universally reliable.
+- Restart the Qwen Code session after changing hooks.
+- Advanced users sometimes script a local `/reload` command around `kill -HUP $PPID`, but EQC does not ship that because it is shell-dependent and not universally reliable.
 
 ### Repeated `529 Overloaded` responses
 
-**Symptoms:** Claude Code starts failing under high hook/tool/context pressure.
+**Symptoms:** Qwen Code starts failing under high hook/tool/context pressure.
 
 **What helps:**
 
 - Reduce tool-definition pressure with `ENABLE_TOOL_SEARCH=auto:5` if your setup supports it.
 - Lower `MAX_THINKING_TOKENS` for routine work.
-- Route subagent work to a cheaper model such as `CLAUDE_CODE_SUBAGENT_MODEL=haiku` if your setup exposes that knob.
+- Route subagent work to a cheaper model such as `QWEN_CODE_SUBAGENT_MODEL=haiku` if your setup exposes that knob.
 - Disable unused MCP servers per project.
 - Compact manually at natural breakpoints instead of waiting for auto-compaction.
 
-## Related ECC Docs
+## Related EQC Docs
 
-- [hooks/README.md](../hooks/README.md) for ECC's documented hook lifecycle and exit-code behavior.
+- [hooks/README.md](../hooks/README.md) for EQC's documented hook lifecycle and exit-code behavior.
 - [token-optimization.md](./token-optimization.md) for cost and context management settings.
-- [issue #644](https://github.com/affaan-m/everything-claude-code/issues/644) for the original report and tested environment.
+- [issue #644](https://github.com/mowgliph/everything-qwen-code/issues/644) for the original report and tested environment.

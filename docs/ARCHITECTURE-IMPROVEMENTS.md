@@ -1,6 +1,6 @@
 # Architecture Improvement Recommendations
 
-This document captures architect-level improvements for the Everything Claude Code (ECC) project. It is written from the perspective of a Claude Code coding architect aiming to improve maintainability, consistency, and long-term quality.
+This document captures architect-level improvements for the Everything Qwen Code (EQC) project. It is written from the perspective of a Qwen Code coding architect aiming to improve maintainability, consistency, and long-term quality.
 
 ---
 
@@ -8,14 +8,14 @@ This document captures architect-level improvements for the Everything Claude Co
 
 ### 1.1 Agent / Command / Skill Count Sync
 
-**Issue:** AGENTS.md states "13 specialized agents, 50+ skills, 33 commands" while the repo has **16 agents**, **65+ skills**, and **40 commands**. README and other docs also vary. This causes confusion for contributors and users.
+**Issue:** AGENTS.md states "13 specialized agents, 50+ skills, 33 commands" while the repo has **36 agents**, **151+ skills**, and **68 commands**. README and other docs also vary. This causes confusion for contributors and users.
 
 **Recommendation:**
 
 - **Single source of truth:** Derive counts (and optionally tables) from the filesystem or a small manifest. Options:
   - **Option A:** Add a script (e.g. `scripts/ci/catalog.js`) that scans `agents/*.md`, `commands/*.md`, and `skills/*/SKILL.md` and outputs JSON/Markdown. CI and docs can consume this.
   - **Option B:** Maintain one `docs/catalog.json` (or YAML) that lists agents, commands, and skills with metadata; scripts and docs read from it. Requires discipline to update on add/remove.
-- **Short-term:** Manually sync AGENTS.md, README.md, and CLAUDE.md with actual counts and list any new agents (e.g. chief-of-staff, loop-operator, harness-optimizer) in the agent table.
+- **Short-term:** Manually sync AGENTS.md, README.md, and QWEN.md with actual counts and list any new agents (e.g. chief-of-staff, loop-operator, harness-optimizer) in the agent table.
 
 **Impact:** High — affects first impression and contributor trust.
 
@@ -139,7 +139,7 @@ This document captures architect-level improvements for the Everything Claude Co
 
 ## 7. Quick Wins (Immediate)
 
-1. **Update AGENTS.md:** Set agent count to 16; add chief-of-staff, loop-operator, harness-optimizer to the agent table; align skill/command counts with repo.
+1. **Update AGENTS.md:** Set agent count to 36; add chief-of-staff, loop-operator, harness-optimizer to the agent table; align skill/command counts with repo.
 2. **Test discovery:** Change `run-all.js` to discover `**/*.test.js` under `tests/` (with optional allowlist) so new tests are always run.
 3. **Wire hooks schema:** In `validate-hooks.js`, validate `hooks/hooks.json` against `schemas/hooks.schema.json` using ajv (or similar) and keep only hook-specific checks in the script.
 

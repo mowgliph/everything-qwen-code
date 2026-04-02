@@ -10,14 +10,14 @@ Practical settings and habits to reduce token consumption, extend session qualit
 
 These are recommended defaults for most users. Power users can tune values further based on their workload — for example, setting `MAX_THINKING_TOKENS` lower for simple tasks or higher for complex architectural work.
 
-Add to your `~/.claude/settings.json`:
+Add to your `~/.qwen/settings.json`:
 
 ```json
 {
   "model": "sonnet",
   "env": {
     "MAX_THINKING_TOKENS": "10000",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
+    "QWEN_CODE_SUBAGENT_MODEL": "haiku"
   }
 }
 ```
@@ -28,11 +28,11 @@ Add to your `~/.claude/settings.json`:
 |---------|---------|-------------|--------|
 | `model` | opus | **sonnet** | Sonnet handles ~80% of coding tasks well. Switch to Opus with `/model opus` for complex reasoning. ~60% cost reduction. |
 | `MAX_THINKING_TOKENS` | 31,999 | **10,000** | Extended thinking reserves up to 31,999 output tokens per request for internal reasoning. Reducing this cuts hidden cost by ~70%. Set to `0` to disable for trivial tasks. |
-| `CLAUDE_CODE_SUBAGENT_MODEL` | _(inherits main)_ | **haiku** | Subagents (Task tool) run on this model. Haiku is ~80% cheaper and sufficient for exploration, file reading, and test running. |
+| `QWEN_CODE_SUBAGENT_MODEL` | _(inherits main)_ | **haiku** | Subagents (Task tool) run on this model. Haiku is ~80% cheaper and sufficient for exploration, file reading, and test running. |
 
 ### Community note on auto-compaction overrides
 
-Some recent Claude Code builds have community reports that `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` can only lower the compaction threshold, which means values below the default may compact earlier instead of later. If that happens in your setup, remove the override and rely on manual `/compact` plus ECC's `strategic-compact` guidance. See [Troubleshooting](./TROUBLESHOOTING.md).
+Some recent Qwen Code builds have community reports that `QWEN_AUTOCOMPACT_PCT_OVERRIDE` can only lower the compaction threshold, which means values below the default may compact earlier instead of later. If that happens in your setup, remove the override and rely on manual `/compact` plus EQC's `strategic-compact` guidance. See [Troubleshooting](./TROUBLESHOOTING.md).
 
 ### Toggling extended thinking
 
@@ -106,11 +106,11 @@ Tips:
 
 ## Agent Teams Cost Warning
 
-[Agent Teams](https://code.claude.com/docs/en/agent-teams) (experimental) spawns multiple independent context windows. Each teammate consumes tokens separately.
+[Agent Teams](https://code.qwen.com/docs/en/agent-teams) (experimental) spawns multiple independent context windows. Each teammate consumes tokens separately.
 
 - Only use for tasks where parallelism adds clear value (multi-module work, parallel reviews)
 - For simple sequential tasks, subagents (Task tool) are more token-efficient
-- Enable with: `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in settings
+- Enable with: `QWEN_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in settings
 
 ---
 
@@ -130,8 +130,8 @@ The `configure-ecc` install wizard could offer to set these environment variable
 /compact                   # At logical breakpoints
 /cost                      # Check spending
 
-# Environment variables (add to ~/.claude/settings.json "env" block)
+# Environment variables (add to ~/.qwen/settings.json "env" block)
 MAX_THINKING_TOKENS=10000
-CLAUDE_CODE_SUBAGENT_MODEL=haiku
-CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+QWEN_CODE_SUBAGENT_MODEL=haiku
+QWEN_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 ```
