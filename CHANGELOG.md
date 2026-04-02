@@ -5,6 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-04-02
+
+### Added
+
+- **MCP Auto-Install System** - Automatic configuration of MCP servers during global installation:
+  - `scripts/lib/mcp-catalog.js` - Centralized catalog of 24+ MCP servers with metadata
+  - `scripts/lib/mcp-installer.js` - Installation logic with merge and individual config support
+  - `scripts/setup-mcp-servers.js` - CLI with --auto, --list, --status, --install, --category modes
+  - **11+ Free MCP Servers** auto-configured (context7, memory, playwright, sequential-thinking, duckduckgo, filesystem, vercel, cloudflare-*)
+  - **API Key Warnings** for MCPs requiring credentials (github, firecrawl, exa, supabase)
+- **Auto-Configuration in eqw-install** - MCPs now configure automatically during `npx eqw-install`
+- **Comprehensive Documentation** for MCP setup:
+  - `docs/commands/setup-mcps.md` - Usage guide with examples and troubleshooting
+  - `docs/plans/2026-04-02-mcp-auto-install.md` - Implementation plan with TDD approach
+- **Test Suite for MCPs** - 58 tests (100% passing):
+  - `tests/lib/mcp-catalog.test.js` - 11 tests for catalog functions
+  - `tests/lib/mcp-installer.test.js` - 21 tests for installer logic
+  - `tests/scripts/setup-mcp-servers.test.js` - 26 tests for CLI
+
+### Changed
+
+- **Updated `getMcpCategories()`** - Now returns category counts object instead of array
+- **Enhanced `bin/eqw-install`** - Shows MCP auto-configuration progress and summary
+- **Improved `setup-mcp-servers.js`** - Fixed category handling and output formatting
+
+### Technical Details
+
+- **Files Created:** 3 files (catalog, installer, CLI docs)
+- **Files Modified:** 4 files (eqw-install, mcp-catalog.js, setup-mcp-servers.js, tests)
+- **Lines Added:** ~745 lines
+- **Tests:** 58 new tests (58 total, 100% passing)
+
+### Quality Gates
+
+- ✅ 58/58 tests passing (100%)
+- ✅ TDD methodology followed (tests before implementation)
+- ✅ Code review approved
+- ✅ Documentation complete
+
 ## [0.1.0] - 2026-04-02
 
 ### Added
