@@ -196,11 +196,11 @@ function main() {
   
   // Install config files
   log('\n⚙️  Installing configuration files...\n', 'bright');
-  
+
   for (const file of CONFIG_FILES) {
     const srcPath = path.join(ECC_DIR, file.src);
     const destPath = path.join(QWEN_DIR, file.dest);
-    
+
     if (!fs.existsSync(srcPath)) {
       if (file.required) {
         logError(`Missing required config: ${file.src}`);
@@ -211,7 +211,7 @@ function main() {
         continue;
       }
     }
-    
+
     // Special handling for mcp.json - merge instead of overwrite
     if (file.dest === 'mcp.json') {
       if (mergeJsonFiles(destPath, srcPath)) {
@@ -232,6 +232,30 @@ function main() {
         logError(`Failed to install: ${file.dest}`);
       }
     }
+  }
+
+  // Configure MCP servers automatically
+  log('\n🔌 Configuring MCP servers...\n', 'bright');
+
+  try {
+    const { getFreeMcpServers } = require('../scripts/lib/mcp-catalog');
+    const { configureMultipleMcpServers } = require('../scripts/lib/mcp-installer');
+
+    const mcpConfigPath = path.join(QWEN_DIR, 'mcp.json');
+    const freeMcps = getFreeMcpServers(true); // Only recommended free MCPs
+    const mcpResults = configureMultipleMcpServers(mcpConfigPath, freeMcps);
+
+    for (const id of mcpResults.installed) {
+      logSuccess(`MCP: ${id}`);
+    }
+
+    logSuccess(`${mcpResults.installed.length} MCP server(s) configured`);
+    if (mcpResults.skipped.length > 0) {
+      logInfo(`${mcpResults.skipped.length} MCP server(s) already configured`);
+    }
+  } catch (err) {
+    logWarn(`MCP configuration skipped: ${err.message}`);
+    logInfo('You can configure MCPs later with: node scripts/setup-mcp-servers.js --auto');
   }
   
   // Summary
@@ -254,6 +278,7 @@ function main() {
   log('   • Automated hooks in ~/.qwen/hooks/', 'cyan');
   log('   • Language rules in ~/.qwen/rules/', 'cyan');
   log('   • MCP configurations in ~/.qwen/mcp.json', 'cyan');
+  log('   • 11+ free MCP servers auto-configured', 'cyan');
   
   log('\n🚀 Next steps:', 'bright');
   log('   1. Restart Qwen Code to load the new components', 'yellow');
