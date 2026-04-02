@@ -129,12 +129,12 @@ describe('setup-mcp-servers.js CLI', () => {
       assert.ok(output.includes('context7') || output.includes('memory') || output.includes('playwright'), 'Should install recommended MCPs');
     });
 
-    it('should create .mcp.json config file', () => {
+    it('should create settings.json config file', () => {
       runCli('--auto');
-      
-      const mcpConfigPath = path.join(testQwenDir, 'mcp.json');
-      assert.ok(fs.existsSync(mcpConfigPath), 'Should create mcp.json');
-      
+
+      const mcpConfigPath = path.join(testQwenDir, 'settings.json');
+      assert.ok(fs.existsSync(mcpConfigPath), 'Should create settings.json');
+
       const config = JSON.parse(fs.readFileSync(mcpConfigPath, 'utf8'));
       assert.ok(config.mcpServers, 'Should have mcpServers');
       assert.ok(Object.keys(config.mcpServers).length > 0, 'Should have installed MCPs');
@@ -142,8 +142,8 @@ describe('setup-mcp-servers.js CLI', () => {
 
     it('should only install free MCPs (no API key required)', () => {
       runCli('--auto');
-      
-      const mcpConfigPath = path.join(testQwenDir, 'mcp.json');
+
+      const mcpConfigPath = path.join(testQwenDir, 'settings.json');
       const config = JSON.parse(fs.readFileSync(mcpConfigPath, 'utf8'));
       
       // Verify installed MCPs don't require API keys
@@ -177,8 +177,8 @@ describe('setup-mcp-servers.js CLI', () => {
         output.includes('context7') && (output.includes('installed') || output.includes('Configured')),
         'Should install context7'
       );
-      
-      const mcpConfigPath = path.join(testQwenDir, 'mcp.json');
+
+      const mcpConfigPath = path.join(testQwenDir, 'settings.json');
       const config = JSON.parse(fs.readFileSync(mcpConfigPath, 'utf8'));
       assert.ok(config.mcpServers.context7, 'Should have context7 configured');
     });
@@ -222,15 +222,15 @@ describe('setup-mcp-servers.js CLI', () => {
   describe('--category flag', () => {
     it('should install all MCPs in a category', () => {
       const output = runCli('--category documentation');
-      
+
       assert.ok(
         output.includes('documentation') || output.includes('installed'),
         'Should install documentation category MCPs'
       );
-      
-      const mcpConfigPath = path.join(testQwenDir, 'mcp.json');
+
+      const mcpConfigPath = path.join(testQwenDir, 'settings.json');
       const config = JSON.parse(fs.readFileSync(mcpConfigPath, 'utf8'));
-      
+
       // Should have at least one documentation MCP
       assert.ok(
         config.mcpServers.context7 || config.mcpServers['cloudflare-docs'],
@@ -282,7 +282,7 @@ describe('setup-mcp-servers.js CLI', () => {
 
   describe('error handling', () => {
     it('should handle invalid config file gracefully', () => {
-      const mcpConfigPath = path.join(testQwenDir, 'mcp.json');
+      const mcpConfigPath = path.join(testQwenDir, 'settings.json');
       fs.writeFileSync(mcpConfigPath, 'invalid json {{{', 'utf8');
       
       try {

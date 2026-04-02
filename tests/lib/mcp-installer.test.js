@@ -15,7 +15,7 @@ describe('MCP Installer', () => {
 
   beforeEach(async () => {
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mcp-test-'));
-    mcpConfigPath = path.join(tempDir, '.qwen', 'mcp.json');
+    mcpConfigPath = path.join(tempDir, '.qwen', 'settings.json');
     fs.mkdirSync(path.join(tempDir, '.qwen'), { recursive: true });
     
     const module = await import('../../scripts/lib/mcp-installer.js');

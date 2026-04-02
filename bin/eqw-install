@@ -62,7 +62,6 @@ const INSTALL_DIRS = [
 
 // Config files to install
 const CONFIG_FILES = [
-  { src: '.mcp.json', dest: 'mcp.json', required: false },
   { src: 'agent.yaml', dest: 'agent.yaml', required: false }
 ];
 
@@ -241,7 +240,7 @@ function main() {
     const { getFreeMcpServers } = require('../scripts/lib/mcp-catalog');
     const { configureMultipleMcpServers } = require('../scripts/lib/mcp-installer');
 
-    const mcpConfigPath = path.join(QWEN_DIR, 'mcp.json');
+    const mcpConfigPath = path.join(QWEN_DIR, 'settings.json');
     const freeMcps = getFreeMcpServers(true); // Only recommended free MCPs
     const mcpResults = configureMultipleMcpServers(mcpConfigPath, freeMcps);
 
@@ -277,7 +276,7 @@ function main() {
   log('   • 68 commands in ~/.qwen/commands/', 'cyan');
   log('   • Automated hooks in ~/.qwen/hooks/', 'cyan');
   log('   • Language rules in ~/.qwen/rules/', 'cyan');
-  log('   • MCP configurations in ~/.qwen/mcp.json', 'cyan');
+  log('   • MCP configurations in ~/.qwen/settings.json', 'cyan');
   log('   • 11+ free MCP servers auto-configured', 'cyan');
   
   log('\n🚀 Next steps:', 'bright');

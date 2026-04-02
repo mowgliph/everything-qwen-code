@@ -1,8 +1,10 @@
 /**
  * MCP Installer - Configuration and installation logic for MCP servers
- * 
+ *
  * Provides functions to generate MCP configurations, merge with existing
  * configs, and install multiple MCP servers with detailed status reporting.
+ * 
+ * Note: MCPs are now stored in ~/.qwen/settings.json for Qwen Code compatibility.
  */
 
 const fs = require('fs');
@@ -45,7 +47,7 @@ const path = require('path');
 /**
  * Generate MCP server configuration from MCP definition
  * @param {Object} mcp - MCP server definition from catalog
- * @returns {McpServerConfig} Configuration for .mcp.json
+ * @returns {McpServerConfig} Configuration for settings.json
  */
 function generateMcpConfig(mcp) {
   const config = {
@@ -69,7 +71,7 @@ function generateMcpConfig(mcp) {
 
 /**
  * Merge new MCP server configuration with existing config file
- * @param {string} configPath - Path to .mcp.json
+ * @param {string} configPath - Path to settings.json
  * @param {Object} newServer - New server to add { id, config }
  * @returns {InstallationResult} Installation result
  */
@@ -107,11 +109,11 @@ function mergeMcpConfig(configPath, newServer) {
       };
     }
 
-    // Add new server
+    // Add new server - preserve ALL existing config (modelProviders, security, etc.)
     existingConfig.mcpServers[newServer.id] = newServer.config;
 
-    // Write updated config
-    fs.writeFileSync(configPath, JSON.stringify(existingConfig, null, 2), 'utf8');
+    // Write updated config with proper formatting - preserves all existing settings
+    fs.writeFileSync(configPath, JSON.stringify(existingConfig, null, 2) + '\n', 'utf8');
 
     return {
       success: true,
@@ -131,7 +133,7 @@ function mergeMcpConfig(configPath, newServer) {
 
 /**
  * Configure a single MCP server
- * @param {string} configPath - Path to .mcp.json
+ * @param {string} configPath - Path to settings.json
  * @param {Object} mcp - MCP server definition from catalog
  * @returns {InstallationResult} Installation result
  */
@@ -174,7 +176,7 @@ function configureMultipleMcpServers(configPath, mcps) {
 
 /**
  * Get MCP installation status
- * @param {string} configPath - Path to .mcp.json
+ * @param {string} configPath - Path to settings.json
  * @param {Object[]} catalog - Array of MCP server definitions from catalog
  * @returns {InstallationStatus} Installation status with counts and percentage
  */

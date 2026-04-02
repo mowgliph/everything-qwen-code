@@ -45,10 +45,10 @@ function getQwenDir() {
 
 /**
  * Get path to MCP config file
- * @returns {string} Path to mcp.json
+ * @returns {string} Path to settings.json (MCPs now stored here for Qwen Code compatibility)
  */
 function getMcpConfigPath() {
-  return path.join(getQwenDir(), 'mcp.json');
+  return path.join(getQwenDir(), 'settings.json');
 }
 
 /**
@@ -247,7 +247,7 @@ function installMcp(mcpId) {
   if (mcp.requiresApiKey) {
     console.log('⚠️  WARNING: This MCP requires an API key');
     console.log(`   You will need to configure: ${Object.keys(mcp.env || {}).join(', ')}`);
-    console.log('   Edit ~/.qwen/mcp.json after installation to add your API key.\n');
+    console.log('   Edit ~/.qwen/settings.json after installation to add your API key.\n');
   }
   
   ensureQwenDir();

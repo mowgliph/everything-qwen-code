@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 const CATEGORIES = [
   'Tool Coverage',
@@ -514,10 +515,10 @@ function getConsumerChecks(rootDir) {
       category: 'Context Efficiency',
       points: 2,
       scopes: ['repo', 'hooks'],
-      path: '.mcp.json',
+      path: '.mcp.json or settings.json',
       description: 'The project declares local MCP or Claude settings',
-      pass: fileExists(rootDir, '.mcp.json') || fileExists(rootDir, '.claude/settings.json') || fileExists(rootDir, '.claude/settings.local.json'),
-      fix: 'Add .mcp.json or .claude/settings.json so project-local tool configuration is explicit.',
+      pass: fileExists(rootDir, '.mcp.json') || fileExists(rootDir, '.claude/settings.json') || fileExists(rootDir, '.claude/settings.local.json') || fileExists(path.join(os.homedir(), '.qwen', 'settings.json')),
+      fix: 'Add .mcp.json, .claude/settings.json, or ~/.qwen/settings.json so project-local tool configuration is explicit.',
     },
     {
       id: 'consumer-test-suite',

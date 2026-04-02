@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] - 2026-04-02
+## [0.2.1] - 2026-04-02
 
 ### Added
 
@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `scripts/lib/mcp-installer.js` - Installation logic with merge and individual config support
   - `scripts/setup-mcp-servers.js` - CLI with --auto, --list, --status, --install, --category modes
   - **11+ Free MCP Servers** auto-configured (context7, memory, playwright, sequential-thinking, duckduckgo, filesystem, vercel, cloudflare-*)
-  - **API Key Warnings** for MCPs requiring credentials (github, firecrawl, exa, supabase)
+  - **API Key Warnings** for MCPs requiring credentials
 - **Auto-Configuration in eqw-install** - MCPs now configure automatically during `npx eqw-install`
 - **Comprehensive Documentation** for MCP setup:
   - `docs/commands/setup-mcps.md` - Usage guide with examples and troubleshooting
@@ -29,13 +29,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Updated `getMcpCategories()`** - Now returns category counts object instead of array
 - **Enhanced `bin/eqw-install`** - Shows MCP auto-configuration progress and summary
 - **Improved `setup-mcp-servers.js`** - Fixed category handling and output formatting
+- **MCP Configuration Migration** - MCPs now stored in `~/.qwen/settings.json` instead of `~/.qwen/mcp.json` for Qwen Code compatibility:
+  - Updated `scripts/setup-mcp-servers.js` to use `settings.json` as config target
+  - Updated `scripts/lib/mcp-installer.js` to preserve all existing settings when merging MCPs
+  - Updated `bin/eqw-install` to install MCPs to `settings.json`
+  - Updated `scripts/harness-audit.js` to check for `settings.json` configuration
+  - All existing config sections preserved (`modelProviders`, `security`, `model`, `tools`, `general`)
+- **Test Updates** - MCP installer and CLI tests updated to use `settings.json`:
+  - `tests/lib/mcp-installer.test.js` - Config path updated
+  - `tests/scripts/setup-mcp-servers.test.js` - Config path updated
 
 ### Technical Details
 
-- **Files Created:** 3 files (catalog, installer, CLI docs)
-- **Files Modified:** 4 files (eqw-install, mcp-catalog.js, setup-mcp-servers.js, tests)
-- **Lines Added:** ~745 lines
-- **Tests:** 58 new tests (58 total, 100% passing)
+- **Files Modified:** 7 files (eqw-install, mcp-catalog.js, mcp-installer.js, setup-mcp-servers.js, harness-audit.js, tests)
+- **Tests:** 47 tests passing (100%)
 
 ### Quality Gates
 
@@ -44,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✅ Code review approved
 - ✅ Documentation complete
 
-## [0.1.0] - 2026-04-02
+## [0.2.0] - 2026-04-02
 
 ### Added
 
