@@ -1,6 +1,6 @@
 ﻿---
 name: build-error-resolver
-description: "Use this agent when working with build-error-resolver tasks. Examples: <example>Context: User needs assistance with build-error-resolver tasks. user: "Can you help me with " assistant: "I will use the build-error-resolver agent to assist you with that." </example>"
+description: "Use this agent when working with build-error-resolver tasks. Examples: <example>Context: User needs assistance with build-error-resolver tasks. user: "Can you help me with build-error-resolver tasks?" assistant: "I'll use the build-error-resolver agent to assist you." </example>"
 color: yellow
 ---
 

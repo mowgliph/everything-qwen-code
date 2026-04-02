@@ -1,6 +1,6 @@
 ﻿---
 name: e2e-runner
-description: "Use this agent when working with e2e-runner tasks. Examples: <example>Context: User needs assistance with e2e-runner tasks. user: "Can you help me with " assistant: "I will use the e2e-runner agent to assist you with that." </example>"
+description: "Use this agent when working with e2e-runner tasks. Examples: <example>Context: User needs assistance with e2e-runner tasks. user: "Can you help me with e2e-runner tasks?" assistant: "I'll use the e2e-runner agent to assist you." </example>"
 color: green
 ---
 

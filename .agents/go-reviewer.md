@@ -1,6 +1,6 @@
 ﻿---
 name: go-reviewer
-description: "Use this agent when working with go-reviewer tasks. Examples: <example>Context: User needs assistance with go-reviewer tasks. user: "Can you help me with " assistant: "I will use the go-reviewer agent to assist you with that." </example>"
+description: "Use this agent when working with go-reviewer tasks. Examples: <example>Context: User needs assistance with go-reviewer tasks. user: "Can you help me with go-reviewer tasks?" assistant: "I'll use the go-reviewer agent to assist you with that." </example>"
 color: cyan
 ---
 

@@ -1,6 +1,6 @@
 ﻿---
 name: planner
-description: "Use this agent when working with planner tasks. Examples: <example>Context: User needs assistance with planner tasks. user: "Can you help me with " assistant: "I will use the planner agent to assist you with that." </example>"
+description: "Use this agent when working with planner tasks. Examples: <example>Context: User needs assistance with planner tasks. user: "Can you help me with planner tasks?" assistant: "I'll use the planner agent to assist you with that." </example>"
 color: blue
 ---
 

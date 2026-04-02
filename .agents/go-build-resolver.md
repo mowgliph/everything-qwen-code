@@ -1,6 +1,6 @@
 ﻿---
 name: go-build-resolver
-description: "Use this agent when working with go-build-resolver tasks. Examples: <example>Context: User needs assistance with go-build-resolver tasks. user: "Can you help me with " assistant: "I will use the go-build-resolver agent to assist you with that." </example>"
+description: "Use this agent when working with go-build-resolver tasks. Examples: <example>Context: User needs assistance with go-build-resolver tasks. user: "Can you help me with go-build-resolver tasks?" assistant: "I'll use the go-build-resolver agent to assist you with that." </example>"
 color: yellow
 ---
 

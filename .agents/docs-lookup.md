@@ -1,6 +1,6 @@
 ﻿---
 name: docs-lookup
-description: "Use this agent when working with docs-lookup tasks. Examples: <example>Context: User needs assistance with docs-lookup tasks. user: "Can you help me with " assistant: "I will use the docs-lookup agent to assist you with that." </example>"
+description: "Use this agent when working with docs-lookup tasks. Examples: <example>Context: User needs assistance with docs-lookup tasks. user: "Can you help me with docs-lookup tasks?" assistant: "I'll use the docs-lookup agent to assist you with that." </example>"
 color: magenta
 ---
 

@@ -1,6 +1,6 @@
 ﻿---
 name: gan-generator
-description: "Use this agent when working with gan-generator tasks. Examples: <example>Context: User needs assistance with gan-generator tasks. user: "Can you help me with " assistant: "I will use the gan-generator agent to assist you with that." </example>"
+description: "Use this agent when working with gan-generator tasks. Examples: <example>Context: User needs assistance with gan-generator tasks. user: "Can you help me with gan-generator tasks?" assistant: "I'll use the gan-generator agent to assist you with that." </example>"
 color: green
 ---
 

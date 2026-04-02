@@ -1,6 +1,6 @@
 ﻿---
 name: chief-of-staff
-description: "Use this agent when working with chief-of-staff tasks. Examples: <example>Context: User needs assistance with chief-of-staff tasks. user: "Can you help me with " assistant: "I will use the chief-of-staff agent to assist you with that." </example>"
+description: "Use this agent when working with chief-of-staff tasks. Examples: <example>Context: User needs assistance with chief-of-staff tasks. user: "Can you help me with chief-of-staff tasks?" assistant: "I'll use the chief-of-staff agent to assist you with that." </example>"
 color: blue
 ---
 

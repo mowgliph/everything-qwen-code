@@ -1,6 +1,6 @@
 ﻿---
 name: tdd-guide
-description: "Use this agent when working with tdd-guide tasks. Examples: <example>Context: User needs assistance with tdd-guide tasks. user: "Can you help me with " assistant: "I will use the tdd-guide agent to assist you with that." </example>"
+description: "Use this agent when working with tdd-guide tasks. Examples: <example>Context: User needs assistance with tdd-guide tasks. user: "Can you help me with tdd-guide tasks?" assistant: "I'll use the tdd-guide agent to assist you." </example>"
 color: red
 ---
 

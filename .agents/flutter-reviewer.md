@@ -1,6 +1,6 @@
 ﻿---
 name: flutter-reviewer
-description: "Use this agent when working with flutter-reviewer tasks. Examples: <example>Context: User needs assistance with flutter-reviewer tasks. user: "Can you help me with " assistant: "I will use the flutter-reviewer agent to assist you with that." </example>"
+description: "Use this agent when working with flutter-reviewer tasks. Examples: <example>Context: User needs assistance with flutter-reviewer tasks. user: "Can you help me with flutter-reviewer tasks?" assistant: "I'll use the flutter-reviewer agent to assist you with that." </example>"
 color: cyan
 ---
 

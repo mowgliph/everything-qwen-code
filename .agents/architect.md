@@ -1,6 +1,6 @@
 ﻿---
 name: architect
-description: "Use this agent when working with architect tasks. Examples: <example>Context: User needs assistance with architect tasks. user: "Can you help me with " assistant: "I will use the architect agent to assist you with that." </example>"
+description: "Use this agent when working with architect tasks. Examples: <example>Context: User needs assistance with architect tasks. user: "Can you help me with architect tasks?" assistant: "I'll use the architect agent to assist you." </example>"
 color: blue
 ---
 

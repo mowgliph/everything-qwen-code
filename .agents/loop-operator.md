@@ -1,6 +1,6 @@
 ﻿---
 name: loop-operator
-description: "Use this agent when working with loop-operator tasks. Examples: <example>Context: User needs assistance with loop-operator tasks. user: "Can you help me with " assistant: "I will use the loop-operator agent to assist you with that." </example>"
+description: "Use this agent when working with loop-operator tasks. Examples: <example>Context: User needs assistance with loop-operator tasks. user: "Can you help me with loop-operator tasks?" assistant: "I'll use the loop-operator agent to assist you." </example>"
 color: green
 ---
 

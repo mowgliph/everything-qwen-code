@@ -1,6 +1,6 @@
 ﻿---
 name: rust-reviewer
-description: "Use this agent when working with rust-reviewer tasks. Examples: <example>Context: User needs assistance with rust-reviewer tasks. user: "Can you help me with " assistant: "I will use the rust-reviewer agent to assist you with that." </example>"
+description: "Use this agent when working with rust-reviewer tasks. Examples: <example>Context: User needs assistance with rust-reviewer tasks. user: "Can you help me with rust-reviewer tasks?" assistant: "I'll use the rust-reviewer agent to assist you with that." </example>"
 color: cyan
 ---
 

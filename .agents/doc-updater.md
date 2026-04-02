@@ -1,6 +1,6 @@
 ﻿---
 name: doc-updater
-description: "Use this agent when working with doc-updater tasks. Examples: <example>Context: User needs assistance with doc-updater tasks. user: "Can you help me with " assistant: "I will use the doc-updater agent to assist you with that." </example>"
+description: "Use this agent when working with doc-updater tasks. Examples: <example>Context: User needs assistance with doc-updater tasks. user: "Can you help me with doc-updater tasks?" assistant: "I'll use the doc-updater agent to assist you." </example>"
 color: magenta
 ---
 

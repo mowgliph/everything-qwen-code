@@ -1,6 +1,6 @@
 ﻿---
 name: harness-optimizer
-description: "Use this agent when working with harness-optimizer tasks. Examples: <example>Context: User needs assistance with harness-optimizer tasks. user: "Can you help me with " assistant: "I will use the harness-optimizer agent to assist you with that." </example>"
+description: "Use this agent when working with harness-optimizer tasks. Examples: <example>Context: User needs assistance with harness-optimizer tasks. user: "Can you help me with harness-optimizer tasks?" assistant: "I'll use the harness-optimizer agent to assist you." </example>"
 color: yellow
 ---
 

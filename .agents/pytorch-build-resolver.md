@@ -1,6 +1,6 @@
 ﻿---
 name: pytorch-build-resolver
-description: "Use this agent when working with pytorch-build-resolver tasks. Examples: <example>Context: User needs assistance with pytorch-build-resolver tasks. user: "Can you help me with " assistant: "I will use the pytorch-build-resolver agent to assist you with that." </example>"
+description: "Use this agent when working with pytorch-build-resolver tasks. Examples: <example>Context: User needs assistance with pytorch-build-resolver tasks. user: "Can you help me with pytorch-build-resolver tasks?" assistant: "I'll use the pytorch-build-resolver agent to assist you." </example>"
 color: yellow
 ---
 
