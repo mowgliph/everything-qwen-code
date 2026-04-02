@@ -1,6 +1,6 @@
-# Contributing to Everything Claude Code
+# Contributing to Everything Qwen Code
 
-Thanks for wanting to contribute! This repo is a community resource for Claude Code users.
+Thanks for wanting to contribute! This repo is a community resource for Qwen Code users.
 
 ## Table of Contents
 
@@ -51,8 +51,8 @@ Slash commands that invoke useful workflows:
 
 ```bash
 # 1. Fork and clone
-gh repo fork affaan-m/everything-claude-code --clone
-cd everything-claude-code
+gh repo fork mowgliph/everything-qwen-code --clone
+cd everything-qwen-code
 
 # 2. Create a branch
 git checkout -b feat/my-contribution
@@ -485,7 +485,7 @@ How you tested this.
 
 ## Questions?
 
-- **Issues:** [github.com/affaan-m/everything-claude-code/issues](https://github.com/affaan-m/everything-claude-code/issues)
+- **Issues:** [github.com/mowgliph/everything-qwen-code/issues](https://github.com/mowgliph/everything-qwen-code/issues)
 - **X/Twitter:** [@affaanmustafa](https://x.com/affaanmustafa)
 
 ---
