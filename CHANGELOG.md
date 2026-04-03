@@ -3,7 +3,37 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.3.0] - 2026-04-03
+
+### Added
+
+- **4 New Specialized Agents** migrated from Tier 1 skills:
+  - **agent-evaluator** - Benchmark and compare coding agents with pass rate, cost, time, and consistency metrics
+  - **web-quality-auditor** - Comprehensive web audits covering performance (40%), accessibility (30%), SEO (15%), and best practices (15%)
+  - **accessibility-auditor** - WCAG 2.2 accessibility auditing with automated testing, manual verification, and remediation guidance
+  - **security-analyst** - Extract security requirements from threat models, create security user stories, and build compliance mappings
+- **feature-analyst Agent** - Comprehensive feature research and analysis across code, product, and technical dimensions
+- **QWEN.md** - Project context file for future interactions
+
+### Changed
+
+- **Skills Cleanup**: Removed 5 skills migrated to agents:
+  - `agent-eval` → `agent-evaluator`
+  - `web-quality-audit` → `web-quality-auditor`
+  - `performance` → `performance-optimizer` (existing agent)
+  - `wcag-audit-patterns` → `accessibility-auditor`
+  - `security-requirement-extraction` → `security-analyst`
+- **Agent Count**: 37 → 41 specialized agents
+- **Skill Count**: 323 → 318 skills (5 migrated, 18 added from global sync in previous release)
+- **AGENTS.md**: Updated version from 1.9.0 to 0.2.1, added 5 new agents to table
+- **README.md**: Updated agent counts and listings
+
+### Technical Details
+
+- **Files Modified:** 13 files (4 new agents, 5 deleted skills, AGENTS.md, QWEN.md, VERSION, CHANGELOG.md, migration plan)
+- **Migration Plan:** `docs/plans/2026-04-03-skills-to-agents-migration.md`
 
 ## [0.2.1] - 2026-04-02
 
