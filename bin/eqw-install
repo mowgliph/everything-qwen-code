@@ -233,6 +233,25 @@ function main() {
     }
   }
 
+  // Install token efficiency rules
+  log('\n📝 Installing token efficiency rules...\n', 'bright');
+
+  try {
+    const { mergeTokenRules } = require('../scripts/merge-token-rules');
+    const qwenMdPath = path.join(QWEN_DIR, 'QWEN.md');
+    const result = mergeTokenRules(qwenMdPath);
+
+    if (result.action === 'appended') {
+      logSuccess('Appended token efficiency rules to QWEN.md');
+    } else if (result.action === 'created') {
+      logSuccess('Created QWEN.md with token efficiency rules');
+    } else {
+      logInfo('Token efficiency rules already present in QWEN.md (skipping)');
+    }
+  } catch (err) {
+    logWarn(`Token efficiency installation skipped: ${err.message}`);
+  }
+
   // Configure MCP servers automatically
   log('\n🔌 Configuring MCP servers...\n', 'bright');
 
@@ -277,6 +296,7 @@ function main() {
   log('   • Automated hooks in ~/.qwen/hooks/', 'cyan');
   log('   • Language rules in ~/.qwen/rules/', 'cyan');
   log('   • MCP configurations in ~/.qwen/settings.json', 'cyan');
+  log('   • Token efficiency rules in ~/.qwen/QWEN.md', 'cyan');
   log('   • 11+ free MCP servers auto-configured', 'cyan');
   
   log('\n🚀 Next steps:', 'bright');
