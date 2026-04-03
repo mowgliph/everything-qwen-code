@@ -1,6 +1,6 @@
 ﻿# Everything Qwen Code (ECC) â€” Agent Instructions
 
-This is a **production-ready AI coding plugin** providing 37 specialized agents, 323 skills, 68 commands, and automated hook workflows for software development.
+This is a **production-ready AI coding plugin** providing 41 specialized agents, 318 skills, 68 commands, and automated hook workflows for software development.
 
 **Version:** 0.2.1
 
@@ -43,6 +43,10 @@ This is a **production-ready AI coding plugin** providing 37 specialized agents,
 | pytorch-build-resolver | PyTorch runtime/CUDA/training errors | PyTorch build/training failures |
 | typescript-reviewer | TypeScript/JavaScript code review | TypeScript/JavaScript projects |
 | feature-analyst | Feature research and analysis | Analyzing features, competitive research, feasibility studies |
+| agent-evaluator | Agent benchmarking and comparison | Comparing coding agents, measuring performance |
+| web-quality-auditor | Comprehensive web audits | Performance, accessibility, SEO audits |
+| accessibility-auditor | WCAG 2.2 accessibility auditing | Accessibility audits, VPAT compliance |
+| security-analyst | Security requirements from threats | Threat modeling, compliance mapping |
 
 ## Agent Orchestration
 
