@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "everything-qwen-code",
   "version": "0.2.1",
   "description": "Complete collection of battle-tested Qwen Code configs — agents, skills, hooks, rules, and MCP configurations evolved over 10+ months of intensive daily use",
@@ -54,6 +54,7 @@
   "scripts": {
     "lint": "eslint . && markdownlint '**/*.md' --ignore node_modules",
     "test": "node tests/run-all.js",
+    "test:token-rules": "node tests/test-merge-token-rules.js",
     "install:global": "node bin/eqw-install",
     "postinstall": "node bin/eqw-install"
   },
