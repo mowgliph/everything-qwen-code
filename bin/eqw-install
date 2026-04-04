@@ -73,41 +73,103 @@ function ensureDir(dirPath) {
   return false;
 }
 
-function copyDir(src, dest) {
+async function copyDir(src, dest, relDir, flags) {
   if (!fs.existsSync(src)) {
     return false;
   }
-  
+
   ensureDir(dest);
-  
+
   const entries = fs.readdirSync(src, { withFileTypes: true });
-  
+
   for (const entry of entries) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
-    
+    const relPath = path.join(relDir, entry.name);
+
     if (entry.isDirectory()) {
-      copyDir(srcPath, destPath);
+      await copyDir(srcPath, destPath, relPath, flags);
     } else {
-      fs.copyFileSync(srcPath, destPath);
+      const result = copyFile(srcPath, destPath, relPath, flags);
+
+      if (result === 'prompt') {
+        const action = await showDiffPrompt(relPath, srcPath, destPath, flags);
+
+        switch (action) {
+          case 'overwrite':
+            if (flags.backup) {
+              fs.copyFileSync(destPath, destPath + '.bak');
+            }
+            if (!flags.dryRun) {
+              fs.copyFileSync(srcPath, destPath);
+            }
+            logSuccess(`Overwritten: ${relPath}`);
+            break;
+          case 'all-overwrite':
+            flags.force = true;
+            if (flags.backup) {
+              fs.copyFileSync(destPath, destPath + '.bak');
+            }
+            if (!flags.dryRun) {
+              fs.copyFileSync(srcPath, destPath);
+            }
+            logSuccess(`Overwritten: ${relPath}`);
+            break;
+          case 'skip':
+            logInfo(`Skipped: ${relPath} (keeping local)`);
+            break;
+          case 'quit':
+            logWarn('Installation aborted by user');
+            process.exit(0);
+            break;
+        }
+      } else if (result) {
+        // Copied or identical — no action needed
+      } else {
+        logError(`Failed to install: ${relPath}`);
+      }
     }
   }
-  
+
   return true;
 }
 
-function copyFile(src, dest) {
+function copyFile(src, dest, relPath, flags) {
   if (!fs.existsSync(src)) {
     return false;
   }
-  
-  fs.copyFileSync(src, dest);
-  return true;
+
+  // Destination doesn't exist — copy directly
+  if (!fs.existsSync(dest)) {
+    if (!flags.dryRun) {
+      fs.copyFileSync(src, dest);
+    }
+    return true;
+  }
+
+  // Files are identical — skip
+  if (!filesDiffer(src, dest)) {
+    return true;
+  }
+
+  // Files differ
+  if (flags.force) {
+    if (flags.backup) {
+      fs.copyFileSync(dest, dest + '.bak');
+    }
+    if (!flags.dryRun) {
+      fs.copyFileSync(src, dest);
+    }
+    return true;
+  }
+
+  // Needs interactive prompt
+  return 'prompt';
 }
 
 function mergeJsonFiles(existing, incoming) {
   if (!fs.existsSync(existing)) {
-    return copyFile(incoming, existing);
+    return copyFile(incoming, existing, path.basename(incoming), { force: true, backup: false, dryRun: false });
   }
 
   try {
@@ -284,7 +346,19 @@ function showDiffPrompt(relPath, src, dest, flags) {
   });
 }
 
-function main() {
+async function main() {
+  const flags = parseArgs(process.argv.slice(2));
+
+  if (flags.force) {
+    log('\n⚠ FORCE mode: overwriting all files without prompts\n', 'yellow');
+  }
+  if (flags.backup) {
+    log('\n📦 BACKUP mode: creating .bak files before overwrites\n', 'yellow');
+  }
+  if (flags.dryRun) {
+    log('\n🔍 DRY RUN: showing changes without applying\n', 'yellow');
+  }
+
   log('\n' + '='.repeat(60), 'cyan');
   log('  Everything Qwen Code - Global Installer', 'bright');
   log('  Installing ECC to ~/.qwen/', 'cyan');
@@ -337,7 +411,7 @@ function main() {
       logInfo(`Directory exists: ${dir.dest} (merging new content)`);
     }
     
-    if (copyDir(srcPath, destPath)) {
+    if (await copyDir(srcPath, destPath, dir.dest, flags)) {
       logSuccess(`Installed: ${dir.dest}`);
       installedCount++;
     } else {
@@ -376,7 +450,7 @@ function main() {
       if (fs.existsSync(destPath)) {
         logInfo(`Config exists: ${file.dest} (keeping existing)`);
         skippedCount++;
-      } else if (copyFile(srcPath, destPath)) {
+      } else if (copyFile(srcPath, destPath, file.dest, flags)) {
         logSuccess(`Installed: ${file.dest}`);
         installedCount++;
       } else {
