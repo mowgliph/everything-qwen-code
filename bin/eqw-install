@@ -524,14 +524,19 @@ async function main() {
   log('   • MCP configurations in ~/.qwen/settings.json', 'cyan');
   log('   • Token efficiency rules in ~/.qwen/QWEN.md', 'cyan');
   log('   • 11+ free MCP servers auto-configured', 'cyan');
-  
+  log('   • Safe file updates with diff-check prompts', 'cyan');
+  log('   • --force, --backup, --dry-run flags available', 'cyan');
+
   log('\n🚀 Next steps:', 'bright');
   log('   1. Restart Qwen Code to load the new components', 'yellow');
   log('   2. Use /help to see available commands', 'yellow');
   log('   3. Agents will auto-activate based on your tasks', 'yellow');
   
   log('\n🔄 To update later, run:', 'bright');
-  log('   npx eqw-install\n', 'yellow');
+  log('   npx eqw-install              # Interactive (safe)', 'yellow');
+  log('   npx eqw-install --dry-run    # Preview changes', 'yellow');
+  log('   npx eqw-install --force      # Overwrite all', 'yellow');
+  log('   npx eqw-install --backup     # Backup before overwrite\n', 'yellow');
   
   log('='.repeat(60) + '\n', 'cyan');
 }
