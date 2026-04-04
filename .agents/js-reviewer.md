@@ -98,12 +98,38 @@ app.get("/users", async (req, res) => {
 - **Missing stream processing** — Loading large files entirely into memory
 - **Inefficient algorithms** — O(n^2) when O(n) or O(n log n) is possible
 
+```js
+// BAD: Loading entire file into memory for line-by-line processing
+const data = fs.readFileSync("large.log").toString().split("\n");
+const errors = data.filter(line => line.includes("ERROR"));
+
+// GOOD: Stream processing for large files
+const { createReadStream } = require("fs");
+const { createInterface } = require("readline");
+const stream = createReadStream("large.log");
+const rl = createInterface({ input: stream });
+rl.on("line", line => { if (line.includes("ERROR")) process(line); });
+```
+
 ### Best Practices (LOW)
 
 - **Magic numbers** — Unexplained numeric constants
 - **Poor naming** — Single-letter variables, misleading names
 - **Missing JSDoc** — Exported functions without documentation
 - **Inconsistent formatting** — Mixed styles within a file
+
+```js
+// BAD: Magic number and poor naming
+function calc(x) {
+  return x * 0.0875; // what is this?
+}
+
+// GOOD: Named constant and clear function name
+const SALES_TAX_RATE = 0.0875;
+function calculateSalesTax(amount) {
+  return amount * SALES_TAX_RATE;
+}
+```
 
 ## Output Format
 
