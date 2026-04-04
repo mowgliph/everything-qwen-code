@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Token efficiency behavior rules in `~/.qwen/QWEN.md` — reduces output tokens by ~50-63%
+- `scripts/merge-token-rules.js` — idempotent merge utility for installer
+- `docs/token-efficiency.md` — full reference document with benchmarks
+- `bin/eqw-install` now auto-installs token efficiency rules
+- Tests for merge utility (4 test cases)
+
 ## [0.3.0] - 2026-04-03
 
 ### Added

@@ -98,11 +98,13 @@ git commit -m "feat: add specific feature"
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
+**"Plan complete and saved to `docs/plans/<filename>.md`. Three execution options:**
 
 **1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
 
 **2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
+
+**3. Plan-to-Issues (team workflow)** - Convert plan tasks to GitHub issues for team distribution
 
 **Which approach?"**
 
@@ -114,3 +116,9 @@ After saving the plan, offer execution choice:
 **If Parallel Session chosen:**
 - Guide them to open new session in worktree
 - **REQUIRED SUB-SKILL:** New session uses superpowers:executing-plans
+
+**If Plan-to-Issues chosen:**
+- **REQUIRED SUB-SKILL:** Use plan-to-issues
+- Parses plan and creates one GitHub issue per task
+- Auto-detects labels from task content
+- Prints summary table with issue URLs
