@@ -14,6 +14,36 @@ and this adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `bin/eqw-install` now auto-installs token efficiency rules
 - Tests for merge utility (4 test cases)
 
+## [0.4.0] - 2026-04-04
+
+### Added
+
+- **3 New Specialized Agents**:
+  - **js-reviewer** - JavaScript/Node.js code review (prototype pollution, callback hell, sync I/O, missing timeouts)
+  - **markdown-reviewer** - Markdown documentation review (broken links, heading structure, stale content, formatting)
+  - **spec-reviewer** - SDD spec compliance review (missing requirements, extra work, misunderstandings)
+- **plan-to-issues Skill** — Converts `writing-plans` output files into GitHub issues with auto-detected labels
+  - Parser (`scripts/parse_plan.py`) extracts task blocks from plan markdown files
+  - Auto-detects labels from task content (10 categories: testing, api, frontend, database, security, documentation, refactor, devops, enhancement, bug)
+  - 11 tests passing (10 unit + 1 integration)
+  - Packaged as `skills-packages/plan-to-issues.skill`
+- **Plan-to-Issues as 3rd execution option** in `writing-plans` skill handoff
+
+### Changed
+
+- **Agent Count**: 37 → 41 specialized agents (3 new + 1 from previous release)
+- **writing-plans/SKILL.md** — Updated execution handoff to offer 3 options: Subagent-Driven, Parallel Session, Plan-to-Issues
+- **AGENTS.md** — Registered 3 new agents in Available Agents table
+- **QWEN.md** — Added branch protection rule to Git Workflow section (NEVER commit directly to main)
+- **ENV-VARIABLES.md** — Moved to `docs/` directory
+- **Project Structure** — Added `skills-packages/` directory for packaged skill files
+
+### Technical Details
+
+- **Files Modified:** 10+ files (3 new agents, plan-to-issues skill, AGENTS.md, QWEN.md, writing-plans/SKILL.md, README.md, CHANGELOG.md, VERSION)
+- **Tests:** 11 tests passing for plan-to-issues parser
+- **PRs:** #11 (plan-to-issues), #12 (branch protection rule), #13 (project reorg), #14 (3 new agents)
+
 ## [0.3.0] - 2026-04-03
 
 ### Added

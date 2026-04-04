@@ -1,6 +1,6 @@
 ﻿# Everything Qwen Code
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/mowgliph/everything-qwen-code/releases)
+[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](https://github.com/mowgliph/everything-qwen-code/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/mowgliph/everything-qwen-code?style=flat)](https://github.com/mowgliph/everything-qwen-code/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/mowgliph/everything-qwen-code)](https://github.com/mowgliph/everything-qwen-code/issues)
@@ -84,7 +84,7 @@ npm install
 
 ## What's Included
 
-### 36 Agents
+### 41 Agents
 
 Specialized agents for every software development task:
 
@@ -97,12 +97,15 @@ Specialized agents for every software development task:
 - `code-reviewer` - General code review
 - `security-reviewer` - Security analysis
 - `typescript-reviewer` - TypeScript/JavaScript
+- `js-reviewer` - JavaScript/Node.js
 - `python-reviewer` - Python
 - `go-reviewer` - Go
 - `java-reviewer` - Java
 - `kotlin-reviewer` - Kotlin
 - `rust-reviewer` - Rust
 - `cpp-reviewer` - C++
+- `markdown-reviewer` - Markdown documentation
+- `spec-reviewer` - SDD spec compliance
 
 **Build & Debug:**
 - `build-error-resolver` - Fix build errors
@@ -114,7 +117,7 @@ Specialized agents for every software development task:
 
 *(See `.agents/` for complete list)*
 
-### 151 Skills
+### 323 Skills
 
 Skills for every development workflow:
 
@@ -167,9 +170,9 @@ Coding standards for:
 
 ```
 everything-qwen-code/
-├── .agents/              # 36 agents in Qwen Code format
+├── .agents/              # 41 agents in Qwen Code format
 ├── .qwen/                # Qwen Code configuration
-│   ├── skills/           # 151 skills
+│   ├── skills/           # 323 skills
 │   ├── commands/         # 68 commands
 │   ├── hooks/            # Automated hooks
 │   ├── rules/            # Language rules
@@ -182,6 +185,7 @@ everything-qwen-code/
 ├── research/             # Research
 ├── schemas/              # JSON schemas
 ├── scripts/              # Utility scripts
+├── skills-packages/      # Packaged skill files (.skill)
 ├── tests/                # Test suite
 ├── .gitignore            # Git ignore rules
 ├── .mcp.json             # MCP configuration
