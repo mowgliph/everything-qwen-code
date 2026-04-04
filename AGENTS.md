@@ -24,7 +24,9 @@ This is a **production-ready AI coding plugin** providing 41 specialized agents,
 | build-error-resolver | Fix build/type errors | When build fails |
 | e2e-runner | End-to-end Playwright testing | Critical user flows |
 | refactor-cleaner | Dead code cleanup | Code maintenance |
+| spec-reviewer | SDD spec compliance review | Subagent-Driven Development workflows |
 | doc-updater | Documentation and codemaps | Updating docs |
+| markdown-reviewer | Markdown documentation review | Documentation, READMEs, guides |
 | cpp-reviewer | C++ code review | C++ projects |
 | cpp-build-resolver | C++ build errors | C++ build failures |
 | docs-lookup | Documentation lookup via Context7 | API/docs questions |
@@ -42,6 +44,7 @@ This is a **production-ready AI coding plugin** providing 41 specialized agents,
 | rust-build-resolver | Rust build errors | Rust build failures |
 | pytorch-build-resolver | PyTorch runtime/CUDA/training errors | PyTorch build/training failures |
 | typescript-reviewer | TypeScript/JavaScript code review | TypeScript/JavaScript projects |
+| js-reviewer | JavaScript/Node.js code review | JS/Node.js projects |
 | feature-analyst | Feature research and analysis | Analyzing features, competitive research, feasibility studies |
 | agent-evaluator | Agent benchmarking and comparison | Comparing coding agents, measuring performance |
 | web-quality-auditor | Comprehensive web audits | Performance, accessibility, SEO audits |
