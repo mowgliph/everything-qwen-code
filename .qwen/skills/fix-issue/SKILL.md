@@ -7,7 +7,7 @@ description: Use when implementing any feature, fix or task in sipsignal. Trigge
 
 ## Overview
 
-Complete development workflow for SipSignal: from analysis through implementation to merge.
+Complete development workflow: from analysis through implementation to merge.
 
 ## When to Use
 
@@ -29,12 +29,12 @@ digraph workflow {
     branch [label="3. Checkout Feature Branch"];
     implement [label="4. Implement (TDD)"];
     test [label="5. Run Tests"];
-    merge [label="6. Merge to Dev"];
-    push [label="7. Push to Origin"];
+    push [label="6. Push & Create PR"];
+    merge [label="7. Merge to Main (with confirmation)"];
     close [label="8. Close Issue & Cleanup"];
     end [label="Done"];
 
-    start -> brainstorm -> issue -> branch -> implement -> test -> merge -> push -> close -> end;
+    start -> brainstorm -> issue -> branch -> implement -> test -> push -> merge -> close -> end;
 
     test -> implement [label="fails", style=dashed];
 }
@@ -62,7 +62,7 @@ Capture the issue number: `#NNN`
 
 ### 3. Checkout Feature Branch
 ```bash
-git checkout -b feature/NNN-short-name dev
+git checkout -b feature/NNN-short-name main
 ```
 
 ### 4. Implement with TDD
@@ -80,22 +80,35 @@ python -m pytest tests/ -v
 
 All tests must pass. Fix failures before proceeding.
 
-### 6. Merge to Dev
+### 6. Push & Create PR
 ```bash
-git checkout dev
-git merge --no-ff feature/NNN-short-name
+git add -A
+git commit -m "[type]: [description] (#NNN)
+
+Co-authored-by: Qwen-Coder <qwen-coder@alibabacloud.com>"
+git push origin feature/NNN-short-name
+gh pr create --base main --head feature/NNN-short-name --title "[type]: [description] (#NNN)" --body "[PR body]"
 ```
 
-### 7. Push to Origin
-```bash
-git commit -m "[type]: [description] (#NNN)"
-git push origin dev
-```
+### 7. Merge to Main (with user confirmation)
+**REQUIRED:** Use the `GitHub PR/Merge Workflow` skill.
+
+After the PR is created:
+
+1. **Ask the user for confirmation:** "PR #[N] created. Do you want me to merge it to main now?"
+2. **If user confirms:** Invoke the `GitHub PR/Merge Workflow` skill to perform the merge
+3. **If user declines:** Stop and let the user handle the merge manually
+
+**NEVER merge without explicit user confirmation.**
+
+**NEVER delete the feature branch before merge is complete.**
 
 ### 8. Close Issue & Cleanup
 ```bash
 gh issue close NNN
-git branch -d feature/NNN-short-name
+git checkout main
+git pull origin main
+git branch -D feature/NNN-short-name
 ```
 
 ## Commit Types
@@ -114,4 +127,6 @@ git branch -d feature/NNN-short-name
 - **No brainstorming first** → STOP. Use superpowers:brainstorming.
 - **No GitHub issue** → STOP. Create issue before branch.
 - **Tests failing** → STOP. Fix before merge.
-- **Committing to dev directly** → STOP. Use feature branch.
+- **Committing to main directly** → STOP. Use feature branch + PR.
+- **Merge without confirmation** → STOP. Always ask user before merging.
+- **Delete branch before merge** → STOP. Branch must exist for PR merge.
