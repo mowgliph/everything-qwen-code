@@ -82,12 +82,18 @@
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp@latest"],
+      "env": {
+        "CONTEXT7_API_KEY": "$CONTEXT7_API_KEY"
+      },
       "description": "Live documentation lookup — use with /docs command and documentation-lookup skill (resolve-library-id, query-docs)."
     },
     "magic": {
       "command": "npx",
-      "args": ["-y", "@magicuidesign/mcp@latest"],
-      "description": "Magic UI components"
+      "args": ["-y", "@21st-dev/magic@latest"],
+      "env": {
+        "API_KEY": "$MAGIC_API_KEY"
+      },
+      "description": "21st.dev UI component generation — use with /ui or /21 commands to generate, refine, and import UI components."
     },
     "filesystem": {
       "command": "npx",

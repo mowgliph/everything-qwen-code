@@ -6,7 +6,17 @@
     },
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@2.1.4"]
+      "args": ["-y", "@upstash/context7-mcp@2.1.4"],
+      "env": {
+        "CONTEXT7_API_KEY": "$CONTEXT7_API_KEY"
+      }
+    },
+    "magic": {
+      "command": "npx",
+      "args": ["-y", "@21st-dev/magic@latest"],
+      "env": {
+        "API_KEY": "$MAGIC_API_KEY"
+      }
     },
     "memory": {
       "command": "npx",

@@ -1,6 +1,6 @@
 {
   "name": "everything-qwen-code",
-  "version": "0.2.1",
+  "version": "0.5.0",
   "description": "Complete collection of battle-tested Qwen Code configs — agents, skills, hooks, rules, and MCP configurations evolved over 10+ months of intensive daily use",
   "keywords": [
     "qwen-code",

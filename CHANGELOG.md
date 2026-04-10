@@ -14,6 +14,23 @@ and this adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Feature branch + PR workflow with user confirmation before merge
   - TDD integration (RED → GREEN → IMPROVE)
 
+## [0.5.0] - 2026-04-10
+
+### Added
+- **37 Local Skills** synced from `~/.qwen/skills/`:
+  - `autoplan`, `browse`, `canary`, `careful`, `checkpoint`, `codex`, `cso`
+  - `design-consultation`, `design-html`, `design-review`, `design-shotgun`
+  - `devex-review`, `document-release`, `framer-motion-animator`, `freeze`
+  - `gstack-upgrade`, `guard`, `health`, `investigate`, `land-and-deploy`
+  - `learn`, `office-hours`, `open-gstack-browser`, `pair-agent`
+  - `plan-ceo-review`, `plan-design-review`, `plan-devex-review`, `plan-eng-review`
+  - `qa`, `qa-only`, `retro`, `review`, `setup-browser-cookies`, `setup-deploy`
+  - `ship`, `unfreeze`
+- **Magic MCP (21st.dev)** — UI component generation with `@21st-dev/magic`
+  - Added to `.mcp.json` and `mcp-configs/mcp-servers.json`
+  - Uses `$MAGIC_API_KEY` environment variable
+- **Context7 MCP** — Added `$CONTEXT7_API_KEY` environment variable support
+
 ## [0.4.0] - 2026-04-04
 
 ### Added
