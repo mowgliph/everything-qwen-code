@@ -14,7 +14,7 @@ description: Complete workflow for merging PRs to main with changelog updates, v
 Use this skill when:
 1. Merging a completed feature/phase to main
 2. Creating a new release (version bump, changelog, tag, release)
-3. Managing PRs that require self-approval as org admin
+3. Managing PRs that require direct merge as org admin/collaborator
 4. Temporarily disabling/re-enabling branch protection
 5. Creating GitHub releases with proper changelog notes
 
@@ -101,28 +101,20 @@ gh api -X PUT repos/uSipipo-Team/{REPO_NAME}/branches/main/protection --input -
 
 **Expected response:** JSON with protection settings showing `enforce_admins: false` and no `required_pull_request_reviews`.
 
-### Step 6: Self-Approve PR (As Org Admin)
+### Step 6: Merge PR
 
-```bash
-gh pr review {PR_NUMBER} --approve --body "✅ Approved - Phase X complete. All quality gates passed:
-- ✅ N/M tests passing
-- ✅ Ruff clean
-- ✅ Mypy clean
-- ✅ Code review approved"
-```
-
-### Step 7: Merge PR
+With branch protection disabled, merge directly (no approval needed):
 
 ```bash
 gh pr merge {PR_NUMBER} --merge --delete-branch
 ```
 
 **Expected output:**
-- ✓ Merged pull request
-- ✓ Deleted local branch
-- ✓ Deleted remote branch
+- Merged pull request
+- Deleted local branch
+- Deleted remote branch
 
-### Step 8: Re-enable Branch Protection
+### Step 7: Re-enable Branch Protection
 
 **CRITICAL:** Do this IMMEDIATELY after merge for security.
 
@@ -137,7 +129,7 @@ gh api -X PUT repos/uSipipo-Team/{REPO_NAME}/branches/main/protection --input -
 
 ## Release Creation (Post-Merge)
 
-### Step 9: Create Git Tag
+### Step 8: Create Git Tag
 
 ```bash
 cd /home/mowgli/usipipo/{REPO_NAME}
@@ -149,13 +141,13 @@ Phase X: Description
 - Quality: ruff, mypy clean"
 ```
 
-### Step 10: Push Tag
+### Step 9: Push Tag
 
 ```bash
 git push origin v0.6.0
 ```
 
-### Step 11: Create GitHub Release
+### Step 10: Create GitHub Release
 
 ```bash
 gh release create v0.6.0 --title "v0.6.0 - Feature Name Complete" --notes "## 🎉 Phase X: Feature Name Complete
@@ -211,10 +203,7 @@ gh api -X PUT repos/uSipipo-Team/{REPO_NAME}/branches/main/protection --input -
 gh pr create --base main --head {BRANCH} \
   --title "{TITLE}" --body "{BODY}"
 
-# Approve PR
-gh pr review {PR_NUMBER} --approve --body "{MESSAGE}"
-
-# Merge PR
+# Merge PR (no approval needed after protection disabled)
 gh pr merge {PR_NUMBER} --merge --delete-branch
 
 # List PRs
@@ -264,23 +253,20 @@ gh pr create --base main --head feature/phase-5 \
 echo '{"required_pull_request_reviews": null, "enforce_admins": false}' | \
   gh api -X PUT repos/uSipipo-Team/usipipo-telegram-bot/branches/main/protection --input -
 
-# 5. Approve
-gh pr review 7 --approve --body "✅ Phase 5 complete - 40 tests passing"
-
-# 6. Merge
+# 5. Merge (no approval needed)
 gh pr merge 7 --merge --delete-branch
 
-# 7. Re-enable protection IMMEDIATELY
+# 6. Re-enable protection IMMEDIATELY
 echo '{"required_pull_request_reviews": {"required_approving_review_count": 1, "dismiss_stale_reviews": true}, "enforce_admins": true}' | \
   gh api -X PUT repos/uSipipo-Team/usipipo-telegram-bot/branches/main/protection --input -
 
-# 8. Tag
+# 7. Tag
 git tag -a v0.6.0 -m "Release v0.6.0 - Data Packages Complete"
 
-# 9. Push tag
+# 8. Push tag
 git push origin v0.6.0
 
-# 10. Create release
+# 9. Create release
 gh release create v0.6.0 --title "v0.6.0 - Data Packages Complete" \
   --notes "## 🎉 Phase 5: Data Packages Complete..."
 ```
@@ -296,8 +282,7 @@ Print this checklist for each phase merge:
 - [ ] Changes committed
 - [ ] PR created (if required)
 - [ ] Branch protection disabled
-- [ ] PR self-approved
-- [ ] PR merged
+- [ ] PR merged (no approval needed)
 - [ ] **Branch protection re-enabled (CRITICAL!)**
 - [ ] Git tag created
 - [ ] Tag pushed to remote
@@ -306,10 +291,10 @@ Print this checklist for each phase merge:
 
 ---
 
-## ⚠️ Important Security Notes
+## Important Security Notes
 
 1. **Re-enable protection IMMEDIATELY** after merge - never leave main unprotected
-2. **Only use self-approval for your own PRs** as org admin
+2. **Direct merge after disabling protection** - no approval step needed as admin/collaborator
 3. **Test before merge** - run all tests locally first
 4. **Use semantic versioning** - MAJOR.MINOR.PATCH
 5. **Delete branches** - clean up after merge (--delete-branch flag)
