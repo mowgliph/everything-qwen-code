@@ -6,7 +6,7 @@
 
 **Sistema universal de skills, agentes, comandos, hooks y rules para múltiples AI Coding CLIs.**
 
-Compatible con: **Qwen Code**, **OpenCode**, **Gemini CLI**, **GitHub Copilot**
+Compatible con: **Qwen Code**, **OpenCode**, **Gemini CLI**, **GitHub Copilot**, **Kilo Code**
 
 ---
 
@@ -28,6 +28,7 @@ cd everything-agents-skills
 | OpenCode | ✓ | ✓ | - | - | ✓ |
 | Gemini CLI | ✓ | - | - | - | - |
 | Copilot | - | - | - | - | ✓ |
+| Kilo Code | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 ---
 

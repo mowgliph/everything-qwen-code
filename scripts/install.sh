@@ -27,6 +27,7 @@ MENU
     detect_opencode 2>/dev/null || echo "✗ OpenCode (no instalado)"
     detect_gemini 2>/dev/null || echo "✗ Gemini CLI (no instalado)"
     detect_copilot 2>/dev/null || echo "✗ Copilot CLI (no instalado)"
+    detect_kilo 2>/dev/null || echo "✗ Kilo Code (no instalado)"
 
     cat << 'OPTIONS'
 
@@ -34,8 +35,9 @@ MENU
 [2] Instalar OpenCode
 [3] Instalar Gemini CLI
 [4] Instalar Copilot
-[5] Instalar TODOS los detectados
-[6] Desinstalar...
+[5] Instalar Kilo Code
+[6] Instalar TODOS los detectados
+[7] Desinstalar...
 [0] Salir
 
 OPTIONS
@@ -95,6 +97,28 @@ install_copilot() {
     success "Copilot instalado!"
 }
 
+install_kilo() {
+    info "Instalando Kilo Code..."
+    
+    local kilo_dir="$HOME/.kilo"
+    mkdir -p "$kilo_dir/skills" "$kilo_dir/commands" "$kilo_dir/agents" "$kilo_dir/hooks" "$kilo_dir/rules" "$kilo_dir/contexts"
+    
+    # Symlinks
+    ln -sf "$PROJECT_ROOT/skills"/* "$kilo_dir/skills/" 2>/dev/null || true
+    ln -sf "$PROJECT_ROOT/commands"/* "$kilo_dir/commands/" 2>/dev/null || true
+    ln -sf "$PROJECT_ROOT/agents"/* "$kilo_dir/agents/" 2>/dev/null || true
+    ln -sf "$PROJECT_ROOT/hooks"/* "$kilo_dir/hooks/" 2>/dev/null || true
+    ln -sf "$PROJECT_ROOT/rules"/* "$kilo_dir/rules/" 2>/dev/null || true
+    ln -sf "$PROJECT_ROOT/contexts"/* "$kilo_dir/contexts/" 2>/dev/null || true
+    
+    # Copiar config MCP
+    if [ -f "$PROJECT_ROOT/.mcp.json" ]; then
+        cp "$PROJECT_ROOT/.mcp.json" "$kilo_dir/mcp.json"
+    fi
+    
+    success "Kilo Code instalado!"
+}
+
 uninstall_menu() {
     cat << 'UNINSTALL'
 
@@ -102,6 +126,7 @@ uninstall_menu() {
 [2] Desinstalar OpenCode
 [3] Desinstalar Gemini CLI
 [4] Desinstalar Copilot
+[5] Desinstalar Kilo Code
 [0] Volver
 
 UNINSTALL
@@ -111,6 +136,7 @@ UNINSTALL
         2) rm -rf "$HOME/.opencode/skills" "$HOME/.opencode/agents" 2>/dev/null; success "OpenCode desinstalado";;
         3) rm -rf "$HOME/.config/gemini/skills" 2>/dev/null; success "Gemini desinstalado";;
         4) rm -rf "$HOME/.github/copilot" 2>/dev/null; success "Copilot desinstalado";;
+        5) rm -rf "$HOME/.kilo" 2>/dev/null; success "Kilo desinstalado";;
     esac
 }
 
@@ -126,14 +152,16 @@ main() {
             2) install_opencode ;;
             3) install_gemini ;;
             4) install_copilot ;;
-            5) 
+            5) install_kilo ;;
+            6) 
                 detect_qwen > /dev/null 2>&1 && install_qwen
                 detect_opencode > /dev/null 2>&1 && install_opencode
                 detect_gemini > /dev/null 2>&1 && install_gemini
                 detect_copilot > /dev/null 2>&1 && install_copilot
+                detect_kilo > /dev/null 2>&1 && install_kilo
                 success "Todos instalados!"
                 ;;
-            6) uninstall_menu ;;
+            7) uninstall_menu ;;
             0) echo "¡Hasta luego!"; exit 0 ;;
             *) error "Opción inválida" ;;
         esac

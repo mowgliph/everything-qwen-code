@@ -56,6 +56,17 @@ detect_copilot() {
     fi
 }
 
+detect_kilo() {
+    if command -v kilo &> /dev/null; then
+        local ver=$(kilo --version 2>/dev/null || echo "desconocida")
+        echo "✓ Kilo Code ($ver)"
+        return 0
+    else
+        echo "✗ Kilo Code (no instalado)"
+        return 1
+    fi
+}
+
 # Obtener ruta del proyecto
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
