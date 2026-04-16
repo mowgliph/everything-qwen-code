@@ -1,219 +1,91 @@
-﻿# Everything Qwen Code
+# Everything Agents Skills
 
-[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](https://github.com/mowgliph/everything-qwen-code/releases)
+[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](https://github.com/mowgliph/everything-agents-skills/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/mowgliph/everything-qwen-code?style=flat)](https://github.com/mowgliph/everything-qwen-code/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/mowgliph/everything-qwen-code)](https://github.com/mowgliph/everything-qwen-code/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/mowgliph/everything-qwen-code)](https://github.com/mowgliph/everything-qwen-code/pulls)
-[![GitHub contributors](https://img.shields.io/github/contributors/mowgliph/everything-qwen-code)](https://github.com/mowgliph/everything-qwen-code/graphs/contributors)
-[![GitHub forks](https://img.shields.io/github/forks/mowgliph/everything-qwen-code)](https://github.com/mowgliph/everything-qwen-code/network)
-[![Last commit](https://img.shields.io/github/last-commit/mowgliph/everything-qwen-code)](https://github.com/mowgliph/everything-qwen-code/commits/main)
-[![Repository size](https://img.shields.io/github/repo-size/mowgliph/everything-qwen-code)](https://github.com/mowgliph/everything-qwen-code)
+[![GitHub stars](https://img.shields.io/github/stars/mowgliph/everything-agents-skills?style=flat)](https://github.com/mowgliph/everything-agents-skills/stargazers)
 
-**The performance optimization system for Qwen Code. From production experience.**
+**Sistema universal de skills, agentes, comandos, hooks y rules para múltiples AI Coding CLIs.**
 
-Not just configs. A complete system: skills, agents, hooks, rules, and MCP configurations. Production-ready agents, skills, hooks, rules, and MCP configurations evolved over 10+ months of intensive daily use building real products.
-
-Built exclusively for **Qwen Code**.
+Compatible con: **Qwen Code**, **OpenCode**, **Gemini CLI**, **GitHub Copilot**
 
 ---
 
 ## Quick Start
 
-### Installation
-
-**Option 1: Global Installation (Recommended)**
-
-Installs EQW to your global `~/.qwen/` directory for use across all workspaces:
-
 ```bash
-# One-line installation with npx
-npx eqw-install
-
-# Or install via npm
-npm install -g everything-qwen-code
-```
-
-**Option 2: Install from GitHub**
-
-Install globally directly from GitHub repository:
-
-```bash
-# Install from GitHub
-npm install -g github:mowgliph/everything-qwen-code
-
-# Run the installer
-eqw-install
-```
-
-**Option 3: Local Installation**
-
-Clone and install in a specific workspace:
-
-```bash
-# Clone the repository
-git clone https://github.com/mowgliph/everything-qwen-code.git
-cd everything-qwen-code
-
-# Install dependencies
-npm install
-```
-
-### Usage
-
-1. **Agents**: 36 specialized agents for different tasks
-   - `planner` - Implementation planning
-   - `architect` - System design
-   - `code-reviewer` - Code quality review
-   - `security-reviewer` - Security analysis
-   - `tdd-guide` - Test-driven development
-
-2. **Skills**: 151 skills for specialized workflows
-   - `brainstorming` - Design before implementation
-   - `writing-plans` - Create implementation plans
-   - `security-review` - Security checklist
-   - `tdd-workflow` - TDD enforcement
-
-3. **Commands**: 68 slash commands
-   - `/create-skill` - Create new skill
-   - `/create-agent` - Create new agent
-   - `/code-review` - Review code
-   - `/test` - Run tests
-
----
-
-## What's Included
-
-### 41 Agents
-
-Specialized agents for every software development task:
-
-**Planning & Architecture:**
-- `planner` - Implementation planning
-- `architect` - System architecture
-- `chief-of-staff` - Strategic planning
-
-**Code Review:**
-- `code-reviewer` - General code review
-- `security-reviewer` - Security analysis
-- `typescript-reviewer` - TypeScript/JavaScript
-- `js-reviewer` - JavaScript/Node.js
-- `python-reviewer` - Python
-- `go-reviewer` - Go
-- `java-reviewer` - Java
-- `kotlin-reviewer` - Kotlin
-- `rust-reviewer` - Rust
-- `cpp-reviewer` - C++
-- `markdown-reviewer` - Markdown documentation
-- `spec-reviewer` - SDD spec compliance
-
-**Build & Debug:**
-- `build-error-resolver` - Fix build errors
-- `tdd-guide` - Test-driven development
-
-**Documentation:**
-- `doc-updater` - Update documentation
-- `docs-lookup` - API documentation
-
-*(See `.agents/` for complete list)*
-
-### 323 Skills
-
-Skills for every development workflow:
-
-**Core Engineering:**
-- `brainstorming` - Design before code
-- `writing-plans` - Implementation plans
-- `tdd-workflow` - Test-driven development
-- `code-review-excellence` - Code review patterns
-- `security-review` - Security checklist
-
-**Language-Specific:**
-- `python-patterns`, `python-testing`
-- `golang-patterns`, `golang-testing`
-- `rust-patterns`, `rust-async-patterns`
-- `typescript-advanced-types`
-- `kotlin-patterns`, `kotlin-testing`
-
-**Frontend:**
-- `frontend-design`, `frontend-patterns`
-- `react-modernization`, `react-state-management`
-- `responsive-design`, `design-system-patterns`
-
-**Backend:**
-- `backend-patterns`, `postgres-patterns`
-- `auth-implementation-patterns`
-- `microservices-patterns`
-
-*(See `.qwen/skills/` for complete list)*
-
-### Rules for 12+ Languages
-
-Coding standards for:
-
-- TypeScript/JavaScript
-- Python
-- Go
-- Java
-- Kotlin
-- Rust
-- C++
-- PHP
-- Perl
-- Common (all languages)
-
-*(See `.qwen/rules/` for complete list)*
-
----
-
-## Project Structure
-
-```
-everything-qwen-code/
-├── .agents/              # 41 agents in Qwen Code format
-├── .qwen/                # Qwen Code configuration
-│   ├── skills/           # 323 skills
-│   ├── commands/         # 68 commands
-│   ├── hooks/            # Automated hooks
-│   ├── rules/            # Language rules
-│   └── mcp-configs/      # MCP server configs
-├── contexts/             # Context files
-├── docs/                 # Documentation
-├── examples/             # Usage examples
-├── manifests/            # Installation manifests
-├── plugins/              # Plugins
-├── research/             # Research
-├── schemas/              # JSON schemas
-├── scripts/              # Utility scripts
-├── skills-packages/      # Packaged skill files (.skill)
-├── tests/                # Test suite
-├── .gitignore            # Git ignore rules
-├── .mcp.json             # MCP configuration
-├── AGENTS.md             # Agent documentation
-├── agent.yaml            # Agent configuration
-├── CHANGELOG.md          # Changelog
-├── package.json          # Package configuration
-└── README.md             # This file
+git clone https://github.com/mowgliph/everything-agents-skills.git
+cd everything-agents-skills
+./scripts/install.sh
 ```
 
 ---
 
-## Contributing
+## CLI Soportados
 
-Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+| CLI | Skills | Agentes | Commands | Hooks | Rules |
+|-----|--------|---------|----------|-------|-------|
+| Qwen Code | ✓ | ✓ | ✓ | ✓ | ✓ |
+| OpenCode | ✓ | ✓ | - | - | ✓ |
+| Gemini CLI | ✓ | - | - | - | - |
+| Copilot | - | - | - | - | ✓ |
 
-## License
+---
 
-MIT License - see [LICENSE](LICENSE) for details.
+## Qué Incluye
 
-## Acknowledgments
+- **393 Skills** - workflows para cada tipo de desarrollo
+- **37 Agentes** - especializados por tarea
+- **67 Commands** - slash commands
+- **14 Rules** - estándares de código
 
-This project was inspired by and forked from the excellent [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) project by [@affaan-m](https://github.com/affaan-m). The original project was built for Claude Code, and this adaptation brings the same powerful patterns, agents, skills, and workflows to **Qwen Code**.
+---
 
-Thanks to the original author for creating an amazing foundation to build upon.
+## Estructura
 
-## Links
+```
+everything-agents-skills/
+├── skills/           # Skills universales (393)
+├── agents/           # Agentes universales (37)
+├── commands/         # Comandos universales (67)
+├── hooks/            # Hooks universales (2)
+├── rules/            # Reglas de código (14)
+├── cli-configs/      # Configs por CLI
+│   ├── qwen/
+│   ├── opencode/
+│   ├── gemini/
+│   └── copilot/
+├── scripts/
+│   ├── install.sh     # Instalador interactivo
+│   ├── detect-cli.sh # Detecta CLIs
+│   └── uninstall.sh  # Desinstalador
+└── SKILLS.md
+```
 
-- [GitHub Repository](https://github.com/mowgliph/everything-qwen-code)
-- [Issues](https://github.com/mowgliph/everything-qwen-code/issues)
-- [Pull Requests](https://github.com/mowgliph/everything-qwen-code/pulls)
+---
+
+## Instalación
+
+```bash
+./scripts/install.sh
+```
+
+Seleccionar el CLI a instalar:
+- [1] Qwen Code
+- [2] OpenCode
+- [3] Gemini CLI
+- [4] Copilot
+- [5] Instalar todos
+
+## Desinstalación
+
+```bash
+./scripts/uninstall.sh
+# o
+./scripts/uninstall.sh --all
+```
+
+---
+
+## Licencia
+
+MIT License - ver [LICENSE](LICENSE)
