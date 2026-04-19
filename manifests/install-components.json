@@ -268,41 +268,25 @@
       ]
     },
     {
+      "id": "agent:accessibility-auditor",
+      "family": "agent",
+      "description": "Accessibility Auditor agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:agent-evaluator",
+      "family": "agent",
+      "description": "Agent Evaluator agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
       "id": "agent:architect",
       "family": "agent",
-      "description": "System design and architecture agent.",
-      "modules": [
-        "agents-core"
-      ]
-    },
-    {
-      "id": "agent:code-reviewer",
-      "family": "agent",
-      "description": "Code review agent for quality and security checks.",
-      "modules": [
-        "agents-core"
-      ]
-    },
-    {
-      "id": "agent:security-reviewer",
-      "family": "agent",
-      "description": "Security vulnerability analysis agent.",
-      "modules": [
-        "agents-core"
-      ]
-    },
-    {
-      "id": "agent:tdd-guide",
-      "family": "agent",
-      "description": "Test-driven development guidance agent.",
-      "modules": [
-        "agents-core"
-      ]
-    },
-    {
-      "id": "agent:planner",
-      "family": "agent",
-      "description": "Feature implementation planning agent.",
+      "description": "Architect agent.",
       "modules": [
         "agents-core"
       ]
@@ -310,23 +294,47 @@
     {
       "id": "agent:build-error-resolver",
       "family": "agent",
-      "description": "Build error resolution agent.",
+      "description": "Build Error Resolver agent.",
       "modules": [
         "agents-core"
       ]
     },
     {
-      "id": "agent:e2e-runner",
+      "id": "agent:chief-of-staff",
       "family": "agent",
-      "description": "Playwright E2E testing agent.",
+      "description": "Chief Of Staff agent.",
       "modules": [
         "agents-core"
       ]
     },
     {
-      "id": "agent:refactor-cleaner",
+      "id": "agent:code-reviewer",
       "family": "agent",
-      "description": "Dead code cleanup and refactoring agent.",
+      "description": "Code Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:cpp-build-resolver",
+      "family": "agent",
+      "description": "Cpp Build Resolver agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:cpp-reviewer",
+      "family": "agent",
+      "description": "Cpp Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:database-reviewer",
+      "family": "agent",
+      "description": "Database Reviewer agent.",
       "modules": [
         "agents-core"
       ]
@@ -334,7 +342,279 @@
     {
       "id": "agent:doc-updater",
       "family": "agent",
-      "description": "Documentation update agent.",
+      "description": "Doc Updater agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:docs-lookup",
+      "family": "agent",
+      "description": "Docs Lookup agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:e2e-runner",
+      "family": "agent",
+      "description": "E2E Runner agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:feature-analyst",
+      "family": "agent",
+      "description": "Feature Analyst agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:flutter-reviewer",
+      "family": "agent",
+      "description": "Flutter Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:gan-evaluator",
+      "family": "agent",
+      "description": "Gan Evaluator agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:gan-generator",
+      "family": "agent",
+      "description": "Gan Generator agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:gan-planner",
+      "family": "agent",
+      "description": "Gan Planner agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:go-build-resolver",
+      "family": "agent",
+      "description": "Go Build Resolver agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:go-reviewer",
+      "family": "agent",
+      "description": "Go Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:harness-optimizer",
+      "family": "agent",
+      "description": "Harness Optimizer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:healthcare-reviewer",
+      "family": "agent",
+      "description": "Healthcare Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:java-build-resolver",
+      "family": "agent",
+      "description": "Java Build Resolver agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:java-reviewer",
+      "family": "agent",
+      "description": "Java Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:js-reviewer",
+      "family": "agent",
+      "description": "Js Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:kotlin-build-resolver",
+      "family": "agent",
+      "description": "Kotlin Build Resolver agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:kotlin-reviewer",
+      "family": "agent",
+      "description": "Kotlin Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:loop-operator",
+      "family": "agent",
+      "description": "Loop Operator agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:markdown-reviewer",
+      "family": "agent",
+      "description": "Markdown Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:opensource-forker",
+      "family": "agent",
+      "description": "Opensource Forker agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:opensource-packager",
+      "family": "agent",
+      "description": "Opensource Packager agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:opensource-sanitizer",
+      "family": "agent",
+      "description": "Opensource Sanitizer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:performance-optimizer",
+      "family": "agent",
+      "description": "Performance Optimizer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:planner",
+      "family": "agent",
+      "description": "Planner agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:python-reviewer",
+      "family": "agent",
+      "description": "Python Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:pytorch-build-resolver",
+      "family": "agent",
+      "description": "Pytorch Build Resolver agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:refactor-cleaner",
+      "family": "agent",
+      "description": "Refactor Cleaner agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:rust-build-resolver",
+      "family": "agent",
+      "description": "Rust Build Resolver agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:rust-reviewer",
+      "family": "agent",
+      "description": "Rust Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:security-analyst",
+      "family": "agent",
+      "description": "Security Analyst agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:security-reviewer",
+      "family": "agent",
+      "description": "Security Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:spec-reviewer",
+      "family": "agent",
+      "description": "Spec Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:tdd-guide",
+      "family": "agent",
+      "description": "Tdd Guide agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:typescript-reviewer",
+      "family": "agent",
+      "description": "Typescript Reviewer agent.",
+      "modules": [
+        "agents-core"
+      ]
+    },
+    {
+      "id": "agent:web-quality-auditor",
+      "family": "agent",
+      "description": "Web Quality Auditor agent.",
       "modules": [
         "agents-core"
       ]
