@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 #################################
 # VALIDATE AGENTS - Agent Configuration Validator

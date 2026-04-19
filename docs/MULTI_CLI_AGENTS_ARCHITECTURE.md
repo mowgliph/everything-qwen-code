@@ -56,6 +56,23 @@ model: "haiku"               # OPCIONAL (haiku, sonnet, opus)
 # Contenido del agente
 ```
 
+### Hash Format Specification (CRITICAL)
+
+Hashes MUST be stored with `sha256:` prefix in `.sync-metadata.json`:
+
+```json
+{
+  "agents": {
+    "agent-name.md": {
+      "hash": "sha256:abc123def456...",  # ALWAYS include sha256: prefix
+      "version": "1.0"
+    }
+  }
+}
+```
+
+⚠️ **DO NOT** store as bare hash without prefix. This causes validation failures.
+
 ### Campos Inválidos (PROHIBIDOS)
 - `color` - No es soportado por Claude
 - `tags` - No es soportado por Claude
@@ -91,9 +108,15 @@ IDE-A/agents/*.md  <---> IDE-B/agents/*.md <---> IDE-C/agents/*.md
 ## Scripts de Automatización
 
 ### 1. sync-agents.sh
+
 Sincroniza agentes entre IDEs y proyecto principal.
 
-**Uso:**
+**Features (v2.0):**
+- ✅ File-level change detection (not IDE-level)
+- ✅ jq input escaping for safe metadata access
+- ✅ Cross-platform date parsing (Linux/macOS)
+- ✅ Trap handler for cleanup on interrupt
+- ✅ Hash format validation (sha256: prefix required)
 ```bash
 /home/mowgli/everything-agents-skills/scripts/sync-agents.sh
 ```
@@ -202,9 +225,28 @@ Agregar a GitHub Actions para sincronizar automáticamente en cada commit.
 | `description` | ✅ Sí | string | `"Specialist in evaluating coding agents"` | Texto descriptivo para UI |
 | `model` | ❌ No | enum | `haiku`, `sonnet`, `opus` | Modelo Claude a usar por defecto |
 
-## Troubleshooting
+## FIXES APPLIED (v2.0)
 
-### Error: "unknown field ignored: color"
+### Critical Bugs Fixed
+
+| Bug | Impact | Fix | Status |
+|-----|--------|-----|--------|
+| Hash format inconsistency | Validation always failed | Added `sha256:` prefix requirement | ✅ FIXED |
+| Over-copy logic | Copied all files even if unchanged | Changed to file-level detection | ✅ FIXED |
+| jq injection vulnerability | Could access wrong fields | Added input escaping with `jq -Rs` | ✅ FIXED |
+| No cleanup on interrupt | Temp files persisted | Added trap handler | ✅ FIXED |
+| macOS incompatibility | Script failed on macOS | Added BSD date parsing | ✅ FIXED |
+| Missing safety flags | Undefined vars not caught | Added `set -euo pipefail` | ✅ FIXED |
+
+### Important Improvements
+
+1. **File-level change detection** - Only syncs actually changed files
+2. **Input sanitization** - All jq queries now safely escaped
+3. **Cross-platform support** - Works on Linux and macOS
+4. **Better logging** - Clearer output on conflict resolution
+5. **Proper cleanup** - Trap handler removes temp files on interrupt
+
+---
 El archivo aún tiene el campo `color`. Ejecutar validación:
 ```bash
 validate-agents.sh

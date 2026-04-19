@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-#################################
+# Trap handler for cleanup on interrupt
+trap 'echo "Script interrupted - cleanup done"; exit 130' INT TERM
 # SYNC AGENTS - Multi-CLI Agent Synchronization
 # 
 # Sincroniza agentes entre:
@@ -88,7 +89,9 @@ for agent_file in "$PROJECT_AGENTS"/*.md; do
         
         if [ -f "$ide_agent_file" ] && [ -f "$ide_metadata_file" ]; then
             current_hash=$(get_file_hash "$ide_agent_file")
-            stored_hash=$(jq -r ".agents[\"$filename\"].hash // \"none\"" "$ide_metadata_file" 2>/dev/null || echo "none")
+            # Escape filename for safe jq access
+            filename_escaped=$(printf '%s\n' "$filename" | jq -Rs .)
+            stored_hash=$(jq -r ".agents[$filename_escaped].hash // \"none\"" "$ide_metadata_file" 2>/dev/null || echo "none")
             
             if [ "$current_hash" != "$stored_hash" ]; then
                 modified_ides+=("$ide")
@@ -117,7 +120,9 @@ if [ ${#conflicts[@]} -gt 0 ]; then
         # Encontrar IDE con modificación más reciente
         for ide in "${modified_ides[@]}"; do
             ide_metadata_file="/home/mowgli/.${ide}/agents/.sync-metadata.json"
-            last_modified=$(jq -r ".agents[\"$filename\"].last_modified // \"0\"" "$ide_metadata_file" 2>/dev/null || echo "0")
+            # Escape filename for safe jq access
+            filename_escaped=$(printf '%s\n' "$filename" | jq -Rs .)
+            last_modified=$(jq -r ".agents[$filename_escaped].last_modified // \"0\"" "$ide_metadata_file" 2>/dev/null || echo "0")
             
             echo "    - $ide: $last_modified"
             
@@ -127,7 +132,16 @@ if [ ${#conflicts[@]} -gt 0 ]; then
             fi
         done
         
-        echo "    ✓ GANADOR: $winner ($(date -d "$latest_time" 2>/dev/null || echo $latest_time))"
+        echo "    ✓ GANADOR: $winner"
+        # Parse date safely (cross-platform)
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            # macOS (BSD date)
+            parsed_time=$(date -jf "%Y-%m-%dT%H:%M:%SZ" "$latest_time" 2>/dev/null || echo "$latest_time")
+        else
+            # Linux (GNU date)
+            parsed_time=$(date -d "$latest_time" 2>/dev/null || echo "$latest_time")
+        fi
+        echo "      Timestamp: $parsed_time"
         echo "  Conflicto resuelto: $filename ganador=$winner" >> "$CONFLICT_LOG"
     done
 fi
@@ -143,11 +157,17 @@ for ide in "${IDES[@]}"; do
         for ide_agent_file in "$ide_agents_dir"/*.md; do
             filename=$(basename "$ide_agent_file")
             project_agent_file="$PROJECT_AGENTS/$filename"
+            ide_metadata_file="$ide_agents_dir/.sync-metadata.json"
             
-            # Copiar si existe cambio local
-            if [ "${ide_changes[$ide]}" -gt 0 ]; then
-                cp "$ide_agent_file" "$project_agent_file"
-                sync_count=$((sync_count + 1))
+            # Copiar SOLO si el archivo específico cambió (hash mismatch)
+            if [ -f "$ide_metadata_file" ]; then
+                current_hash=$(get_file_hash "$ide_agent_file")
+                stored_hash=$(jq -r ".agents[\"$filename\"].hash // \"none\"" "$ide_metadata_file" 2>/dev/null || echo "none")
+                
+                if [ "$current_hash" != "$stored_hash" ]; then
+                    cp "$ide_agent_file" "$project_agent_file"
+                    sync_count=$((sync_count + 1))
+                fi
             fi
         done
     fi
@@ -208,7 +228,7 @@ for filename in sorted(os.listdir(agents_dir)):
             file_hash = hashlib.sha256(f.read()).hexdigest()
         
         metadata["agents"][filename] = {
-            "hash": file_hash,
+            "hash": f"sha256:{file_hash}",
             "version": "1.0",
             "modified_by_ide": "$ide",
             "synced_to_main": True,
