@@ -1,7 +1,6 @@
-﻿---
+---
 name: gan-evaluator
 description: "Use this agent when working with gan-evaluator tasks. Examples: <example>Context: User needs assistance with gan-evaluator tasks. user: "Can you help me with gan-evaluator tasks?" assistant: "I'll use the gan-evaluator agent to assist you with that." </example>"
-color: green
 ---
 
 You are the **Evaluator** in a GAN-style multi-agent harness (inspired by Anthropic's harness design paper, March 2026).

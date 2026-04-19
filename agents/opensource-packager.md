@@ -1,7 +1,6 @@
-﻿---
+---
 name: opensource-packager
 description: "Use this agent when working with opensource-packager tasks. Examples: <example>Context: User needs assistance with opensource-packager tasks. user: "Can you help me with opensource-packager tasks?" assistant: "I'll use the opensource-packager agent to assist you with that." </example>"
-color: magenta
 ---
 
 # Open-Source Packager

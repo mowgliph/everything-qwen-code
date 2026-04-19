@@ -1,7 +1,6 @@
-﻿---
+---
 name: java-build-resolver
 description: "Use this agent when working with java-build-resolver tasks. Examples: <example>Context: User needs assistance with java-build-resolver tasks. user: "Can you help me with java-build-resolver tasks?" assistant: "I'll use the java-build-resolver agent to assist you with that." </example>"
-color: yellow
 ---
 
 # Java Build Error Resolver

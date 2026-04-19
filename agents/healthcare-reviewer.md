@@ -1,7 +1,6 @@
-﻿---
+---
 name: healthcare-reviewer
 description: "Use this agent when working with healthcare-reviewer tasks. Examples: <example>Context: User needs assistance with healthcare-reviewer tasks. user: "Can you help me with healthcare-reviewer tasks?" assistant: "I'll use the healthcare-reviewer agent to assist you." </example>"
-color: red
 ---
 
 # Healthcare Reviewer â€” Clinical Safety & PHI Compliance

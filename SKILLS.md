@@ -1,182 +1,203 @@
-# SKILLS.md — Everything Agents Skills
+# 391+ Skills Reference
 
-## Project Overview
+> Complete library of production-ready skills covering every aspect of software development
+> 
+> Use `npx skill add https://github.com/mowgliph/everything-agents-skills.git` to install all skills
 
-**Everything Agents Skills (EAS)** es un sistema universal de skills, agentes, comandos, hooks y rules para múltiples AI Coding CLIs.
+## 📊 Statistics
 
-Compatible con: **Qwen Code**, **OpenCode**, **Gemini CLI**, **GitHub Copilot**
-
-**Version:** 0.3.0 | **License:** MIT | **Author:** [mowgliph](https://github.com/mowgliph)
-
----
-
-## CLI Soportados
-
-| CLI | Skills | Agentes | Commands | Hooks | Rules |
-|-----|--------|---------|----------|-------|-------|
-| Qwen Code | ✓ | ✓ | ✓ | ✓ | ✓ |
-| OpenCode | ✓ | ✓ | - | - | ✓ |
-| Gemini CLI | ✓ | - | - | - | - |
-| Copilot | - | - | - | - | ✓ |
+- **Total Skills**: 391+
+- **Architecture Patterns**: 94+
+- **Testing & QA**: 15+
+- **DevOps & Infrastructure**: 50+
+- **Security & Compliance**: 20+
+- **Frontend Development**: 40+
+- **Backend Development**: 35+
+- **Database & Data**: 20+
+- **Languages & Frameworks**: 80+
 
 ---
 
-## Estructura
+## 🏗️ Architecture Patterns (94+)
 
-```
-everything-agents-skills/
-├── skills/                    # Skills universales (393)
-├── agents/                   # Agentes universales (37)
-├── commands/                 # Comandos universales (67)
-├── hooks/                    # Hooks universales (2)
-├── rules/                    # Reglas de código (14)
-├── contexts/                 # Contextos
-├── cli-configs/             # Configs específicas por CLI
-│   ├── qwen/                # Configs Qwen
-│   ├── opencode/            # Configs OpenCode
-│   ├── gemini/              # Configs Gemini
-│   └── copilot/             # Configs Copilot
-├── docs/                     # Documentación
-├── scripts/                  # Scripts de instalación
-│   ├── install.sh           # Instalador interactivo
-│   ├── detect-cli.sh        # Detecta CLIs instalados
-│   └── uninstall.sh         # Desinstalador
-└── SKILLS.md               # Este archivo
-```
+Comprehensive patterns for system design and architectural decisions.
+
+- `airflow-dag-patterns`
+- `android-clean-architecture`
+- `api-and-interface-design`
+- `api-design`
+- `api-design-principles`
+- `architecture-decision-records`
+- `architecture-patterns`
+- `async-python-patterns`
+- `auth-implementation-patterns`
+- `backend-patterns`
+- `bash-defensive-patterns`
+- `bats-testing-patterns`
+- `binary-analysis-patterns`
+- `ci-debug-workflow`
+- `compose-multiplatform-patterns`
+- `content-hash-cache-pattern`
+- `cqrs-implementation`
+- `dbt-transformation-patterns`
+- `deployment-patterns`
+- `deployment-pipeline-design`
+- `design-consultation`
+- `design-html`
+- `design-review`
+- `design-shotgun`
+- `design-system`
+- `design-system-patterns`
+- `django-patterns`
+- `dmux-workflows`
+- `docker-patterns`
+- `dotnet-backend-patterns`
+- `e2e-testing-patterns`
+- `error-handling-patterns`
+- `event-store-design`
+- `frontend-design`
+- `frontend-patterns`
+- `git-advanced-workflows`
+- `git-workflow`
+- `git-workflow-and-versioning`
+- `github-pr-merge-workflow`
+- `gitlab-ci-patterns`
+- `gitops-workflow`
+- `go-concurrency-patterns`
+- `godot-gdscript-patterns`
+- `golang-patterns`
+- `healthcare-cdss-patterns`
+- `healthcare-emr-patterns`
+- `hexagonal-architecture`
+- `interaction-design`
+- `interface-design`
+- `javascript-testing-patterns`
+- `jpa-patterns`
+- `kotlin-exposed-patterns`
+- `kotlin-ktor-patterns`
+- `kotlin-patterns`
+- `kpi-dashboard-design`
+- `langchain-architecture`
+- `laravel-patterns`
+- `linkerd-patterns`
+- `liquid-glass-design`
+- `mcp-server-patterns`
+- `memory-safety-patterns`
+- `microservices-patterns`
+- `ml-pipeline-workflow`
+- `mobile-android-design`
+- `mobile-ios-design`
+- `modern-javascript-patterns`
+- `multi-cloud-architecture`
+- `multi-reviewer-patterns`
+- `nextjs-app-router-patterns`
+- `nodejs-backend-patterns`
+- `nuxt4-patterns`
+- `nx-workspace-patterns`
+- `on-call-handoff-patterns`
+- `perl-patterns`
+- `plan-design-review`
+- `postgres-patterns`
+- `postgresql-table-design`
+- `projection-patterns`
+- `prompt-engineering-patterns`
+- `python-anti-patterns`
+- `python-design-patterns`
+- `python-patterns`
+- `python-testing-patterns`
+- `pytorch-patterns`
+- `react-native-architecture`
+- `react-native-design`
+- `responsive-design`
+- `rust-async-patterns`
+- `rust-patterns`
+- `saga-orchestration`
+- `similarity-search-patterns`
+- `springboot-patterns`
+- `sql-optimization-patterns`
+- `stride-analysis-patterns`
+- `swiftui-patterns`
+- `tailwind-design-system`
+- `tdd-workflow`
+- `team-composition-patterns`
+- `unity-ecs-patterns`
+- `visual-design-foundations`
+- `web-component-design`
+- `workflow-orchestration-patterns`
+- `workflow-patterns`
+
+
+## 🧪 Testing & Quality (22+)
+
+- `ai-regression-testing`
+- `backtesting-frameworks`
+- `bats-testing-patterns`
+- `browser-qa`
+- `browser-testing-with-devtools`
+- `cpp-testing`
+- `e2e-testing`
+- `e2e-testing-patterns`
+- `golang-testing`
+- `javascript-testing-patterns`
+- `kotlin-testing`
+- `perl-testing`
+- `python-testing`
+- `python-testing-patterns`
+- `qa`
+- `qa-only`
+- `rust-testing`
+- `screen-reader-testing`
+- `swift-protocol-di-testing`
+- `temporal-python-testing`
+- `test-driven-development`
+- `web3-testing`
+
+
+## 🚀 DevOps & Infrastructure
+
+Deployment, CI/CD, containerization, and infrastructure as code.
+
+- `ci-cd-and-automation`
+- `deployment-patterns`
+- `deployment-pipeline-design`
+- `docker-patterns`
+- `github-actions-templates`
+- `github-pr-merge-workflow`
+- `gitlab-ci-patterns`
+- `istio-traffic-management`
+- `k8s-manifest-generator`
+- `k8s-security-policies`
+- `terraform-module-library`
+
+
+## 🔐 Security & Compliance
+
+Security patterns, threat modeling, compliance frameworks.
+
+- `accessibility-compliance`
+- `auth-implementation-patterns`
+- `customs-trade-compliance`
+- `django-security`
+- `gdpr-data-handling`
+- `healthcare-phi-compliance`
+- `k8s-security-policies`
+- `laravel-security`
+- `pci-compliance`
+- `perl-security`
+- `sast-configuration`
+- `security-and-hardening`
+- `security-review`
+- `security-scan`
+- `solidity-security`
+- `springboot-security`
+- `threat-mitigation-mapping`
+
 
 ---
 
-## Quick Start
+**Total Available: 391 skills**
 
-```bash
-# Clonar el repositorio
-git clone https://github.com/mowgliph/everything-agents-skills.git
-cd everything-agents-skills
-
-# Ejecutar instalador interactivo
-./scripts/install.sh
-
-# O detectar CLIs instalados
-./scripts/detect-cli.sh
-```
-
----
-
-## Skills Disponibles (393)
-
-### Core Engineering
-`brainstorming`, `writing-plans`, `tdd-workflow`, `code-review-excellence`, `security-review`, `debugging-strategies`
-
-### Language-Specific
-`python-patterns`, `python-testing`, `golang-patterns`, `golang-testing`, `rust-patterns`, `rust-async-patterns`, `typescript-advanced-types`, `kotlin-patterns`, `kotlin-testing`, `java-patterns`, `java-testing`, `cpp-coding-standards`, `swiftui-patterns`
-
-### Frontend
-`frontend-design`, `frontend-patterns`, `react-modernization`, `react-state-management`, `responsive-design`, `design-system-patterns`, `nextjs-app-router-patterns`, `tailwind-design-system`
-
-### Backend
-`backend-patterns`, `postgres-patterns`, `auth-implementation-patterns`, `microservices-patterns`, `async-python-patterns`, `fastapi-templates`
-
-### DevOps & Infra
-`docker-patterns`, `github-actions-templates`, `terraform-module-library`, `k8s-manifest-generator`, `helm-chart-scaffolding`, `gitops-workflow`, `prometheus-configuration`
-
-### Security
-`security-review`, `sast-configuration`, `secrets-management`, `auth-implementation-patterns`, `owasp-top-10`
-
-Ver `skills/` para lista completa.
-
----
-
-## Agentes (37)
-
-### Planning & Architecture
-`planner`, `architect`, `chief-of-staff`, `feature-analyst`
-
-### Code Review
-`code-reviewer`, `security-reviewer`, `typescript-reviewer`, `python-reviewer`, `go-reviewer`, `java-reviewer`, `kotlin-reviewer`, `rust-reviewer`, `cpp-reviewer`, `database-reviewer`, `flutter-reviewer`
-
-### Build & Debug
-`build-error-resolver`, `tdd-guide`, `go-build-resolver`, `java-build-resolver`, `kotlin-build-resolver`, `rust-build-resolver`, `cpp-build-resolver`, `pytorch-build-resolver`
-
-### Specialized
-`e2e-runner`, `refactor-cleaner`, `loop-operator`, `harness-optimizer`, `performance-optimizer`, `healthcare-reviewer`, `opensource-forker`, `opensource-packager`, `opensource-sanitizer`
-
-Ver `agents/` para definiciones completas.
-
----
-
-## Comandos (67)
-
-Slash commands disponibles. Ver `commands/` para lista completa.
-
----
-
-## Hooks (2)
-
-| Hook | Evento | Propósito |
-|------|--------|-----------|
-| Config Protection | PreToolUse | Protege configs de modificación accidental |
-| Quality Gate | PostToolUse | Verifica calidad de código |
-
----
-
-## Rules (14)
-
-Estándares de código para múltiples lenguajes:
-- Common (universal)
-- TypeScript, Python, Go, Rust, Java, Kotlin, C++, Swift, PHP, Ruby, Perl
-
----
-
-## Instalación por CLI
-
-### Qwen Code
-```bash
-./scripts/install.sh
-# Seleccionar opción 1
-```
-
-### OpenCode
-```bash
-./scripts/install.sh
-# Seleccionar opción 2
-```
-
-### Gemini CLI
-```bash
-./scripts/install.sh
-# Seleccionar opción 3
-```
-
-### Copilot
-```bash
-./scripts/install.sh
-# Seleccionar opción 4
-```
-
----
-
-## Desinstalación
-
-```bash
-# Desinstalador interactivo
-./scripts/uninstall.sh
-
-# Desinstalar todo
-./scripts/uninstall.sh --all
-```
-
----
-
-## Scripts Disponibles
-
-| Script | Descripción |
-|--------|-------------|
-| `install.sh` | Instalador interactivo multi-CLI |
-| `detect-cli.sh` | Detecta CLIs instalados |
-| `uninstall.sh` | Desinstalador |
-
----
-
-## Contribuir
-
-Ver [CONTRIBUTING.md](CONTRIBUTING.md) para guidelines.
+For more information, see:
+- [Main README](README.md) - Project overview
+- [Contributing](CONTRIBUTING.md) - How to add skills
+- [Architecture](docs/) - Deep dive into patterns

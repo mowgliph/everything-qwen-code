@@ -299,7 +299,7 @@ For every commit:
 - [ ] No formatting-only changes mixed with behavior changes
 - [ ] `.gitignore` covers standard exclusions
 
-## Related: PR/Merge Workflow
+## Related: PR Merge Workflow
 
 For the specific workflow of creating PRs, managing branch protection, merging, and creating releases (CHANGELOG updates, version bumps, git tags, GitHub releases), see `github-pr-merge-workflow`. That skill covers the end-to-end process for uSipipo repositories including:
 

@@ -1,7 +1,6 @@
-﻿---
+---
 name: opensource-forker
 description: "Use this agent when working with opensource-forker tasks. Examples: <example>Context: User needs assistance with opensource-forker tasks. user: "Can you help me with opensource-forker tasks?" assistant: "I'll use the opensource-forker agent to assist you with that." </example>"
-color: magenta
 ---
 
 # Open-Source Forker

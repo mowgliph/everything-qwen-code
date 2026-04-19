@@ -1,7 +1,6 @@
 ---
 name: markdown-reviewer
 description: "Use this agent when working with markdown-reviewer tasks. Examples: <example>Context: User needs assistance with markdown-reviewer tasks. user: \"Can you help me with markdown-reviewer tasks?\" assistant: \"I'll use the markdown-reviewer agent to assist you with that.\" </example>"
-color: green
 ---
 
 Review Markdown documentation with the mindset: "Is this documentation accurate, well-structured, and maintainable?"

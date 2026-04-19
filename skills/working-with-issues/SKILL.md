@@ -318,13 +318,13 @@ EOF
 
 #### 3.8 Invoke PR Merge Workflow
 
-**After creating the PR, invoke `GitHub PR/Merge Workflow` skill to merge to main and close the PR:**
+**After creating the PR, invoke `GitHub PR Merge Workflow` skill to merge to main and close the PR:**
 
 ```
 📋 Invoking PR Merge Workflow...
 ```
 
-The `GitHub PR/Merge Workflow` skill will:
+The `GitHub PR Merge Workflow` skill will:
 - Merge the PR to main
 - Close the PR
 - Optionally delete the feature branch
@@ -630,7 +630,7 @@ Loaded Issues:
 | `security-reviewer` | For security-related issues |
 | `python-reviewer` | For Python code changes |
 | `database-reviewer` | For database schema/query changes |
-| `GitHub PR/Merge Workflow` | **MANDATORY** After PR creation to merge to main |
+| `GitHub PR Merge Workflow` | **MANDATORY** After PR creation to merge to main |
 | `ci-debug-workflow` | **MANDATORY** After batch complete to check CI failures |
 | `changelog-generator` | After batch completion for release notes |
 
@@ -683,7 +683,7 @@ Loaded Issues:
 8. **Skipping PR Merge Workflow**
    ```
    BAD: Merge PR manually
-   GOOD: Invoke GitHub PR/Merge Workflow skill
+   GOOD: Invoke GitHub PR Merge Workflow skill
    ```
 
 9. **Skipping CI Debug**

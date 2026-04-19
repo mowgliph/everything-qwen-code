@@ -1,7 +1,6 @@
-﻿---
+---
 name: opensource-sanitizer
 description: "Use this agent when working with opensource-sanitizer tasks. Examples: <example>Context: User needs assistance with opensource-sanitizer tasks. user: "Can you help me with opensource-sanitizer tasks?" assistant: "I'll use the opensource-sanitizer agent to assist you with that." </example>"
-color: magenta
 ---
 
 # Open-Source Sanitizer

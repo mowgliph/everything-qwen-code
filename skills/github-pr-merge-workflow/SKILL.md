@@ -1,9 +1,9 @@
 ---
-name: GitHub PR/Merge Workflow
+name: GitHub PR Merge Workflow
 description: Complete workflow for merging PRs to main with changelog updates, version bumps, tag creation, branch protection management, and GitHub release creation. Use when merging feature branches, completing phases, creating releases, or managing PRs that require self-approval as org admin.
 ---
 
-# GitHub PR/Merge Workflow for uSipipo Ecosystem
+# GitHub PR Merge Workflow for uSipipo Ecosystem
 
 **Complete workflow for merging PRs with proper release management.**
 

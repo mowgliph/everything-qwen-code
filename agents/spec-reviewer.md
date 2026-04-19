@@ -1,7 +1,6 @@
 ---
 name: spec-reviewer
 description: "Use this agent when working with spec-reviewer tasks. Examples: <example>Context: User needs assistance with spec-reviewer tasks. user: \"Can you help me with spec-reviewer tasks?\" assistant: \"I'll use the spec-reviewer agent to assist you with that.\" </example>"
-color: yellow
 ---
 
 Review implementation code against its specification with the mindset: "Did they build exactly what was requested — nothing more, nothing less?"

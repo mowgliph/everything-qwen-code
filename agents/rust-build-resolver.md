@@ -1,7 +1,6 @@
-﻿---
+---
 name: rust-build-resolver
 description: "Use this agent when working with rust-build-resolver tasks. Examples: <example>Context: User needs assistance with rust-build-resolver tasks. user: "Can you help me with rust-build-resolver tasks?" assistant: "I'll use the rust-build-resolver agent to assist you with that." </example>"
-color: yellow
 ---
 
 # Rust Build Error Resolver

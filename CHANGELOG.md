@@ -7,6 +7,46 @@ and this adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-04-19
+
+### Added
+- **44 Specialized Agents** now fully integrated and discoverable:
+  - All agents properly registered in `install-components.json` manifest
+  - Agents available across all supported IDEs: Copilot, Qwen, Kilo, OpenCode, Gemini
+  - New agent categories: accessibility, healthcare, opensource, ML workflows, project leadership
+- **Redesigned README** with comprehensive documentation:
+  - Complete agent catalog with descriptions
+  - 391+ skills reference guide
+  - IDE-specific installation instructions
+  - Architecture and design patterns documentation
+  - Multi-CLI abstraction layer overview
+- **Credits & Acknowledgments** section:
+  - Superpowers framework patterns
+  - Everything Claude Code multi-IDE architecture
+  - Gstack project orchestration
+  - Clear documentation of specification adherence
+
+### Fixed
+- **Removed slash from skill name**: `GitHub PR/Merge Workflow` → `GitHub PR Merge Workflow`
+  - Updated references in 3 dependent skills (fix-issue, git-workflow-and-versioning, working-with-issues)
+  - Fixes parsing issues in skill manifests
+- **Agent discovery** - Fixed issue where only 8 agents were being copied to IDEs
+  - Extended manifest to include all 44 agent definitions
+
+### Changed
+- **Enhanced Documentation**: Multi-section README now covers:
+  - Installation options (npm, git, direct)
+  - All 44 agents with descriptions and categories
+  - Complete skill library overview
+  - Language-specific rule sets (13 languages)
+  - MCP configurations
+- **Better IDE Support Matrix** - Clear status indicators for each platform
+
+### Technical Details
+- Files Modified: 5 (README, CHANGELOG, 3 skill references, install manifest)
+- Files Enhanced: README.md (~15KB comprehensive docs)
+- Agents Registered: 44 (up from 9 in manifest)
+
 ## [0.6.0] - 2026-04-11
 
 ### Added

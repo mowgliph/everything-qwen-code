@@ -91,12 +91,12 @@ gh pr create --base main --head feature/NNN-short-name --title "[type]: [descrip
 ```
 
 ### 7. Merge to Main (with user confirmation)
-**REQUIRED:** Use the `GitHub PR/Merge Workflow` skill.
+**REQUIRED:** Use the `GitHub PR Merge Workflow` skill.
 
 After the PR is created:
 
 1. **Ask the user for confirmation:** "PR #[N] created. Do you want me to merge it to main now?"
-2. **If user confirms:** Invoke the `GitHub PR/Merge Workflow` skill to perform the merge
+2. **If user confirms:** Invoke the `GitHub PR Merge Workflow` skill to perform the merge
 3. **If user declines:** Stop and let the user handle the merge manually
 
 **NEVER merge without explicit user confirmation.**
