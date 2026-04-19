@@ -13,7 +13,8 @@ rules/
 │   ├── patterns.md
 │   ├── hooks.md
 │   ├── agents.md
-│   └── security.md
+│   ├── security.md
+│   └── self-improvement.md
 ├── typescript/      # TypeScript/JavaScript specific
 ├── python/          # Python specific
 ├── golang/          # Go specific

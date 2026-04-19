@@ -40,20 +40,20 @@ Use this skill when:
 
     ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
     │  STEP 1  │────▶│  STEP 2  │────▶│  STEP 3  │────▶│  STEP 4  │
-    │   Load   │     │   Todo   │     │  Process │     │ Summary  │
-    │  Issues  │     │   List   │     │  Issues  │     │  Report  │
+    │   Load   │     │   Todo   │     │  Process │     │ CI Debug │
+    │  Issues  │     │   List   │     │  Issues  │     │ + Report │
     └──────────┘     └──────────┘     └────┬─────┘     └──────────┘
                                            │
                     ┌──────────────────────┼──────────────────────┐
                     │                      │                      │
               ┌─────▼─────┐         ┌─────▼─────┐         ┌─────▼─────┐
-              │ Brainstorm│         │ Implement │         │  Cleanup  │
-              │  Design   │         │  + Tests  │         │  Branch   │
+              │ Brainstorm│         │ Implement │         │   Create  │
+              │  Design   │         │  + Tests  │         │    PR    │
               └─────┬─────┘         └─────┬─────┘         └─────┬─────┘
                     │                     │                     │
               ┌─────▼─────┐         ┌─────▼─────┐         ┌─────▼─────┐
-              │   User    │         │  Commit   │         │   Next    │
-              │  Approve  │         │ + Push    │         │  Issue    │
+              │   User    │         │  Commit   │         │PR Merge  │
+              │  Approve  │         │ + Push    │         │+ Close   │
               └───────────┘         └───────────┘         └───────────┘
 ```
 
@@ -287,26 +287,52 @@ Fixes #<issue-number>
 - `test:` Test additions/modifications
 - `chore:` Maintenance tasks
 
-#### 3.7 Push (Auto-Close)
+#### 3.7 Push and Create PR
 
 ```bash
 git push -u origin feature/issue-22-api-key-validation
 ```
 
-**Important:** The `Fixes #22` in commit message will automatically close the issue when pushed to a branch that gets merged to main.
+**Create Pull Request:**
 
-For immediate closure (if pushing directly to main or for verification):
 ```bash
-# Manual close with comment
-gh issue close 22 --comment "Fixed in commit $(git rev-parse HEAD)"
+gh pr create --title "fix: Add constant-time API key validation (#22)" --body "$(cat <<'EOF'
+## Summary
+- Implement secure API key validation with format regex and constant-time comparison
+
+## Changes
+- internal/api/middleware.go: Add validation middleware
+- internal/utils/validation/apikeys.go: New validation utilities
+- tests/test_api_key_validation.py: Add comprehensive tests
+
+Fixes #22
+EOF
+)"
 ```
 
 ```
 🚀 Push: Pushing to origin...
-✅ Pushed (issue will auto-close on GitHub)
+✅ Pushed
+📝 PR Created: https://github.com/[owner]/[repo]/pull/[PR-number]
 ```
 
-#### 3.8 Cleanup Branch
+#### 3.8 Invoke PR Merge Workflow
+
+**After creating the PR, invoke `GitHub PR/Merge Workflow` skill to merge to main and close the PR:**
+
+```
+📋 Invoking PR Merge Workflow...
+```
+
+The `GitHub PR/Merge Workflow` skill will:
+- Merge the PR to main
+- Close the PR
+- Optionally delete the feature branch
+- Close the issue automatically (via Fixes #22 in commit)
+
+**If PR merge fails:** Log error, continue to next issue.
+
+#### 3.9 Cleanup Branch
 
 ```bash
 # Return to main
@@ -315,7 +341,7 @@ git checkout main
 # Delete local feature branch
 git branch -D feature/issue-22-api-key-validation
 
-# Delete remote branch (if pushed)
+# Delete remote branch (if not deleted by PR merge workflow)
 git push origin --delete feature/issue-22-api-key-validation
 ```
 
@@ -324,7 +350,7 @@ git push origin --delete feature/issue-22-api-key-validation
 ✅ Branch cleaned up
 ```
 
-### Step 4: Summary Report
+### Step 4: CI Debug and Final Report
 
 After processing all issues:
 
@@ -336,6 +362,7 @@ Batch Complete: 4/4 issues processed
 Summary:
 ✅ 4 issues implemented
 ✅ 4 commits created
+✅ 4 PRs created and merged
 ✅ 4 branches cleaned up
 ✅ 0 issues blocked
 ✅ 0 issues failed
@@ -345,12 +372,48 @@ Commits Created:
   fix: Enable TLS verification by default (#23)    [def5678]
   fix: Implement hybrid rate limiting (#24)        [ghi9012]
   fix: Add structured security logging (#25)       [jkl3456]
+```
+
+#### 4.1 Invoke CI Debug Workflow
+
+**Invoke `ci-debug-workflow` skill to check for any CI failures in the workflow runs:**
+
+```
+🔍 Invoking CI Debug Workflow...
+```
+
+The `ci-debug-workflow` skill will:
+- Fetch CI logs from GitHub Actions
+- Analyze any failures
+- Attempt to resolve issues
+
+**If CI failures are found:** Log them and attempt to fix.
+
+```
+🔍 CI Debug: Analyzing workflow runs...
+✅ No failures found
+```
+
+#### 4.2 Final Report
+
+```
+======================================================
+FINAL REPORT: Batch Complete
+======================================================
+
+All Issues Processed Successfully:
+✅ Issue #22: Secure API Key Validation - Merged to main
+✅ Issue #23: TLS Configuration Hardening - Merged to main
+✅ Issue #24: Enhanced Rate Limiting - Merged to main
+✅ Issue #25: Security Event Logging - Merged to main
+
+CI Status:
+✅ All workflows passed
 
 Next Steps:
-  1. Verify issues closed on GitHub: https://github.com/uSipipo-Team/usipipo-agent/issues?q=is%3Aissue+is%3Aclosed
-  2. Create PR to merge to main (if needed)
-  3. Run full test suite
-  4. Begin Phase 2
+  1. Verify issues closed on GitHub: https://github.com/[owner]/[repo]/issues?q=is%3Aissue+is%3Aclosed
+  2. Verify PRs merged: https://github.com/[owner]/[repo]/pulls?q=is%3Apr+is%3Aclosed
+  3. Begin next batch if applicable
 ```
 
 ## Error Handling
@@ -362,7 +425,10 @@ Next Steps:
 | Tests fail | Mark as blocked, log failures | ✅ Yes |
 | Commit fails | Retry once, then skip | ✅ Yes |
 | Push fails | Retry once, check credentials | ✅ Yes |
+| PR creation fails | Retry once, then skip | ✅ Yes |
+| PR merge fails | Log error, continue to next issue | ✅ Yes |
 | Branch cleanup fails | Log warning, continue | ✅ Yes |
+| CI fails | Invoke ci-debug-workflow to fix | ✅ Yes |
 | gh CLI not authenticated | Stop batch, prompt auth | ❌ No |
 
 **Error logging format:**
@@ -404,6 +470,28 @@ gh issue edit <NUMBER> --add-label "blocked"
 
 # Remove label
 gh issue edit <NUMBER> --remove-label "blocked"
+```
+
+### PR Operations
+
+```bash
+# Create PR
+gh pr create --title "fix: Description (#22)" --body "Fixes #22"
+
+# List PRs
+gh pr list --state open
+
+# View PR
+gh pr view 123
+
+# Check PR status
+gh pr view 123 --json state,mergeable
+
+# Merge PR
+gh pr merge 123 --squash --delete-branch
+
+# Close PR
+gh pr close 123
 ```
 
 ### Branch Operations
@@ -542,7 +630,8 @@ Loaded Issues:
 | `security-reviewer` | For security-related issues |
 | `python-reviewer` | For Python code changes |
 | `database-reviewer` | For database schema/query changes |
-| `GitHub PR/Merge Workflow` | When merging completed batch to main |
+| `GitHub PR/Merge Workflow` | **MANDATORY** After PR creation to merge to main |
+| `ci-debug-workflow` | **MANDATORY** After batch complete to check CI failures |
 | `changelog-generator` | After batch completion for release notes |
 
 ## Red Flags & Anti-Patterns
@@ -585,6 +674,24 @@ Loaded Issues:
    GOOD: Delete branch immediately after push
    ```
 
+7. **Skipping PR Creation**
+   ```
+   BAD: Push directly to main without PR
+   GOOD: Always create PR via gh pr create
+   ```
+
+8. **Skipping PR Merge Workflow**
+   ```
+   BAD: Merge PR manually
+   GOOD: Invoke GitHub PR/Merge Workflow skill
+   ```
+
+9. **Skipping CI Debug**
+   ```
+   BAD: Skip CI check after merge
+   GOOD: Always invoke ci-debug-workflow after batch
+   ```
+
 ### ✅ Best Practices
 
 1. **One Issue, One Branch, One Commit**
@@ -593,9 +700,28 @@ Loaded Issues:
 4. **Use Descriptive Branch Names**
 5. **Log Errors Clearly When Skipping**
 6. **Wait for User Approval After Brainstorming**
+7. **Create PR After Push**
+8. **Invoke PR Merge Workflow**
+9. **Cleanup Branch After Merge**
+10. **Invoke CI Debug Workflow**
 
 ## Progress Tracking Template
 
+```
+[Current/Total] 🔴 Issue #NNN: Title
+───────────────────────────────────────
+  🧠 Brainstorming: [In progress | Complete | Failed]
+  ✅ Design approved: [Yes | No | Pending]
+  📦 Branch: feature/issue-NNN-name
+  💻 Implementation: [In progress | Complete]
+  🧪 Tests: [Running | Passed | Failed]
+  📝 Commit: [Pending | Created: hash]
+  🚀 Push: [Pending | Complete]
+  📝 PR: [Pending | Created: PR-number]
+  🔀 PR Merge: [Pending | Merged | Failed]
+  🧹 Cleanup: [Pending | Complete]
+  
+  Status: [COMPLETE | BLOCKED | FAILED]
 ```
 [Current/Total] 🔴 Issue #NNN: Title
 ────────────────────────────────────────
