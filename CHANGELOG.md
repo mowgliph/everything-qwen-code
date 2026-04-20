@@ -11,7 +11,7 @@ and this adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - **Gemini CLI Support**: Full configuration suite including `GEMINI.md` and `settings.json`.
-- **Unified Bash Installer**: New root-level `install.sh` for multi-CLI coordination.
+- **Unified Bash Installer**: New root-level `install.sh` with full support for Gemini CLI, GitHub Copilot, Claude Code, Qwen Code, OpenCode, and Kilo Code.
 - **Improved Metadata**: Enhanced agent descriptions and package metadata for better discoverability.
 
 ### Changed
