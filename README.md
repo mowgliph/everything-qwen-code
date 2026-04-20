@@ -3,7 +3,7 @@
 > **The Ultimate Universal AI Coding Assistant Framework**  
 > 44 Specialized Agents • 391+ Skills • 13 Language Rules • Multi-CLI Support
 
-[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](https://github.com/mowgliph/everything-agents-skills/releases)
+[![Version](https://img.shields.io/badge/version-0.8.0-blue.svg)](https://github.com/mowgliph/everything-agents-skills/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/mowgliph/everything-agents-skills?style=flat)](https://github.com/mowgliph/everything-agents-skills/stargazers)
 [![Agents](https://img.shields.io/badge/agents-44-green.svg)](#-44-specialized-agents)

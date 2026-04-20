@@ -1,6 +1,6 @@
 ---
 name: refactor-cleaner
-description: "Use this agent when working with refactor-cleaner tasks. Examples: <example>Context: User needs assistance with refactor-cleaner tasks. user: "Can you help me with refactor-cleaner tasks?" assistant: "I'll use the refactor-cleaner agent to assist you." </example>"
+description: "Use this agent when working with refactor-cleaner tasks. Examples: <example>Context: User needs assistance with refactor-cleaner tasks. user: \"Can you help me with refactor-cleaner tasks?\" assistant: \"I'll use the refactor-cleaner agent to assist you.\" </example>"
 ---
 
 # Refactor & Dead Code Cleaner

@@ -1,21 +1,23 @@
 {
   "name": "everything-qwen-code",
-  "version": "0.6.0",
-  "description": "Complete collection of battle-tested Qwen Code configs — agents, skills, hooks, rules, and MCP configurations evolved over 10+ months of intensive daily use",
+  "version": "0.8.0",
+  "description": "Universal AI Coding Assistant Framework: 44 Specialized Agents, 391+ Skills, and 13 Language Rules for Gemini CLI, GitHub Copilot, Qwen Code, Kilo Code, and OpenCode",
   "keywords": [
-    "qwen-code",
     "ai",
     "agents",
     "skills",
-    "hooks",
+    "gemini-cli",
+    "github-copilot",
+    "qwen-code",
+    "kilo-code",
+    "opencode",
     "mcp",
-    "rules",
-    "qwen",
     "tdd",
     "code-review",
     "security",
     "automation",
-    "best-practices"
+    "best-practices",
+    "universal-framework"
   ],
   "author": {
     "name": "mowgliph Jelvys Triana",
@@ -55,8 +57,8 @@
     "lint": "eslint . && markdownlint '**/*.md' --ignore node_modules",
     "test": "node tests/run-all.js",
     "test:token-rules": "node tests/test-merge-token-rules.js",
-    "install:global": "node bin/eqw-install",
-    "postinstall": "node bin/eqw-install"
+    "install:global": "bash bin/eqw-install",
+    "postinstall": "bash bin/eqw-install"
   },
   "engines": {
     "node": ">=18"
