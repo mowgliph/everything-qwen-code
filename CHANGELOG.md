@@ -7,6 +7,21 @@ and this adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-04-20
+
+### Added
+- **Gemini CLI Support**: Full configuration suite including `GEMINI.md` and `settings.json`.
+- **Unified Bash Installer**: New root-level `install.sh` for multi-CLI coordination.
+- **Improved Metadata**: Enhanced agent descriptions and package metadata for better discoverability.
+
+### Changed
+- **Installation Process**: Refactored `bin/eqw-install` to wrap the unified bash installer.
+- **Versioning**: Updated to v0.8.0 across all components.
+
+### Removed
+- **Legacy Scripts**: Deleted redundant `scripts/install.sh`.
+- **Redundant Skills**: Removed `skills/accessibility` in favor of `skills/accessibility-compliance`.
+
 ## [0.7.0] - 2026-04-19
 
 ### Added
